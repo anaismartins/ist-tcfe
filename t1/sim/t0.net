@@ -41,10 +41,25 @@ echo  "Operating point"
 echo "********************************************"
 
 echo  "op_TAB"
-print all
+*print all
+print Va
+print Vc
+print Ib
+print Id
+print @R1[i]
+print @R2[i]
+print @R3[i]
+print @R4[i]
+print @R5[i]
+print @R6[i]
+print @R7[i]
+print v(0)
+print v(1)
+print v(2)
+print v(3)
+print v(4)
+print v(5)
+print v(6)
+print v(7)
+
 echo  "op_END"
-
-quit
-.endc
-
-.end
