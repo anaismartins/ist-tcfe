@@ -1,4 +1,4 @@
-octave.log: rc.m
+octave.log: kcl.m
 	octave $< > $@
 
 clean:
