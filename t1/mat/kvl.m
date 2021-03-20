@@ -5,70 +5,28 @@ clear all
 
 pkg load symbolic
 
-syms t
-syms R
-syms C
-syms vi(t)
-syms vo(t)
-syms i(t)
+syms I1
+syms I2
+syms I3
+syms I4
+syms Ib
+syms Ic
 
-i(t)=C*diff(vo,t)
+R1 = 1.02779694281e-3 %kOhm
+R2 = 2.07715672461e-3%kOhm tyyy
+R3 = 3.1156225241e-3%kOhm
+R4 = 4.11105908751e-3%kOhm
+R5 = 3.02879032081e-3%kOhm
+R6 = 2.02983164661e-3 %kOhm
+R7 = 1.00454956611e-3 %kOhm
+Va = 5.18504190779 %V
+Id = 1.03147590492e2 %mA
+Kb = 7.00248816446e2 %mS
+Kc = 8.14562893937e-3 %kOhm
 
-printf("\n\nKVL equation:\n");
+a = [R1+R4, 0, -R4, 0, 1/Kb, 0; 0, 1, 0, 0, 1, 0; -R4, 0, (R4+R6+R7), 0, 0, Kc; 0, 0, 0, 1, 0, 0; 0, 0, 1, 0, 0, 1; -R3, R3, 0, 0, 1/Kb, 0, 0]
+x = [I1; I2; I3; I4; Ib; Ic]
+b = [Va; 0; 0; -Id; 0; 0]
 
-vi(t) = R*i(t)+vo(t)
-
-syms vo_n(t) %natural solution
-syms vo_f(t) %forced solution
-
-printf("\n\nSolution is of the form");
-
-v(t) = vo_n(t) + vo_f(t)
-
-printf("\n\nNatural solution:\n");
-syms A
-syms wn
-
-vi(t) = 0 %no excitation
-i_n(t) = C*diff(vo_n, t)
-
-
-printf("\n\n Natural solution is of the form");
-vo_n(t) = A*exp(wn*t)
-
-R*i_n(t)+vo_n(t) == 0
-
-R*C*wn*vo_n(t)+vo_n(t) == 0
-
-R*C*wn+1==0
-
-solve(ans, wn)
-
-
-%%EXAMPLE NUMERIC COMPUTATIONS
-
-R=1e3 %Ohm
-C=100e-9 %F
-
-f = 1000 %Hz
-w = 2*pi*f; %rad/s
-
-%time axis: 0 to 10ms with 1us steps
-t=0:1e-6:10e-3; %s
-
-Zc = 1/(j*w*C)
-Cgain = Zc/(R+Zc)
-Gain = abs(Cgain)
-Phase = angle(Cgain)
-
-vi = 1*cos(w*t);
-vo = Gain*cos(w*t+Phase);
-
-hf = figure ();
-plot (t*1000, vi, "g");
-hold on;
-plot (t*1000, vo, "b");
-
-xlabel ("t[ms]");
-ylabel ("vi(t), vo(t) [V]");
-print (hf, "forced.eps", "-depsc");
+x = a\b
+disp x
