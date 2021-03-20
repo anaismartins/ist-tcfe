@@ -1,7 +1,12 @@
-octave.log: kcl.m
+all: oct-kvl.log oct-kcl.log
+
+oct-kvl.log: kvl.m
+	octave $< > $@
+
+oct-kcl.log: kcl.m
 	octave $< > $@
 
 clean:
-	@rm -f octave.log octave-workspace *.eps *~
+	@rm -f *.log octave-workspace *.eps *~
 
-.PHONY: clean
+.PHONY: clean all
