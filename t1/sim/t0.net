@@ -7,9 +7,10 @@
 .options savecurrents
 
 Va 1 4 5.18504190779
-Vc 5 0 @R6[i] 8.14562893937k
+Ve 8 4 0V
+Hc 5 0 Ve 8.14562893937k
 
-Ib 3 6 2 5 7.00248816446m
+Gb 3 6 (2,5) 7.00248816446m
 Id 6 0 1.03147590492m
 
 R1 1 2 1.02779694281k
@@ -17,10 +18,10 @@ R2 3 2 2.07715672461k
 R3 2 5 3.1156225241k
 R4 5 4 4.11105908751k
 R5 6 5 3.02879032081k
-R6 4 7 2.02983164661k
+R6 8 7 2.02983164661k
 R7 7 0 1.00454956611k
 
-*código quee mete a correr o ngspice
+*código que mete a correr o ngspice
 
 .control
 
@@ -41,8 +42,30 @@ echo  "Operating point"
 echo "********************************************"
 
 echo  "op_TAB"
-print all
+*print all
+print Va
+print Ve
+print Hc
+print Ib
+print Id
+print @R1[i]
+print @R2[i]
+print @R3[i]
+print @R4[i]
+print @R5[i]
+print @R6[i]
+print @R7[i]
+print v(0)
+print v(1)
+print v(2)
+print v(3)
+print v(4)
+print v(5)
+print v(6)
+print v(7)
+
 echo  "op_END"
+
 
 quit
 .endc
