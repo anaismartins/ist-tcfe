@@ -45,8 +45,12 @@ echo  "op_TAB"
 *print all
 print Va
 <<<<<<< HEAD
+<<<<<<< HEAD
 print Ve
 print Hc
+=======
+print Vc
+>>>>>>> c2b661e1414474ae0aa800506f8fda6236c818b5
 =======
 print Vc
 >>>>>>> c2b661e1414474ae0aa800506f8fda6236c818b5
@@ -68,12 +72,15 @@ print v(5)
 print v(6)
 print v(7)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 echo  "op_END"
 
 
 quit
 .endc
+=======
+>>>>>>> c2b661e1414474ae0aa800506f8fda6236c818b5
 =======
 >>>>>>> c2b661e1414474ae0aa800506f8fda6236c818b5
 
