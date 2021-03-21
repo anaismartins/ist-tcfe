@@ -3,8 +3,7 @@
 
 \subsection{Operating Point Analysis}
 
-Table~\ref{tab:op} shows the simulated operating point results for the circuit
-under analysis.
+Table~\ref{tab:op} shows the simulated operating point results for the circuit under analysis.
 
 \begin{table}[htb!]
   \centering
@@ -18,3 +17,12 @@ under analysis.
     Volt.}
   \label{tab:op}
 \end{table}
+
+These results were produced using the \textit{Ngspice software}. In order for the \textit{software} to be able to recognise the Current-Controlled Voltage Source, defined in Figure \ref{fig2} as $H_c$, we had to add a new Independent Voltage Source with a voltage of 0V, which is also represented in \ref{fig2}.
+
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{t1-2.pdf}
+\caption{The original circuit with an added voltage source of value 0V.}
+\label{fig2}
+\end{figure}

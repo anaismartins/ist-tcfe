@@ -7,6 +7,6 @@ oct-kcl.log: kcl.m
 	octave $< > $@
 
 clean:
-	@rm -f *.log octave-workspace *.eps *~
+	@rm -f *.log octave-workspace *.eps *~ *.tex
 
 .PHONY: clean all

@@ -7,7 +7,7 @@
 .options savecurrents
 
 Va 1 4 5.18504190779
-Ve 8 4 0V
+Ve 4 8 0V
 Hc 5 0 Ve 8.14562893937k
 
 Gb 3 6 (2,5) 7.00248816446m
