@@ -41,16 +41,16 @@ file = fopen(filename, "w");
 
 for i = 1:6
     if (i == 5)
-        fprintf(file, "Ib & %7.7e\\\\\\hline ", double(X(i)));
+        fprintf(file, "I_b & %7.7e\\\\\\hline ", double(X(i)));
     elseif (i == 6)
-        fprintf(file, "Ic & %7.7e\\\\\\hline ", double(X(i)));
+        fprintf(file, "I_c & %7.7e\\\\\\hline ", double(X(i)));
     else
-        fprintf(file, "I%i & %7.7e\\\\\\hline ", i, double(X(i)));
+        fprintf(file, "I_%i & %7.7e\\\\\\hline ", i, double(X(i)));
     endif
 endfor
 
-fprintf(file, "Vb & %7.7e\\\\\\hline ", double(Vb));
-fprintf(file, "Vc & %7.7e\\\\\\hline ", double(Vc));
+fprintf(file, "V_b & %7.7e\\\\\\hline ", double(Vb));
+fprintf(file, "V_c & %7.7e\\\\\\hline ", double(Vc));
 
 fflush(file);
 
