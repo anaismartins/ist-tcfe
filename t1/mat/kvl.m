@@ -32,3 +32,20 @@ B = [Va; Z; Z; -Id; Z; Z]
 X = [I1; I2; I3; I4; Ib; Ic]
 
 X = A\B
+
+filename = "kvl.tex";
+file = fopen(filename, "w");
+
+for i = 1:6
+    if (i == 5)
+        fprintf(file, "Ib & %12.12f\\\\\n", double(X(i)));
+    elseif (i == 6)
+        fprintf(file, "Ic & %12.12f\\\\\n", double(X(i)));
+    else
+        fprintf(file, "I%i & %12.12f\\\\\n", i, double(X(i)));
+    endif
+endfor
+
+fflush(file);
+
+fclose(file);

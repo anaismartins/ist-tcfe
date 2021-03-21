@@ -28,8 +28,25 @@ Id = vpa(1.03147590492e-3) %A
 Kb = vpa(7.00248816446e-3) %S
 Kc = vpa(8.14562893937e3) %Ohm
 
-a = [O/R1, -(R1*R2+R1*R3+R2*R3)/(R1*R2*R3), O/R2, Z, O/R3, Z, Z, Z, Z; Z, O/R2, -O/R2, Z, Z, Z, Z, Kb, Z; Z, Z, Z, Z, O/R5, -O/R5, Z, -Kb, Z; Z, Z, Z, O/R6, Z, Z, -(R6+R7)/(R6*R7), Z, Z; O, Z, Z, -O, Z, Z, Z, Z, Z; Z, O, Z, Z, -O, Z, Z -O, Z; Z, Z, Z, Z, O, Z, Z, Z, -O; Z, Z, Z, -O/R6, Z, Z, O/R6, Z, O/Kc; Z, Z, Z, Z, Z, Z, -O/R7, Z, Kc]
-x = [V1; V2; V3; V4; V5; V6; V7; Vb; Vc]
-b = [Z; Z; -Id; Z; Va; Z; Z; Z; Z]
+A = [O/R1, -(R1*R2+R1*R3+R2*R3)/(R1*R2*R3), O/R2, Z, O/R3, Z, Z, Z, Z; Z, O/R2, -O/R2, Z, Z, Z, Z, Kb, Z; Z, Z, Z, Z, O/R5, -O/R5, Z, -Kb, Z; Z, Z, Z, O/R6, Z, Z, -(R6+R7)/(R6*R7), Z, Z; O, Z, Z, -O, Z, Z, Z, Z, Z; Z, O, Z, Z, -O, Z, Z -O, Z; Z, Z, Z, Z, O, Z, Z, Z, -O; Z, Z, Z, -O/R6, Z, Z, O/R6, Z, O/Kc; Z, Z, Z, Z, Z, Z, -O/R7, Z, Kc]
+X = [V1; V2; V3; V4; V5; V6; V7; Vb; Vc]
+B = [Z; Z; -Id; Z; Va; Z; Z; Z; Z]
 
-x = a\b
+X = A\B
+
+filename = "kcl.tex";
+file = fopen(filename, "w");
+
+for i = 1:9
+    if (i == 8)
+        fprintf(file, "Vb & %12.12f\\\\\n", double(X(i)));
+    elseif (i == 9)
+        fprintf(file, "Vc & %12.12f\\\\\n", double(X(i)));
+    else
+        fprintf(file, "V%i & %12.12f\\\\\n", i, double(X(i)));
+    endif
+endfor
+
+fflush(file);
+
+fclose(file);
