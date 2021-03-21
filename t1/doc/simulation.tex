@@ -26,3 +26,13 @@ These results were produced using the \textit{Ngspice software}. In order for th
 \caption{The original circuit with an added voltage source of value 0V.}
 \label{fig2}
 \end{figure}
+
+De um modo geral, os valores obtidos na análise teórica apresentam algumas diferenças comparativamente aos resultados da simulação.
+
+No método dos nodos, em concreto, notam-se descrepancias muito acentuadas, sendo alguns dos casos de ordens de grandeza diferentes, tal como o valor de tensão do nodo 5: valor teórico - 0.0000000e+00 V, valor simulado - 7.931699e+00 V. Ainda assim, alguns valores aproximam-se moderadamente dos valores simulados - tensao no nodo 1: valor teórico -  5.1850419e+00 V, valor simulado - 8.139731e+00 V.
+
+
+
+O método das malhas destaca-se significativamente do método anterior, já que apresenta resultados consideravelmente próximos dos valores simulados.
+Os valores arbitrários de corrente atribuídos na figura \ref{fig2} (representados pelas setas circulares): $I_1$ $I_2$ $I_3$ e $I_4$ correspondem, respetivamente aos seguintes valores da tabela (\ref{tab:op})dos dados simulados: @r1[i], -@r2[i], -@id[current], -@r6[i] (ou @r7[i], são equivalentes).
+Na verdade, o maior desvio absoluto corresponde à corrente $I_4$ e toma o valor: $ 5.7739e-05 $ A.
