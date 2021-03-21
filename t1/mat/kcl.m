@@ -42,16 +42,16 @@ file = fopen(filename, "w");
 
 for i = 1:9
     if (i == 8)
-        fprintf(file, "V_b & %7.7e\\\\\\hline ", double(X(i)));
+        fprintf(file, "Vb & %7.7e\\\\\\hline ", double(X(i)));
     elseif (i == 9)
-        fprintf(file, "V_c & %7.7e\\\\\\hline ", double(X(i)));
+        fprintf(file, "Vc & %7.7e\\\\\\hline ", double(X(i)));
     else
-        fprintf(file, "V_%i & %7.7e\\\\\\hline ", i, double(X(i)));
+        fprintf(file, "V%i & %7.7e\\\\\\hline ", i, double(X(i)));
     endif
 endfor
 
-fprintf(file, "I_b & %7.7e\\\\\\hline ", double(Ib));
-fprintf(file, "I_c & %7.7e\\\\\\hline ", double(Ic));
+fprintf(file, "Ib & %7.7e\\\\\\hline ", double(Ib));
+fprintf(file, "Ic & %7.7e\\\\\\hline ", double(Ic));
 
 fflush(file);
 

@@ -16,6 +16,7 @@ $(FILE).pdf: $(wildcard *.tex) $(LODFIGS)
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
+	pdflatex  $(FILE).tex
 
 
 #convert libreoffice draw figures to pdf
