@@ -10,15 +10,16 @@ The voltage $V_i$ refers to the node $i$. Since we can only apply KCL (Kirchoff'
 
 \begin{equation} 
 \begin{cases}  
-    Node\, 2: \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} - \frac{V_b}{R_3} = 0 \\
+    Node\, 2: \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} + \frac{V_5 - V_2}{R_3} = 0 \\
     Node\, 3: \frac{V_2 - V_3}{R_2} + K_bV_b = 0 \\
     Node\, 6: \frac{V_5 - V_6}{R_5} - K_bV_b = \,  - I_d \\
     Node\, 7: \frac{V_4 - V_7}{R_6} - \frac{V_7}{R_7} = 0 \\
     Caused\, by\, V_a : V_1 - V_4 \, = V_a \\
+    Caused\, by\, V_b : \frac{V_3 - V_2}{R_2} - K_bV_b  = 0\\
     Caused\, by\, V_b : V_2 - V_5 - V_b = 0 \\
     Caused\, by\, V_c : V_5 - V_c = 0 \\
     Caused\, by\, I_c : - \frac{V_4 - V_7}{R_6} + \frac{V_c}{K_c} = 0\\
-    Caused\, by\, V_c : - \frac{V_7}{R_7} + \frac{V_c}{K_c}  = 0\\
+    
 \end{cases}
 \label{eq:1}
 \end{equation}
@@ -26,9 +27,18 @@ The voltage $V_i$ refers to the node $i$. Since we can only apply KCL (Kirchoff'
 We then use $GNU Octave$, a $software$ that can solve them, to obtain the values of all the unknowns. Knowing all the voltages allows us to know every current aswell, which means the circuit is solved.
 The results of these computations are compiled in this table.
 
-%tabela
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf V} \\ \hline
+    \input{../mat/kcl.tex}
+  \end{tabular}
+  \caption{Node analysis computation results}
+  \label{tab:op}
+\end{table}
 
-\subsection{Nodal analysis}
+\subsection{Mesh analysis}
 
 We have decided to numerate every mesh from 1 to 4. This is helpful because we can, therefore, derive direct equations in terms of the current passing through these meshes. The current $I_i$ refers to the mesh $i$. For this method, we apply KVL (Kirchoff's Voltage Law), which states that the sum of all the voltages around any closed loop in a circuit is equal to zero, and relate the fictional currents we created to currents given in the circuit (for example, $I_d$). The equations are as follows
 
@@ -48,4 +58,13 @@ We have decided to numerate every mesh from 1 to 4. This is helpful because we c
 
 We use the same procedure to compute these equations. The results of these computations are compiled in this table.
 
-%tabela
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf A} \\ \hline
+    \input{../mat/kvl.tex}
+  \end{tabular}
+  \caption{Mesh analysis computation results}
+  \label{tab:op}
+\end{table}

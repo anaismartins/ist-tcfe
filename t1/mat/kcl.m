@@ -34,18 +34,24 @@ B = [Z; Z; -Id; Z; Va; Z; Z; Z; Z]
 
 X = A\B
 
+Ib = Kb * X(8)
+Ic = X(9) / Kc
+
 filename = "kcl.tex";
 file = fopen(filename, "w");
 
 for i = 1:9
     if (i == 8)
-        fprintf(file, "Vb & %12.12f\\\\\n", double(X(i)));
+        fprintf(file, "Vb & %12.12f\\\\\\hline ", double(X(i)));
     elseif (i == 9)
-        fprintf(file, "Vc & %12.12f\\\\\n", double(X(i)));
+        fprintf(file, "Vc & %12.12f\\\\\\hline ", double(X(i)));
     else
-        fprintf(file, "V%i & %12.12f\\\\\n", i, double(X(i)));
+        fprintf(file, "V%i & %12.12f\\\\\\hline ", i, double(X(i)));
     endif
 endfor
+
+fprintf(file, "Ib & %12.12f\\\\\\hline ", double(Ib));
+fprintf(file, "Ic & %12.12f\\\\\\hline ", double(Ic));
 
 fflush(file);
 

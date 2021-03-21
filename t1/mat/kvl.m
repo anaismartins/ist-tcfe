@@ -33,18 +33,24 @@ X = [I1; I2; I3; I4; Ib; Ic]
 
 X = A\B
 
+Vb = X(5) / Kb
+Vc = X(6) * Kc
+
 filename = "kvl.tex";
 file = fopen(filename, "w");
 
 for i = 1:6
     if (i == 5)
-        fprintf(file, "Ib & %12.12f\\\\\n", double(X(i)));
+        fprintf(file, "Ib & %12.12f\\\\\\hline ", double(X(i)));
     elseif (i == 6)
-        fprintf(file, "Ic & %12.12f\\\\\n", double(X(i)));
+        fprintf(file, "Ic & %12.12f\\\\\\hline ", double(X(i)));
     else
-        fprintf(file, "I%i & %12.12f\\\\\n", i, double(X(i)));
+        fprintf(file, "I%i & %12.12f\\\\\\hline ", i, double(X(i)));
     endif
 endfor
+
+fprintf(file, "Vb & %12.12f\\\\\\hline ", double(Vb));
+fprintf(file, "Vc & %12.12f\\\\\\hline ", double(Vc));
 
 fflush(file);
 
