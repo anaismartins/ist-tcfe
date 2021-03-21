@@ -1,67 +1,51 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure~\ref{fig:rc} is analysed
-theoretically, in terms of its time and frequency responses.
+In this section, the circuit shown in Figure~\ref{fig1} is analysed via node analysis and mesh analysis.
 
-\section{Time response}
+\subsection{Node analysis}
 
-The circuit consists of a single V-R-C loop where a current $i(t)$ circulates. The
-voltage source $v_I(t)$ drives its input, and the output voltage $v_O(t)$ is taken from
-the capacitor terminals. Applying the Kirchhoff Voltage Law (KVL), a single
-equation for the single loop in the circuit can be written as
+We have decided to numerate every node from 1 to 7 (the 8th of which being the ground). This is helpful because we can, therefore, derive direct equations in terms of the voltage at these nodes.
+The voltage $V_i$ refers to the node $i$. Since we can only apply KCL (Kirchoff's Current Law), which states that the sum of currents leaving a node must be the same as the sum of currents entering a node, to nodes not connected to voltage sources, we can only derive 4 of these equations. The others are obtained from simple analysis of nodes connected to sources. The equations are as follows
 
-\begin{equation}
-  Ri(t) + v_O(t) = v_I(t).
-  \label{eq:kvl}
+\begin{equation} 
+\begin{cases}  
+    Node\, 2: \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} - \frac{V_b}{R_3} = 0 \\
+    Node\, 3: \frac{V_2 - V_3}{R_2} + K_bV_b = 0 \\
+    Node\, 6: \frac{V_5 - V_6}{R_5} - K_bV_b = \,  - I_d \\
+    Node\, 7: \frac{V_4 - V_7}{R_6} - \frac{V_7}{R_7} = 0 \\
+    Caused\, by\, V_a : V_1 - V_4 \, = V_a \\
+    Caused\, by\, V_b : V_2 - V_5 - V_b = 0 \\
+    Caused\, by\, V_c : V_5 - V_c = 0 \\
+    Caused\, by\, I_c : - \frac{V_4 - V_7}{R_6} + \frac{V_c}{K_c} = 0\\
+    Caused\, by\, V_c : - \frac{V_7}{R_7} + \frac{V_c}{K_c}  = 0\\
+\end{cases}
+\label{eq:1}
 \end{equation}
 
-Because $v_O$ is the voltage between capacitor C's plates, it is related to the
-current $i$ by
-\begin{equation}
-  i(t) = C\frac{dv_O}{dt}.
+We then use $GNU Octave$, a $software$ that can solve them, to obtain the values of all the unknowns. Knowing all the voltages allows us to know every current aswell, which means the circuit is solved.
+The results of these computations are compiled in this table.
+
+%tabela
+
+\subsection{Nodal analysis}
+
+We have decided to numerate every mesh from 1 to 4. This is helpful because we can, therefore, derive direct equations in terms of the current passing through these meshes. The current $I_i$ refers to the mesh $i$. For this method, we apply KVL (Kirchoff's Voltage Law), which states that the sum of all the voltages around any closed loop in a circuit is equal to zero, and relate the fictional currents we created to currents given in the circuit (for example, $I_d$). The equations are as follows
+
+\begin{equation} 
+\begin{cases}  
+    Mesh\, 1: R_1\,I_1 + V_b + R_4(I_1 - I_3) = V_a \\
+    Mesh\, 2: I_2 = -I_b = -K_b\, V_b\\
+    Mesh\, 3: R_4(I_3 - I_1) + K_c\,I_c + R_7\,I_3 + R_6\,I_3 = 0 \\
+    Mesh\, 4: I_4 = -I_d \\
+    I_3 = -I_c \\
+    V_b = R_3(I_1 - I_2) \\
+    
+    
+\end{cases}
+\label{eq:2}
 \end{equation}
 
-Hence, Equation~(\ref{eq:kvl}) can be rewritten as
-\begin{equation}
-  RC\frac{dv_O}{dt} + v_O(t) = v_I.
-  \label{eq:kvl2}
-\end{equation}
+We use the same procedure to compute these equations. The results of these computations are compiled in this table.
 
-Equation~(\ref{eq:kvl2}) is a linear differencial equation whose solution is a
-superposition of a natural solution $v_{On}$ and a forced solution $v_{Of}$:
-
-\begin{equation}
-  v_O(t) = v_{On}(t) + v_{Of}(t).
-  \label{eq:vo_sol}
-\end{equation}
-
-As learned in the theory classes the natural solution is of the form
-\begin{equation}
-  v_{On}(t) = Ae^{-\frac{t}{RC}},
-  \label{eq:vo_nat}
-\end{equation}
-where $A$ is an integration constant.
-
-The forced solution is of the form given in Equation~(\ref{eq:vo_for}) and is
-illustrated in Figure~\ref{fig:forced}.
-
-\begin{equation}
-  V_{Of}(t) = |\bar{V}_{Of}| cos(\omega t + \angle \bar{V}_{Of}),
-  \label{eq:vo_for}
-\end{equation}
-
-\lipsum[1-1]
-
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.8\linewidth]{forced.eps}
-\caption{Forced sinusoidal response.}
-\label{fig:forced}
-\end{figure}
-
-\section{Frequency response}
-
-\lipsum[1-1]
-
-
+%tabela
