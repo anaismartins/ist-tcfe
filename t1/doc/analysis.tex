@@ -31,10 +31,12 @@ The results of these computations are compiled in this table.
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf V} \\ \hline
+    {\bf Name} & {\bf Value [A and V]} \\ \hline
     \input{../mat/kcl.tex}
   \end{tabular}
-  \caption{Node analysis computation results}
+  \caption{Node analysis computation results. A variable starting with I is of type {\em current}
+    and expressed in Ampere; a variable starting with V is of type {\it voltage} and expressed in
+    Volt.}
   \label{tab:op}
 \end{table}
 
@@ -62,9 +64,11 @@ We use the same procedure to compute these equations. The results of these compu
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf A} \\ \hline
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/kvl.tex}
   \end{tabular}
-  \caption{Mesh analysis computation results}
+  \caption{Mesh analysis computation results. A variable starting with I is of type {\em current}
+    and expressed in Ampere; a variable starting with V is of type {\it voltage} and expressed in
+    Volt.}
   \label{tab:op}
 \end{table}
