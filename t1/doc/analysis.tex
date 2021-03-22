@@ -5,26 +5,65 @@ In this section, the circuit shown in Figure~\ref{fig1} is analysed via node ana
 
 \subsection{Node analysis}
 
-We have decided to numerate every node from 1 to 7 (the 8th of which being the ground). This is helpful because we can, therefore, derive direct equations in terms of the voltage at these nodes.
-The voltage $V_i$ refers to the node $i$. Since we can only apply KCL (Kirchoff's Current Law), which states that the sum of currents leaving a node must be the same as the sum of currents entering a node, to nodes not connected to voltage sources, we can only derive 4 of these equations. The others are obtained from simple analysis of nodes connected to sources. The equations are as follows
+
+
+Labels were assigned to identify nodes from zero to seven, to then proceed with the mesh and node analysis (the 0th of which being the ground). This is helpful because we can, therefore, derive direct equations in terms of the voltage at these nodes.
+
+The voltage $V_i$ refers to the node $i$. Since we can only apply KCL (Kirchoff's Current Law), which states that the sum of currents leaving a node must be the same as the sum of currents entering a node, to nodes not connected to voltage sources, we can only derive 4 of these equations. It's relevant to notice that this kind of approach is only possible for the nodes which aren't directly connected to a terminal of a voltage source: in that case it's crucial to find other equations to cover all the unknown variables of the system.
+The current flow direction is considered, whenever possible, the same as indicated by each $I_i$, with $i$ ranging from 1 to 4. The cases where this is not possible are the currents going through nodes 2 to 5 and 5 to 6; for these, we considered, respectively, the direction of $V_b$ and of $I_d$.
+
+The equations are as follows
 
 \begin{equation} 
 \begin{cases}  
-    Node\, 2: \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} + \frac{V_5 - V_2}{R_3} = 0 \\
-    Node\, 3: \frac{V_2 - V_3}{R_2} + K_bV_b = 0 \\
-    Node\, 6: \frac{V_5 - V_6}{R_5} - K_bV_b = \,  - I_d \\
-    Node\, 7: \frac{V_4 - V_7}{R_6} - \frac{V_7}{R_7} = 0 \\
-    Caused\, by\, V_a : V_1 - V_4 \, = V_a \\
-    Caused\, by\, V_b : \frac{V_3 - V_2}{R_2} - K_bV_b  = 0\\
-    Caused\, by\, V_b : V_2 - V_5 - V_b = 0 \\
-    Caused\, by\, V_c : V_5 - V_c = 0 \\
-    Caused\, by\, I_c : - \frac{V_4 - V_7}{R_6} + \frac{V_c}{K_c} = 0\\
-    
+    Node\, 2: \frac{V_1 - V_2}{R_1} + \frac{V_2 - V_5}{R_3} + \frac{V_2 - V_3}{R_2} = 0 \\
+    Node\, 3: \frac{V_2 - V_3}{R_2} + I_b = 0 \\
+    Node\, 6: \frac{V_6 - V_5}{R_5} - I_b = \,  - I_d \\
+    Node\, 7: \frac{V_7 - V_4}{R_6} - \frac{V_7}{R_7} = 0 \\
+    \frac{V_2 - V_5}{R3} - I_b = 0 \\
+    \frac{V_4 - V_7}{R_6} - I_c = 0\\
+    V_5 - V_c = 0\\
 \end{cases}
 \label{eq:1}
 \end{equation}
 
-We then use $GNU Octave$, a $software$ that can solve them, to obtain the values of all the unknowns. Knowing all the voltages allows us to know every current aswell, which means the circuit is solved.
+\subsection{Mesh analysis}
+
+
+In the mesh analysis, it's given an arbitrary current to each mesh ($I_1$, $I_2$, $I_3$ $I_4$), represented in Figure~\ref{fig1} with round arrows. This is helpful because we can, therefore, derive direct equations in terms of the current passing through these meshes.
+
+The current $I_i$ refers to the mesh $i$. For this method, we apply KVL (Kirchoff's Voltage Law), which states that the sum of all the voltages around any closed loop in a circuit is equal to zero, and relate the fictional currents we created to currents given in the circuit (for example, $I_d$).
+
+This is not possible to be done for every mesh as the Law would specifically entail, but we can reach conclusions in every mesh by inspection of said mesh. Moreover, we can add some other equations to the system, again, by inspection.
+
+The equations are as follows
+
+\begin{equation} 
+\begin{cases}  
+    Mesh\, 1: R_1\,I_1 + R_3\,(I_1 - I_2) + R_4(I_1 - I_3) = V_a \\
+    Mesh\, 2: I_2 + I_b = 0\\
+    Mesh\, 3: R_4(I_3 - I_1) + V_c + R_7\,I_3 + R_6\,I_3 = 0 \\
+    Mesh\, 4: I_4 = -I_d \\
+    R3\, (I_1 - I_2) - V_b = 0\\
+    I_3 + I_c = 0 \\
+
+\end{cases}
+\label{eq:2}
+\end{equation}
+
+\subsection{Circuit Solution}
+
+To make sense out of the equations that were presented already, we also have to add
+
+\begin{equation} 
+\begin{cases}  
+   K_b\,V_b - I_b = 0 \\
+  K_c\, I_c - V_c = 0 \\
+\end{cases}
+\label{eq:3}
+\end{equation}
+
+We then use \textit{GNU Octave}, a $software$ that can solve this system of equations, to obtain the values of all the unknowns. Knowing all the voltages allows us to know every current aswell, which means the circuit is solved.
 The results of these computations are compiled in this table.
 
 \begin{table}[h]
@@ -32,42 +71,9 @@ The results of these computations are compiled in this table.
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [A and V]} \\ \hline
-    \input{../mat/kcl.tex}
+    \input{../mat/kirchhoff.tex}
   \end{tabular}
-  \caption{Node analysis computation results. A variable starting with I is of type {\em current}
-    and expressed in Ampere; a variable starting with V is of type {\it voltage} and expressed in
-    Volt.}
-  \label{tab:op}
-\end{table}
-
-\subsection{Mesh analysis}
-
-We have decided to numerate every mesh from 1 to 4. This is helpful because we can, therefore, derive direct equations in terms of the current passing through these meshes. The current $I_i$ refers to the mesh $i$. For this method, we apply KVL (Kirchoff's Voltage Law), which states that the sum of all the voltages around any closed loop in a circuit is equal to zero, and relate the fictional currents we created to currents given in the circuit (for example, $I_d$). The equations are as follows
-
-\begin{equation} 
-\begin{cases}  
-    Mesh\, 1: R_1\,I_1 + V_b + R_4(I_1 - I_3) = V_a \\
-    Mesh\, 2: I_2 = -I_b = -K_b\, V_b\\
-    Mesh\, 3: R_4(I_3 - I_1) + K_c\,I_c + R_7\,I_3 + R_6\,I_3 = 0 \\
-    Mesh\, 4: I_4 = -I_d \\
-    I_3 = -I_c \\
-    V_b = R_3(I_1 - I_2) \\
-    
-    
-\end{cases}
-\label{eq:2}
-\end{equation}
-
-We use the same procedure to compute these equations. The results of these computations are compiled in this table.
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../mat/kvl.tex}
-  \end{tabular}
-  \caption{Mesh analysis computation results. A variable starting with I is of type {\em current}
+  \caption{Node and Mesh Analysis Computation Results. A variable starting with I is of type {\em current}
     and expressed in Ampere; a variable starting with V is of type {\it voltage} and expressed in
     Volt.}
   \label{tab:op}
