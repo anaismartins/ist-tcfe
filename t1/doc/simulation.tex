@@ -33,4 +33,21 @@ To compare the results between the theoretical calculations and the simulation i
 
 On a general basis, the values obtained by the simulation greatly resemble the ones obtained using the theoretical models and the application \textit{GNUOctave} to compute them.
 
+<<<<<<< HEAD
 In fact, by inspection it's possible to conclude that pratically all the values fit in the same magnitude as its correspondent. The biggest absolute difference reports to the voltage in node six, v(6): theoretical value - 4.0555787e+00 V, simulated value: 1.180782e+01 V. Being the biggest divergence, this represents an absolute error (|theoretical - simulated|/) of 7.752241 V.
+=======
+In fact, by inspection it's possible to conclude that pratically all the values fit in the same magnitude as its correspondent. The biggest absolute difference reports to the voltage in node six, v(6): theoretical value - 4.0555787e+00 V, simulated value: 1.180782e+01 V. Being the biggest divergence, this represents an absolute error ($|theoretical - simulated|$) of 7.752241 V.
+
+\begin{table}[htb!]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Relative Uncertainty [A or V]} \\ \hline
+    \input{../errors.tex}
+  \end{tabular}
+  \caption{Operating point results. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:errors}
+\end{table}
+>>>>>>> ba0f2fb996d55d9b6ae3466e5bf748312c35cf69
