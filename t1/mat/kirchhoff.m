@@ -68,3 +68,14 @@ endfor
 fflush(file);
 
 fclose(file);
+
+filename = "kirch-errors.tex";
+file = fopen(filename, "w");
+
+for i = 1:15
+    fprintf(file, "%7.7e\n", double(X(i)));
+endfor
+
+fflush(file);
+
+fclose(file);
