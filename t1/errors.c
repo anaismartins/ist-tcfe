@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int main(){
-
-
-
-    FILE *errors;
-    errors = fopen("errors.tex", "w");
 
     double Vkirch[9];
     double Ikirch[4];
@@ -58,7 +54,26 @@ int main(){
 
     fclose(sim);
 
-    printf("%lf %lf", Isim[0], Vsim[0]);
+    double Verrors[7];
+
+    for (int i = 0; i < 7; i++)
+        Verrors[i] = fabs(Vkirch[i] - Vsim[i])/fabs(Vkirch[i]);
+
+    double Ierrors[4];
+
+    Ierrors[0] = fabs(Ikirch[0] - Isim[0])/fabs(Ikirch[0]);
+    Ierrors[1] = fabs(Ikirch[1] + Isim[1])/fabs(Ikirch[1]);
+    Ierrors[2] = fabs(Ikirch[2] + Id)/fabs(Ikirch[2]);
+    Ierrors[3] = fabs(Ikirch[3] + Isim[5])/fabs(Ikirch[3]);
+
+    FILE *errors;
+    errors = fopen("errors.tex", "w");
+
+    for (int i = 0; i < 7; i++)
+        fprintf(errors, "V%i & %7.7e\\\\\\hline ", i+1, Verrors[i]);
+
+    for (int i = 0; i < 4; i++)
+        fprintf(errors, "I%i & %7.7e\\\\\\hline ", i+1, Ierrors[i]);
 
     return 0;
 }
