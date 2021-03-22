@@ -8,7 +8,7 @@ int main(){
     double Ikirch[4];
 
     FILE *kirch;
-    kirch = fopen("./mat/kirch-errors.tex", "r");
+    kirch = fopen("../mat/kirch-errors.tex", "r");
 
     if(kirch == NULL)
         printf("failed");
@@ -27,7 +27,7 @@ int main(){
     double Vsim[8];
 
     FILE *sim;
-    sim = fopen("./sim/op_tab.tex", "r");
+    sim = fopen("../sim/op_tab.tex", "r");
 
     if(sim == NULL)
         printf("failed");

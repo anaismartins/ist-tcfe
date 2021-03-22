@@ -1,10 +1,4 @@
-all: oct-kvl.log oct-kcl.log kirch.log
-
-oct-kvl.log: kvl.m
-	octave $< > $@
-
-oct-kcl.log: kcl.m
-	octave $< > $@
+all: kirch.log
 
 kirch.log: kirchhoff.m
 	octave $< > $@
