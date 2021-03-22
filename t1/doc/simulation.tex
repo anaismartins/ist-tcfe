@@ -33,7 +33,12 @@ To compare the results between the theoretical calculations and the simulation, 
 
 On a general basis, the values obtained by the simulation greatly resemble the ones obtained using the theoretical models and the application \textit{GNUOctave} to compute them.
 
-In fact, by inspection it's possible to conclude that pratically all the values fit in the same magnitude as its correspondent. The biggest absolute difference reports to the voltage in node six, v(6): theoretical value - 4.0555787e+00 V, simulated value: 1.180782e+01 V. Being the biggest divergence, this represents an absolute error ($|theoretical - simulated|$) of 7.752241 V.
+In fact, by inspection it's possible to conclude that pratically all the values fit in the same magnitude as its correspondent. 
+
+As it's possible to check in the following table, the relative uncertainties ($|theoretical - simulated|/|theoretical|$) are considerably slim.
+Although we have a rather significant uncertainty for the value of V7 (theoretical value: -9.7816698e-01 V , simulated value: 8.139731e+00 V, uncertainty: 2.0000000e+00); the smallest uncertainty, which null, reports to the value of $I_1$ (theoretical value: 2.3690260e-04 A , simulated value: 2.369026e-04 A). It's relevant to note that this number isn't actually zero, but instead, the program doesn't have enough precison to compute a detectable error. 
+
+The biggest absolute difference reports to the voltage in node six, v(6): theoretical value - 4.0555787e+00 V, simulated value: 1.180782e+01 V. Being the biggest divergence, this represents an absolute error ($|theoretical - simulated|$) of 7.752241 V.
 
 \begin{table}[htb!]
   \centering
