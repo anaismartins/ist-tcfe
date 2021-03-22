@@ -9,8 +9,8 @@ In this section, the circuit shown in Figure~\ref{fig1} is analysed via node ana
 
 Labels were assigned to identify nodes from zero to seven, to then proceed with the mesh and node analysis (the 0th of which being the ground). This is helpful because we can, therefore, derive direct equations in terms of the voltage at these nodes.
 
-The voltage $V_i$ refers to the node $i$. Since we can only apply KCL (Kirchoff's Current Law), which states that the sum of currents leaving a node must be the same as the sum of currents entering a node, to nodes not connected to voltage sources, we can only derive 4 of these equations. It's relevant to notice that this kind of approach is only possible for the nodes which aren't directly connected to a terminal of a voltage source: in that case it's crucial to find other equations to cover all the unknown variables of the system.
-The current flow direction is considered, whenever possible, the same as indicated by each $I_i$, with $i$ ranging from 1 to 4. The cases where this is not possible are the currents going through nodes 2 to 5 and 5 to 6; for these, we considered, respectively, the direction of $V_b$ and of $I_d$.
+The voltage $V_i$ refers to the node $i$. For this procedure, one applies KCL (Kirchoff's Current Law), which states that the sum of currents leaving a node must be the same as the sum of currents entering a node. It's relevant to notice that this kind of approach is only possible for the nodes which aren't directly connected to a terminal of a voltage source, therefore, we can only derive 4 of these equations: in that case it's crucial to find other equations to cover all the unknown variables of the system. The approach is then to consider the voltage gain between to nodes that have a voltage source between them: for example, the nodes 5 and 0 are connected to V_c, which means $V_5 = V_c + V_0$, which wields us the $7^{th}$ equation in~\ref{eq:1}. Moreover, we can relate the currents associated with the controlled sources with the nodes we numerated: for example, in $I_c$ there is a voltage drop, which gives us the $6^{th}$ equation.
+The current flow direction is considered, whenever possible, the same as indicated by each $I_i$, with $i$ ranging from 1 to 4, as shown in~\ref{fig1}. The cases where this is not possible are the currents going through nodes 2 to 5 and 5 to 6; for these, we considered, respectively, the direction of $V_b$ and of $I_d$.
 
 The equations are as follows
 
@@ -20,7 +20,7 @@ The equations are as follows
     Node\, 3: \frac{V_2 - V_3}{R_2} + I_b = 0 \\
     Node\, 6: \frac{V_6 - V_5}{R_5} - I_b = \,  - I_d \\
     Node\, 7: \frac{V_7 - V_4}{R_6} - \frac{V_7}{R_7} = 0 \\
-    \frac{V_2 - V_5}{R3} - I_b = 0 \\
+    \frac{V_2 - V_5}{R_3} - I_b = 0 \\
     \frac{V_4 - V_7}{R_6} - I_c = 0\\
     V_5 - V_c = 0\\
 \end{cases}
@@ -30,11 +30,11 @@ The equations are as follows
 \subsection{Mesh analysis}
 
 
-In the mesh analysis, it's given an arbitrary current to each mesh ($I_1$, $I_2$, $I_3$ $I_4$), represented in Figure~\ref{fig1} with round arrows. This is helpful because we can, therefore, derive direct equations in terms of the current passing through these meshes.
+In the mesh analysis, every mesh is given an arbitrary current ($I_1$, $I_2$, $I_3$, $I_4$), represented in Figure~\ref{fig1} with round arrows. This is helpful because we can, therefore, derive direct equations in terms of the current passing through these meshes.
 
 The current $I_i$ refers to the mesh $i$. For this method, we apply KVL (Kirchoff's Voltage Law), which states that the sum of all the voltages around any closed loop in a circuit is equal to zero, and relate the fictional currents we created to currents given in the circuit (for example, $I_d$).
 
-This is not possible to be done for every mesh as the Law would specifically entail, but we can reach conclusions in every mesh by inspection of said mesh. Moreover, we can add some other equations to the system, again, by inspection.
+This can't be done for every mesh as the Law would specifically entail, but we can reach conclusions about every one of them by inspection of said mesh: for example, the $2^{nd}$ mesh is connected to a current source, which automatically wields the $2^{nd}$ equation.
 
 The equations are as follows
 
@@ -44,7 +44,7 @@ The equations are as follows
     Mesh\, 2: I_2 + I_b = 0\\
     Mesh\, 3: R_4(I_3 - I_1) + V_c + R_7\,I_3 + R_6\,I_3 = 0 \\
     Mesh\, 4: I_4 = -I_d \\
-    R3\, (I_1 - I_2) - V_b = 0\\
+    R_3\, (I_1 - I_2) - V_b = 0\\
     I_3 + I_c = 0 \\
 
 \end{cases}
