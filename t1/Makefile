@@ -7,11 +7,10 @@
 all: #errors.o errors.exe run
 	make -C mat
 	make -C sim
+	gcc -o errors.exe errors.c
+	./errors.exe
 	make -C doc
 	cp doc/report-1.pdf ../
-	errors.o
-	errors.exe
-	run
 
 run: errors.exe
 	./errors.exe
