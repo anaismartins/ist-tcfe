@@ -18,5 +18,6 @@ clean:
 	make -C sim clean
 	make -C errors clean
 	make -C doc clean
+	@rm -f ../*.pdf 
 
 .PHONY: all clean run
