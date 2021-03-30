@@ -1,6 +1,6 @@
-all: kirch.log
+all: t2-1.log
 
-kirch.log: kirchhoff.m
+t2-1.log: t2-1.m
 	octave $< > $@
 
 clean:

@@ -3,7 +3,7 @@
 # ---------------------------------------------------------
 
 #doc name
-FILE=report-1
+FILE=report-2
 
 #list of LibreOffice Draw files
 LODFIGS = $(patsubst %.odg,%.pdf,$(wildcard *.odg))
