@@ -161,6 +161,7 @@ fprintf(file, "I6 & %7.7e\\\\\\hline ", Id);
 fprintf(file, "I7 & %7.7e\\\\\\hline ", I7);
 fprintf(file, "Ib & %7.7e\\\\\\hline ", Ib);
 fprintf(file, "Id & %7.7e\\\\\\hline ", Id);
+fprintf(file, "Id & %7.7e\\\\\\hline ", 0);
 
 
 
