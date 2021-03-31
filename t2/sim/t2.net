@@ -6,22 +6,20 @@
 * forces current values to be saved
 .options savecurrents
 
-Va 1 4 5.18504190779
-Ve 4 8 0V
-Hc 5 0 Ve 8.14562893937k
+*change the values to be getting them from data.txt
+Vs 1 0 5.18504190779
+Ve 0 9 0V
+Hd 5 8 Ve 8.14562893937k
 
 Gb 6 3 (2,5) 7.00248816446m
-*changed 3 6 to 6 3
-Id 0 6 1.03147590492m
-* changed 6 0 to 0 6
 
 R1 1 2 1.02779694281k
 R2 3 2 2.07715672461k
 R3 2 5 3.1156225241k
-R4 5 4 4.11105908751k
-R5 6 5 3.02879032081k
-R6 8 7 2.02983164661k
-R7 7 0 1.00454956611k
+R4 0 5 4.11105908751k
+R5 5 6 3.02879032081k
+R6 9 7 2.02983164661k
+R7 7 8 1.00454956611k
 
 *código que mete a correr o ngspice
 
