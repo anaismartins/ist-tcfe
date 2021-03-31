@@ -50,24 +50,82 @@ Kd = Kd*1000; %ohm
 
 %matriz
 
-%    v0, v2,vS,v5,v6,v7,v8
+%    v0, v2, v3, v5, v6, v7, v8, Ix, Iy
 
-A = [1, 0, 0, 0, 0, 0, 0, 0;
+A = [1, 0, 0, 0, 0, 0, 0, 0, 0;
 
-0, 1, 0, 0, 0, 0, 0, 0;
+1, -1/R1 - 1/R2 - 1/R3, 1/R2, 1/R3, 0, 0, 0, 0, 0;
 
-0, 1/R1, -1/R1-1/R2-1/R3, 1/R2, 1/R3, 0, 0, 0;
+0, 1/R2 + Kb, -1/R2, -Kb, 0, 0, 0, 0, 0;
 
-0, 0, 1/R2 + Kb, -1/R2, -Kb, 0, 0, 0;
+-Kd/R6, 0, 0, 1, 0, Kd/R6, -1, 0, 0;
 
--Kd/R6, 0, 0, 0, 1, 0, Kd/R6, -1;
+0, 0, 0, 0, 1, 0, -1, 0, 0;
 
-0, 0, -Kb, 0, 1/R5 + Kb, -1/R5,  0, 0;
+1/R6, 0, 0, 0, 0, -1/R6 - 1/R7,  1/R7, 0, 0;
 
-1/R6, 0, 0, 0, 0, 0, -1/R6-1/R7, 1/R7;
+0, 0, 0, 0, 0, 1/R7, -1/R7, -1, -1;
 
-1/R4, 0, 1/R3, 0, -1/R3-1/R5-1/R4, 1/R5, 1/R7, -1/R7]
+1/R4, 1/R3, 0, -1/R3 - 1/R5 -1/R4, 1/R5, 0, 0, 0, 1;
+
+0, -Kb, 0, Kb + 1/R5, -1/R5, 0, 0, 1, 0]
 
 	
 
-B = [0; Vs; 0; 0; 0; 0; 0; 0]
+B = [0; 0; 0; 0; Vx; 0; 0; 0; 0]
+
+X = A\B
+
+Id = ( X(1) - X(6) ) / R6;
+Vb = X(3) - X(5);
+Ib = Kb * Vb;
+Vd = Kd * Id;
+
+%print voltage values in table
+
+filename = "v(i)-2.tex";
+file2 = fopen(filename, "w");
+
+fprintf(file2, "V0 & %7.7e\\\\\hline ", double(X(1)));
+fprintf(file2, "V2 & %7.7e\\\\\hline ", double(X(2)));
+fprintf(file2, "V3 & %7.7e\\\\\hline ", double(X(3)));
+fprintf(file2, "V5 & %7.7e\\\\\hline ", double(X(4)));
+fprintf(file2, "V6 & %7.7e\\\\\hline ", double(X(5)));
+fprintf(file2, "V7 & %7.7e\\\\\hline ", double(X(6)));
+fprintf(file2, "V8 & %7.7e\\\\\hline ", double(X(7)));
+
+%outras tensoes que nao fazem parte da matriz
+
+fprintf(file2, "Vb & %7.7e\\\\\\hline ", Vb);
+fprintf(file2, "Vd & %7.7e\\\\\\hline ", Vd);
+
+fflush(file2);
+fclose(file2);
+
+%correntes pela Lei de Ohm
+
+I1 = (X(1) - X(2))/R1;
+I2 = (X(3) - X(2))/R2;
+I3 = Vb/R3;
+I4 = (X(4) - X(1))/R4;
+I5 = (X(4) - X(5))/R5;
+I7 = (X(6) - X(7))/R7;
+
+%print current values in table
+
+filename = "i(i)-2.tex";
+file3 = fopen(filename, "w");
+
+fprintf(file3, "Ix & %7.7e\\\\\hline ", double(X(8)));
+fprintf(file3, "Iy & %7.7e\\\\\hline ", double(X(9)));
+fprintf(file3, "I1 & %7.7e\\\\\hline ", I1);
+fprintf(file3, "I2 & %7.7e\\\\\hline ", I2);
+fprintf(file3, "I3 & %7.7e\\\\\hline ", I3);
+fprintf(file3, "I4 & %7.7e\\\\\hline ", I4);
+fprintf(file3, "I5 & %7.7e\\\\\hline ", I5);
+fprintf(file3, "I7 & %7.7e\\\\\hline ", I7);
+fprintf(file3, "Ib & %7.7e\\\\\hline ", Ib);
+fprintf(file3, "Id & %7.7e\\\\\hline ", Id);
+
+fflush(file3);
+fclose(file3);
