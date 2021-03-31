@@ -13,26 +13,26 @@ Vx = str2double(cell2mat(valores1(12)) ) - str2double(cell2mat(valores1(16)) );
 
 file2 = fopen("../data.txt", "r");
 
-valores2 = fileread('../data.txt')
+valores2 = fileread('../data.txt');
 
-valores2 = strsplit(valores2, {"\n"," "})
+valores2 = strsplit(valores2, {"\n"," "});
 
 fclose(file2);
 
-R1 = str2double(cell2mat(valores(23)) );
-R2 = str2double(cell2mat(valores(26)) );
-R3 = str2double(cell2mat(valores(29)) );
-R4 = str2double(cell2mat(valores(32)) );
-R5 = str2double(cell2mat(valores(35)) );
-R6 = str2double(cell2mat(valores(38)) );
-R7 = str2double(cell2mat(valores(41)) );
+R1 = str2double(cell2mat(valores2(23)) );
+R2 = str2double(cell2mat(valores2(26)) );
+R3 = str2double(cell2mat(valores2(29)) );
+R4 = str2double(cell2mat(valores2(32)) );
+R5 = str2double(cell2mat(valores2(35)) );
+R6 = str2double(cell2mat(valores2(38)) );
+R7 = str2double(cell2mat(valores2(41)) );
 
-Vs = str2double(cell2mat(valores(44)) );
+Vs = str2double(cell2mat(valores2(44)) );
 
-C = str2double(cell2mat(valores(47)) );
+C = str2double(cell2mat(valores2(47)) );
 
-Kb = str2double(cell2mat(valores(50)));
-Kd = str2double(cell2mat(valores(53)));
+Kb = str2double(cell2mat(valores2(50)));
+Kd = str2double(cell2mat(valores2(53)));
 
 R1 = double(R1)*1000; %ohm
 R2 = R2*1000;
@@ -70,7 +70,6 @@ A = [1, 0, 0, 0, 0, 0, 0, 0, 0;
 
 0, -Kb, 0, Kb + 1/R5, -1/R5, 0, 0, 1, 0]
 
-	
 
 B = [0; 0; 0; 0; Vx; 0; 0; 0; 0]
 
@@ -84,23 +83,23 @@ Vd = Kd * Id;
 %print voltage values in table
 
 filename = "v(i)-2.tex";
-file2 = fopen(filename, "w");
+file3 = fopen(filename, "w");
 
-fprintf(file2, "V0 & %7.7e\\\\\hline ", double(X(1)));
-fprintf(file2, "V2 & %7.7e\\\\\hline ", double(X(2)));
-fprintf(file2, "V3 & %7.7e\\\\\hline ", double(X(3)));
-fprintf(file2, "V5 & %7.7e\\\\\hline ", double(X(4)));
-fprintf(file2, "V6 & %7.7e\\\\\hline ", double(X(5)));
-fprintf(file2, "V7 & %7.7e\\\\\hline ", double(X(6)));
-fprintf(file2, "V8 & %7.7e\\\\\hline ", double(X(7)));
+fprintf(file3, "V0 & %7.7e\\\\\hline ", double(X(1)));
+fprintf(file3, "V2 & %7.7e\\\\\hline ", double(X(2)));
+fprintf(file3, "V3 & %7.7e\\\\\hline ", double(X(3)));
+fprintf(file3, "V5 & %7.7e\\\\\hline ", double(X(4)));
+fprintf(file3, "V6 & %7.7e\\\\\hline ", double(X(5)));
+fprintf(file3, "V7 & %7.7e\\\\\hline ", double(X(6)));
+fprintf(file3, "V8 & %7.7e\\\\\hline ", double(X(7)));
 
 %outras tensoes que nao fazem parte da matriz
 
-fprintf(file2, "Vb & %7.7e\\\\\\hline ", Vb);
-fprintf(file2, "Vd & %7.7e\\\\\\hline ", Vd);
+fprintf(file3, "Vb & %7.7e\\\\\\hline ", Vb);
+fprintf(file3, "Vd & %7.7e\\\\\\hline ", Vd);
 
-fflush(file2);
-fclose(file2);
+fflush(file3);
+fclose(file3);
 
 %correntes pela Lei de Ohm
 
@@ -114,18 +113,18 @@ I7 = (X(6) - X(7))/R7;
 %print current values in table
 
 filename = "i(i)-2.tex";
-file3 = fopen(filename, "w");
+file4 = fopen(filename, "w");
 
-fprintf(file3, "Ix & %7.7e\\\\\hline ", double(X(8)));
-fprintf(file3, "Iy & %7.7e\\\\\hline ", double(X(9)));
-fprintf(file3, "I1 & %7.7e\\\\\hline ", I1);
-fprintf(file3, "I2 & %7.7e\\\\\hline ", I2);
-fprintf(file3, "I3 & %7.7e\\\\\hline ", I3);
-fprintf(file3, "I4 & %7.7e\\\\\hline ", I4);
-fprintf(file3, "I5 & %7.7e\\\\\hline ", I5);
-fprintf(file3, "I7 & %7.7e\\\\\hline ", I7);
-fprintf(file3, "Ib & %7.7e\\\\\hline ", Ib);
-fprintf(file3, "Id & %7.7e\\\\\hline ", Id);
+fprintf(file4, "Ix & %7.7e\\\\\hline ", double(X(8)));
+fprintf(file4, "Iy & %7.7e\\\\\hline ", double(X(9)));
+fprintf(file4, "I1 & %7.7e\\\\\hline ", I1);
+fprintf(file4, "I2 & %7.7e\\\\\hline ", I2);
+fprintf(file4, "I3 & %7.7e\\\\\hline ", I3);
+fprintf(file4, "I4 & %7.7e\\\\\hline ", I4);
+fprintf(file4, "I5 & %7.7e\\\\\hline ", I5);
+fprintf(file4, "I7 & %7.7e\\\\\hline ", I7);
+fprintf(file4, "Ib & %7.7e\\\\\hline ", Ib);
+fprintf(file4, "Id & %7.7e\\\\\hline ", Id);
 
-fflush(file3);
-fclose(file3);
+fflush(file4);
+fclose(file4);
