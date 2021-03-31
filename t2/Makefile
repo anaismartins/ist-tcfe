@@ -14,6 +14,7 @@ all:
 
 python:
 	echo "$(MYVAR)" | python t2_datagen.py > data.txt
+
 	
 
 clean:
