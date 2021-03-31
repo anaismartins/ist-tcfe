@@ -7,8 +7,31 @@ pkg load symbolic
 
 file = fopen("../data.txt", "r");
 
+valores = fileread('../data.txt')
+
+valores = strsplit(valores, {"\n"," "})
+
+fclose(file);
+
+R1 = str2double(cell2mat(valores(23)) );
+R2 = str2double(cell2mat(valores(26)) );
+R3 = str2double(cell2mat(valores(29)) );
+R4 = str2double(cell2mat(valores(32)) );
+R5 = str2double(cell2mat(valores(35)) );
+R6 = str2double(cell2mat(valores(38)) );
+R7 = str2double(cell2mat(valores(41)) );
+
+Vs = str2double(cell2mat(valores(44)) );
+
+C = str2double(cell2mat(valores(47)) );
+
+Kb = str2double(cell2mat(valores(50)));
+Kd = str2double(cell2mat(valores(53)));
+
+
 %ler ficheiro
 
+%{
 R1 = textscan(file, "R1 = %f");
 R2 = textscan(file, "R2 = %f");
 R3 = textscan(file, "R3 = %f");
@@ -25,8 +48,8 @@ Kb = textscan(file, "Kb = %f");
 
 Kd = textscan(file, "Kd = %f");
 
+%}
 
-fclose(file);
 
 %corrigir unidades
 
@@ -49,25 +72,26 @@ Kd = Kd*1000; %ohm
 
 %    v0,v1,v2,v3,v5,v6,v7,v8
 
-A = [1, 0, 0, 0, 0, 0, 0, 0;
+A = [
+1, 0, 0, 0, 0, 0, 0, 0;
 
-	0, 1, 0, 0, 0, 0, 0, 0;
+0, 1, 0, 0, 0, 0, 0, 0;
 
-	0, 1/R1, -1/R1-1/R2-1/R3, 1/R2, 1/R3, 0, 0, 0;
+0, 1/R1, -1/R1-1/R2-1/R3, 1/R2, 1/R3, 0, 0, 0;
 
-	0, 0, 1/R2 + Kb, -1/R2, -Kb, 0, 0, 0;
+0, 0, 1/R2 + Kb, -1/R2, -Kb, 0, 0, 0;
 
-	-Kd/R6, 0, 0, 0, 1, 0, Kd/R6, -1;
+-Kd/R6, 0, 0, 0, 1, 0, Kd/R6, -1;
 
-	0, 0, -Kb, 0, 1/R5 + Kb, -1/R5,  0, 0;
+0, 0, -Kb, 0, 1/R5 + Kb, -1/R5,  0, 0;
 
-	1/R6, 0, 0, 0, 0, 0, -1/R6-1/R7, 1/R7;
+1/R6, 0, 0, 0, 0, 0, -1/R6-1/R7, 1/R7;
 
-	1/R4, 0, 1/R3, 0, -1/R3-1/R5-1/R4, 1/R5, 1/R7, -1/R7]
+1/R4, 0, 1/R3, 0, -1/R3-1/R5-1/R4, 1/R5, 1/R7, -1/R7]
 
 	
 
-B = [0, Vs, 0, 0, 0, 0, 0, 0]
+B = [0; Vs; 0; 0; 0; 0; 0; 0]
 
 
 X = A\B
@@ -103,7 +127,7 @@ endfor
 %outras tensoes que nao fazem parte da matriz
 
 fprintf(file0, "Vb & %7.7e\\\\\\hline ", Vb);
-fprintf(file0, "Vb & %7.7e\\\\\\hline ", Vd);
+fprintf(file0, "Vd & %7.7e\\\\\\hline ", Vd);
 
 
 fflush(file0);

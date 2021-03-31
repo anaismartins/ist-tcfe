@@ -66,15 +66,28 @@ To make sense out of the equations that were presented already, we also have to 
 We then use \textit{GNU Octave}, a $software$ that can solve this system of equations, to obtain the values of all the unknowns. Knowing all the voltages allows us to know every current aswell, which means the circuit is solved.
 The results of these computations are compiled in this table.
 
+
+JA MUDEI A TABELA:
+
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A and V]} \\ \hline
-    \input{../mat/kirchhoff.tex}
+    {\bf Name} & {\bf Voltages [V]} \\ \hline
+    \input{../mat/voltage-nodes-t2.tex}
   \end{tabular}
-  \caption{Node and Mesh Analysis Computation Results. A variable starting with I is of type {\em current}
-    and expressed in Ampere; a variable starting with V is of type {\it voltage} and expressed in
-    Volt.}
-  \label{tab:op}
+  \caption{T2 1) Node Analysis Computation Results: Voltages computed using KCL equations}
+  \label{tab:nodeCurrents}
+\end{table}
+
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Currents [A]} \\ \hline
+    \input{../mat/currents-nodes-t2.tex}
+  \end{tabular}
+  \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
+  \label{tab:nodeCurrents}
 \end{table}
