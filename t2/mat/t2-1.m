@@ -3,8 +3,9 @@
 close all
 clear all
 
-file = fopen("../data.txt", "r");
+pkg load symbolic
 
+file = fopen("../data.txt", "r");
 
 %ler ficheiro
 
@@ -29,7 +30,7 @@ fclose(file);
 
 %corrigir unidades
 
-R1 = R1*1000; %ohm
+R1 = double(R1)*1000; %ohm
 R2 = R2*1000;
 R3 = R3*1000;
 R4 = R4*1000;

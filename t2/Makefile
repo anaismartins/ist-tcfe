@@ -4,7 +4,7 @@
 # type "make clean" to delete all generated files
 # ------------------------------------------------------------
 
-MYVAR = 96506
+NUMBER = 96506
 
 all:
 	make -C mat
@@ -13,7 +13,7 @@ all:
 	cp doc/report-2.pdf ../
 
 python:
-	echo "$(MYVAR)" | python t2_datagen.py > data.txt
+	echo "$(NUMBER)" | python t2_datagen.py > data.txt
 
 	
 

@@ -1,6 +1,6 @@
-all: nodes-t2.log	
+all: t2-1.log	
 	
-nodes-t2.log: nodes-t2.m
+t2-1.log: t2-1.m
 	octave $< > $@
 
 clean:
