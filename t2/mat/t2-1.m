@@ -152,16 +152,16 @@ filename1 = "currents-nodes-t2.tex";
 file1 = fopen(filename1, "w");
 
 
-fprintf(file, "I1 & %7.7e\\\\\\hline ", I1);
-fprintf(file, "I2 & %7.7e\\\\\\hline ", I2);
-fprintf(file, "I3 & %7.7e\\\\\\hline ", I3);
-fprintf(file, "I4 & %7.7e\\\\\\hline ", I4);
-fprintf(file, "I5 & %7.7e\\\\\\hline ", I5);
-fprintf(file, "I6 & %7.7e\\\\\\hline ", Id);
-fprintf(file, "I7 & %7.7e\\\\\\hline ", I7);
-fprintf(file, "Ib & %7.7e\\\\\\hline ", Ib);
-fprintf(file, "Id & %7.7e\\\\\\hline ", Id);
-fprintf(file, "Id & %7.7e\\\\\\hline ", 0);
+fprintf(file1, "I1 & %7.7e\\\\\\hline ", I1);
+fprintf(file1, "I2 & %7.7e\\\\\\hline ", I2);
+fprintf(file1, "I3 & %7.7e\\\\\\hline ", I3);
+fprintf(file1, "I4 & %7.7e\\\\\\hline ", I4);
+fprintf(file1, "I5 & %7.7e\\\\\\hline ", I5);
+fprintf(file1, "I6 & %7.7e\\\\\\hline ", Id);
+fprintf(file1, "I7 & %7.7e\\\\\\hline ", I7);
+fprintf(file1, "Ib & %7.7e\\\\\\hline ", Ib);
+fprintf(file1, "Id & %7.7e\\\\\\hline ", Id);
+fprintf(file1, "Id & %7.7e\\\\\\hline ", 0);
 
 
 
