@@ -171,6 +171,25 @@ fclose(file1);
 
 
 
+spice = fopen("spicedata.cir", "w");
+
+fprintf(spice, ".OP\n");
+fprintf(spice, "R1 1 2 %f\n", R1);
+fprintf(spice, "R2 3 2 %f\n", R2);
+fprintf(spice, "R3 2 5 %f\n", R3);
+fprintf(spice, "R4 5 0 %f\n", R4);
+fprintf(spice, "R5 5 6 %f\n", R5);
+fprintf(spice, "R6 9 7 %f\n", R6);
+fprintf(spice, "R7 7 8 %f\n", R7);
+
+
+fprintf(spice, "Vs 1 0 %f\n", Vs);
+
+fprintf(spice, "Ve 0 9 0V\n");
+fprintf(spice, "Hd 5 8 Ve %f\n", Kd);
+
+fprintf(spice, "Gb 6 3 (2,5) %f\n.END\n", Kb);
+
 
 
 
