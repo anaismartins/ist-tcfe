@@ -5,7 +5,7 @@
 
 * forces current values to be saved
 .options savecurrents
-.include ../mat/spicedata.cir
+.include ../mat/spicedata-1.cir
 
 *OPERATING POINT 1
 

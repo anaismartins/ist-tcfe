@@ -108,7 +108,7 @@ Vb = X(3) - X(5);
 
 %print values in table
 
-filename = "voltage-nodes-t2.tex";
+filename = "voltage-nodes-t2-1.tex";
 file0 = fopen(filename, "w");
 
 for i = 1:8
@@ -148,7 +148,7 @@ I7 = (X(7) - X(8))/R7;
 %Id e Ib em cima
 
 
-filename1 = "currents-nodes-t2.tex";
+filename1 = "currents-nodes-t2-1.tex";
 file1 = fopen(filename1, "w");
 
 
@@ -170,29 +170,75 @@ fflush(file1);
 fclose(file1);
 
 
-
-spice = fopen("spicedata.cir", "w");
-
-fprintf(spice, ".OP\n");
-fprintf(spice, "R1 1 2 %f\n", R1);
-fprintf(spice, "R2 3 2 %f\n", R2);
-fprintf(spice, "R3 2 5 %f\n", R3);
-fprintf(spice, "R4 5 0 %f\n", R4);
-fprintf(spice, "R5 5 6 %f\n", R5);
-fprintf(spice, "R6 9 7 %f\n", R6);
-fprintf(spice, "R7 7 8 %f\n", R7);
+% SÓ SPICES ABAIXO
 
 
-fprintf(spice, "Vs 1 0 %f\n", Vs);
+spice1 = fopen("spicedata-1.cir", "w");
 
-fprintf(spice, "Ve 0 9 0V\n");
-fprintf(spice, "Hd 5 8 Ve %f\n", Kd);
+fprintf(spice1, ".OP\n");
+fprintf(spice1, "R1 1 2 %f\n", R1);
+fprintf(spice1, "R2 3 2 %f\n", R2);
+fprintf(spice1, "R3 2 5 %f\n", R3);
+fprintf(spice1, "R4 5 0 %f\n", R4);
+fprintf(spice1, "R5 5 6 %f\n", R5);
+fprintf(spice1, "R6 9 7 %f\n", R6);
+fprintf(spice1, "R7 7 8 %f\n", R7);
 
-fprintf(spice, "Gb 6 3 (2,5) %f\n.END\n", Kb);
+
+fprintf(spice1, "Vs 1 0 %f\n", Vs);
+
+fprintf(spice1, "Ve 0 9 0V\n");
+fprintf(spice1, "Hd 5 8 Ve %f\n", Kd);
+
+fprintf(spice1, "Gb 6 3 (2,5) %f\n.END\n", Kb);
+
+fclose(spice1);
 
 
 
+spice2 = fopen("spicedata-2.cir", "w");
 
+fprintf(spice2, ".OP\n");
+fprintf(spice2, "R1 0 2 %f\n", R1);
+fprintf(spice2, "R2 3 2 %f\n", R2);
+fprintf(spice2, "R3 2 5 %f\n", R3);
+fprintf(spice2, "R4 5 0 %f\n", R4);
+fprintf(spice2, "R5 5 6 %f\n", R5);
+fprintf(spice2, "R6 9 7 %f\n", R6);
+fprintf(spice2, "R7 7 8 %f\n", R7);
+
+
+fprintf(spice2, "Vx 6 8 %f\n", X(6) - X(8));
+
+fprintf(spice2, "Ve 0 9 0V\n");
+fprintf(spice2, "Hd 5 8 Ve %f\n", Kd);
+
+fprintf(spice2, "Gb 6 3 (2,5) %f\n.END\n", Kb);
+
+fclose(spice2);
+
+
+
+spice3 = fopen("spicedata-3.cir", "w");
+
+fprintf(spice3, ".TRAN\n");
+fprintf(spice3, "R1 1 2 %f\n", R1);
+fprintf(spice3, "R2 3 2 %f\n", R2);
+fprintf(spice3, "R3 2 5 %f\n", R3);
+fprintf(spice3, "R4 5 0 %f\n", R4);
+fprintf(spice3, "R5 5 6 %f\n", R5);
+fprintf(spice3, "R6 9 7 %f\n", R6);
+fprintf(spice3, "R7 7 8 %f\n", R7);
+
+
+fprintf(spice3, "Vs 1 0 %f\n", Vs);
+
+fprintf(spice3, "Ve 0 9 0V\n");
+fprintf(spice3, "Hd 5 8 Ve %f\n", Kd);
+
+fprintf(spice3, "Gb 6 3 (2,5) %f\n.END\n", Kb);
+
+fclose(spice3);
 
 
 
