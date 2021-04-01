@@ -1,4 +1,4 @@
-all: t2-1.log	t2-2.log
+all: t2-1.log t2-2.log
 	
 t2-1.log: t2-1.m
 	octave $< > $@
