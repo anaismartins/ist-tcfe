@@ -1,9 +1,9 @@
 close all
 clear all
 
-file1 = fopen("voltage-nodes-t2.tex", "r");
+file1 = fopen("voltage-nodes-t2-1.tex", "r");
 
-valores1 = fileread('voltage-nodes-t2.tex');
+valores1 = fileread('voltage-nodes-t2-1.tex');
 
 valores1 = strsplit(valores1, {"\n"," ", "hline", "&", "\\"});
 
@@ -54,29 +54,28 @@ Kd = Kd*1000; %ohm
 
 A = [1, 0, 0, 0, 0, 0, 0, 0, 0;
 
-1, -1/R1 - 1/R2 - 1/R3, 1/R2, 1/R3, 0, 0, 0, 0, 0;
+1, -1/R1-1/R2-1/R3, 1/R2, 1/R3, 0, 0, 0, 0, 0;
 
-0, 1/R2 + Kb, -1/R2, -Kb, 0, 0, 0, 0, 0;
+0, 1/R2+Kb, -1/R2, -Kb, 0, 0, 0, 0, 0;
 
 -Kd/R6, 0, 0, 1, 0, Kd/R6, -1, 0, 0;
 
 0, 0, 0, 0, 1, 0, -1, 0, 0;
 
-1/R6, 0, 0, 0, 0, -1/R6 - 1/R7,  1/R7, 0, 0;
+1/R6, 0, 0, 0, 0, -1/R6-1/R7, 1/R7, 0, 0;
 
 0, 0, 0, 0, 0, 1/R7, -1/R7, -1, -1;
 
-1/R4, 1/R3, 0, -1/R3 - 1/R5 -1/R4, 1/R5, 0, 0, 0, 1;
+1/R4, 1/R3, 0, -1/R3-1/R5-1/R4, 1/R5, 0, 0, 0, 1;
 
-0, -Kb, 0, Kb + 1/R5, -1/R5, 0, 0, 1, 0]
-
+0, -Kb, 0, Kb+1/R5, -1/R5, 0, 0, 1, 0]
 
 B = [0; 0; 0; 0; Vx; 0; 0; 0; 0]
 
 X = A\B
 
 Id = ( X(1) - X(6) ) / R6;
-Vb = X(3) - X(5);
+Vb = X(2) - X(4);
 Ib = Kb * Vb;
 Vd = Kd * Id;
 
