@@ -221,7 +221,7 @@ fclose(spice2);
 
 spice3 = fopen("spicedata-3.cir", "w");
 
-fprintf(spice3, ".TRAN\n");
+fprintf(spice3, ".TRAN 1ms 20ms\n");
 fprintf(spice3, "R1 1 2 %f\n", R1);
 fprintf(spice3, "R2 3 2 %f\n", R2);
 fprintf(spice3, "R3 2 5 %f\n", R3);
@@ -231,12 +231,18 @@ fprintf(spice3, "R6 9 7 %f\n", R6);
 fprintf(spice3, "R7 7 8 %f\n", R7);
 
 
-fprintf(spice3, "Vs 1 0 %f\n", Vs);
+fprintf(spice3, "Vs 1 0 %f ac 1.0 sin(0 6.283185307 1.0)\n", Vs);
 
 fprintf(spice3, "Ve 0 9 0V\n");
 fprintf(spice3, "Hd 5 8 Ve %f\n", Kd);
 
-fprintf(spice3, "Gb 6 3 (2,5) %f\n.END\n", Kb);
+fprintf(spice3, "Gb 6 3 (2,5) %f\n", Kb);
+
+fprintf(spice3, "C1 6 8 %f\n", C);
+fprintf(spice3, ".model P2model NPN(Bf=200, CJE=12pF, CJC=2pF)\n");
+
+fprintf(spice3, ".ic V(6)=%f V(8)=0\n.END\n", X(6) - X(8));
+
 
 fclose(spice3);
 

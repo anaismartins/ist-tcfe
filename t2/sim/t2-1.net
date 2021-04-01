@@ -5,38 +5,14 @@
 
 * forces current values to be saved
 .options savecurrents
-.include ../mat/spicedata-1.cir
+
 
 *OPERATING POINT 1
-
-*change the values to be getting them from data.txt
-*Vs 1 0 5.18504190779
-*Ve 0 9 0V
-*Hd 5 8 Ve 8.14562893937k
-
-*Gb 6 3 (2,5) 7.00248816446m
-
-*R1 1 2 1.02779694281k
-*R2 3 2 2.07715672461k
-*R3 2 5 3.1156225241k
-*R4 5 0 4.11105908751k
-*R5 5 6 3.02879032081k
-*R6 9 7 2.02983164661k
-*R7 7 8 1.00454956611k
+.include ../mat/spicedata-1.cir
 
 *código que mete a correr o ngspice
 
 .control
-
-*makes plots in color
-set hcopypscolor=0
-set color0=white
-set color1=black
-set color2=red
-set color3=blue
-set color4=violet
-set color5=rgb:3/8/0
-set color6=rgb:4/0/0
 
 op
 
