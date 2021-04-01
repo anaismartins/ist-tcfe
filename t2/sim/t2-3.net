@@ -8,6 +8,10 @@
 
 .include ../mat/spicedata-3.cir
 
+.op
+
+.end
+
 .control
 
 *makes plots in color

@@ -6,7 +6,7 @@
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/spicedata-3.cir
+.include ../mat/spicedata-4.cir
 
 .control
 
@@ -19,7 +19,7 @@ set color3=blue
 set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
-
+*TRANSIENT OR FREQUENCY OR BOTH?
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
