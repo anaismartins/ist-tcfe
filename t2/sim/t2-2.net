@@ -12,6 +12,10 @@
 
 *código que mete a correr o ngspice
 
+.op
+
+.end
+
 .control
 
 op
@@ -29,4 +33,4 @@ echo  "op2_END"
 quit
 .endc
 
-.end
+
