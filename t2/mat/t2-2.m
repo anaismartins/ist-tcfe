@@ -149,3 +149,11 @@ fprintf(file4, "Id & %7.7e\\\\\hline ", Id);
 
 fflush(file4);
 fclose(file4);
+
+filename = "Req-t2-2.tex";
+file5 = fopen(filename, "w");
+
+fprintf(file5, "Req & %7.7e\\\\\hline ", double(Vx/X(8)));
+
+fflush(file5);
+fclose(file5);
