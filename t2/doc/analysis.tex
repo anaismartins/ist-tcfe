@@ -1,73 +1,60 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure~\ref{fig1} is analysed via node analysis and mesh analysis.
-
-\subsection{Node analysis}
 
 
+\subsection{Node Analysis ($t<0$)}
 
-Labels were assigned to identify nodes from zero to seven, to then proceed with the mesh and node analysis (the 0th of which being the ground). This is helpful because we can, therefore, derive direct equations in terms of the voltage at these nodes.
+In this particular section, the circuit is analysed in $t<0$, therefore, we can apply the usual node analysis, with no sinusoidal tensions in the voltage source Vs: for $t<0$ $v_s = Vs$.
 
-The voltage $V_i$ refers to the node $i$. For this procedure, one applies KCL (Kirchoff's Current Law), which states that the sum of currents leaving a node must be the same as the sum of currents entering a node. It's relevant to notice that this kind of approach is only possible for the nodes which aren't directly connected to a terminal of a voltage source, therefore, we can only derive 4 of these equations: in that case it's crucial to find other equations to cover all the unknown variables of the system. The approach is then to consider the voltage gain between to nodes that have a voltage source between them: for example, the nodes 5 and 0 are connected to $V_c$, which means $V_5 = V_c + V_0$, which wields us the $7^{th}$ equation in~\ref{eq:1}. Moreover, we can relate the currents associated with the controlled sources with the nodes we numerated: for example, in $I_c$ there is a voltage drop, which gives us the $6^{th}$ equation.
-The current flow direction is considered, whenever possible, the same as indicated by each $I_i$, with $i$ ranging from 1 to 4, as shown in~\ref{fig1}. The cases where this is not possible are the currents going through nodes 2 to 5 and 5 to 6; for these, we considered, respectively, the direction of $V_b$ and of $I_d$.
+Labels were assigned to identify nodes from zero to eight (no node four given in instructions), and directions to currents as seen in figure (\ref{FIGURA}), to then proceed with the node analysis.  We can, therefore, derive direct equations in terms of the voltage at these nodes.
 
-The equations are as follows
+For this procedure, one applies KCL (Kirchoff's Current Law), which states that the sum of currents leaving a node must be the same as the sum of currents entering a node. Because this kind of approach is only possible for the nodes which aren't directly connected to a terminal of a voltage source, it's crucial to find other equations to cover all the unknown variables of the system. In this case, it's important to consider factor like the voltage gain between two nodes separated by a voltage source: for example, from nodes 0 and 1, the terminals of $v_s$, we can take the equation: $V_1 = V_0 + V_s$. As $V_0$ is identified as the ground ($V_0 = 0V$) we're left with: $V_1 = V_s$.
+
+Moreover, we can relate the currents associated with the current or voltage controlled sources with the nodes voltages, giving us two more equations, the nineth and thenth.
+
+The equations are as follows:
 
 \begin{equation} 
-\begin{cases}  
-    Node\, 2: \frac{V_1 - V_2}{R_1} + \frac{V_2 - V_5}{R_3} + \frac{V_2 - V_3}{R_2} = 0 \\
-    Node\, 3: \frac{V_2 - V_3}{R_2} + I_b = 0 \\
-    Node\, 6: \frac{V_6 - V_5}{R_5} - I_b = \,  - I_d \\
-    Node\, 7: \frac{V_7 - V_4}{R_6} - \frac{V_7}{R_7} = 0 \\
-    \frac{V_2 - V_5}{R_3} - I_b = 0 \\
-    \frac{V_4 - V_7}{R_6} - I_c = 0\\
-    V_5 - V_c = 0\\
+\begin{cases}
+
+    Node\, 0: V_0 = 0 \\
+    Node\, 1: V_1 = V_s \\
+    Node\, 2: \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} - \frac{V_2 - V_5}{R_3} = 0 \\
+    Node\, 3: -\frac{V_3 - V_2}{R_2} + I_b = 0 \\
+    Node\, 5: V_5 - V_8 = V_d \\
+    Node\, 6: \frac{V_5 - V_6}{R_5} - I_b = 0 \\
+    Node\, 7: \frac{V_0 - V_7}{R_6} - \frac{V_7 - V_8}{R_7} = 0 \\
+    Supernode\, 5-8: \frac{V_2 - V_5}{R_3} - \frac{V_5 - V_6}{R_5} + \frac{V_7 - V_8}{R_7} - \frac{V_5 - V_0}{R_4} = 0 \\
+    I_d = \frac{V_0 - V_7}{R_6} \\
+    I_b = K_b\,(V_2 - V_5) \\
+    
 \end{cases}
 \label{eq:1}
 \end{equation}
 
-\subsection{Mesh analysis}
+
+Note that as there's no sinusoidal excitation ($v_s = constant$), the capacitor behaves like an open circuit and so the current $I_c$ is null and not included in the equations, because:
+
+\begin{center}
+  \begin{equation}
+    I_c = C\frac{dv}{dt}
+  \end{equation}
+\end{center}
 
 
-In the mesh analysis, every mesh is given an arbitrary current ($I_1$, $I_2$, $I_3$, $I_4$), represented in Figure~\ref{fig1} with round arrows. This is helpful because we can, therefore, derive direct equations in terms of the current passing through these meshes.
+Using \textit{GNUOctave}, we computed the values of the node voltages by solving the system KCL equations above with matrixes. The currents in each branch were solved by aplication of Ohm's law ($I = \frac{V}{R}$) in each resistor, for example:
 
-The current $I_i$ refers to the mesh $i$. For this method, we apply KVL (Kirchoff's Voltage Law), which states that the sum of all the voltages around any closed loop in a circuit is equal to zero, and relate the fictional currents we created to currents given in the circuit (for example, $I_d$).
+\begin{center}
+  \begin{equation}
+    I_1 = \frac{V_1 - V_2}{R_1}
+  \end{equation} 
+\end{center}
 
-This can't be done for every mesh as the Law would specifically entail, but we can reach conclusions about every one of them by inspection of said mesh: for example, the $2^{nd}$ mesh is connected to a current source, which automatically wields the $2^{nd}$ equation.
+\newpage
 
-The equations are as follows
+The value obtained are listed in the next tables:
 
-\begin{equation} 
-\begin{cases}  
-    Mesh\, 1: R_1\,I_1 + R_3\,(I_1 - I_2) + R_4(I_1 - I_3) = V_a \\
-    Mesh\, 2: I_2 + I_b = 0\\
-    Mesh\, 3: R_4(I_3 - I_1) + V_c + R_7\,I_3 + R_6\,I_3 = 0 \\
-    Mesh\, 4: I_4 = -I_d \\
-    R_3\, (I_1 - I_2) - V_b = 0\\
-    I_3 + I_c = 0 \\
-
-\end{cases}
-\label{eq:2}
-\end{equation}
-
-\subsection{Circuit Solution}
-
-To make sense out of the equations that were presented already, we also have to add
-
-\begin{equation} 
-\begin{cases}  
-   K_b\,V_b - I_b = 0 \\
-  K_c\, I_c - V_c = 0 \\
-\end{cases}
-\label{eq:3}
-\end{equation}
-
-We then use \textit{GNU Octave}, a $software$ that can solve this system of equations, to obtain the values of all the unknowns. Knowing all the voltages allows us to know every current aswell, which means the circuit is solved.
-The results of these computations are compiled in this table.
-
-
-JA MUDEI A TABELA:
 
 \begin{table}[h]
   \centering
@@ -77,7 +64,7 @@ JA MUDEI A TABELA:
     \input{../mat/voltage-nodes-t2.tex}
   \end{tabular}
   \caption{T2 1) Node Analysis Computation Results: Voltages computed using KCL equations}
-  \label{tab:nodeCurrents}
+  \label{tab:nodeVoltages1}
 \end{table}
 
 
@@ -89,8 +76,15 @@ JA MUDEI A TABELA:
     \input{../mat/currents-nodes-t2.tex}
   \end{tabular}
   \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
-  \label{tab:nodeCurrents}
+  \label{tab:nodeCurrents1}
 \end{table}
+
+
+
+
+
+
+\subsection{Determining the Equivalent Resistor as Seen From Capacitor Terminals}
 
 TABELAS DO 2 DO OCTAVE
 
@@ -98,12 +92,13 @@ TABELAS DO 2 DO OCTAVE
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Currents [A]} \\ \hline
+    {\bf Name} & {\bf Voltages [V]} \\ \hline
     \input{../mat/v(i)-2.tex}
   \end{tabular}
   \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
-  \label{tab:nodeCurrents}
+  \label{tab:nodeVoltages2}
 \end{table}
+
 
 \begin{table}[h]
   \centering
@@ -113,5 +108,73 @@ TABELAS DO 2 DO OCTAVE
     \input{../mat/i(i)-2.tex}
   \end{tabular}
   \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
-  \label{tab:nodeCurrents}
+  \label{tab:nodeCurrents2}
 \end{table}
+
+
+\subsection{Determining the Natural Solution for $V_6(t)$}
+
+After reducing the rather complex circuit to a circuit with one voltage source, one resistor, $R_{eq}$, (between nodes with voltage $V_s$ and $V_6$, with this direction of voltage drop) and one capacitor, we can easily determine the natural solution on the system. More specifically, we can observe the behaviour of the capacitor, dissipating voltage through the resistors without any external excitation or driving force. 
+
+To study this, we've worked out the voltage natural solution in node six ($V_{6n}$), in the interval [0, 20 ]ms.
+
+For a simple RC series circuit (with a voltage source) we can derive  the differential equation with describes the system. As is a system formed only by components in series the current ($I_c$) is the same in the resistor and in the capacitor: 
+
+\begin{center}
+  \begin{equation}
+    I_c = I_c \Leftrightarrow \frac{V_s-V_6(t)}{R_{eq}} = C\frac{dV_6(t)}{dt}
+  \end{equation} 
+\end{center}
+
+
+\begin{center}
+  \begin{equation}
+    \Leftrightarrow V_s = V_6(t) + R_{eq}C\frac{dV_6(t)}{dt}
+  \end{equation} 
+\end{center}
+
+
+As said before, in this step we want to determine the natural solution and, for that, we need to turn off external excitations, particularly, the voltage source $v_s$: $V_s = 0$. Which yields:
+
+\begin{center}
+  \begin{equation}
+    V_6(t) + R_{eq}C\frac{dV_6(t)}{dt} = 0
+  \end{equation} 
+\end{center}
+
+
+
+This is, recognizabily, a first order homogeneous differential equation, which have very well known solutions in the form of:
+
+\begin{center}
+  \begin{equation}
+    V_6(t) = K exp(-\frac{t}{RC})
+  \end{equation} 
+\end{center}
+
+
+,where $K$ is an integration constant.
+
+To determine $K$, we need an initial condition, such as $V_6(t=0) = V_x$, determined in the last section. The final expression for $V_6(t)$ is then:
+
+\begin{center}
+  \begin{equation}
+    V_{6n}(t) = V_x exp(-\frac{t}{RC})
+  \end{equation} 
+\end{center}
+
+
+
+We used \textit{GNUOctave} to compute and plot $V_{6n}$ against time ([0, 20] ms), using a $1\times10^{-6}$ s step, obtaining the following graphic:
+
+
+FALTA METER O GRAFICO I STILL NEED TO FIGURE THAT OUT
+
+
+\subsection{Determining the Forced Solution for $V_6(t)$}
+
+\subsection{Determining the Final Total Solution for $V_6(t)$}
+
+
+\subsection{NEM PERCEBO O QUE RAIO ELES QUEREM AQUI}
+
