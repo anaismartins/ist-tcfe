@@ -8,6 +8,10 @@
 
 .include ../mat/spicedata-4.cir
 
+.op
+
+.end
+
 .control
 
 *makes plots in color
@@ -19,14 +23,26 @@ set color3=blue
 set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
-*TRANSIENT OR FREQUENCY OR BOTH?
+
+
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
 tran 1e-5 20e-3
 
-hardcopy trans.ps v(6)
-echo trans_FIG
+hardcopy trans4.ps v(6)
+echo trans4_FIG
+
+echo "********************************************"
+echo  "Frequency analysis"
+echo "********************************************"
+
+ac dec 10 10 100MEG
+
+hardcopy acm.ps db(v(6)) v(6)
+echo acm_FIG
+hardcopy acp.ps v(6)
+echo acp_FIG
 
 .endc
 
