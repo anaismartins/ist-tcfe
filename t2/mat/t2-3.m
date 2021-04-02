@@ -58,8 +58,8 @@ plot(t,v1)
 hold on
 
 axis([0, 20e-3, 0, 10]);
-xlabel("t(s)");
-ylabel("v6n(V)");
+xlabel("t[s]");
+ylabel("v6n[V]");
 %print(hf, "t2-3.pdf");
 print (hf, "t2-3.eps", "-depsc");
 
