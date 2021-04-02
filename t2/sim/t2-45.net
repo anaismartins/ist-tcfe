@@ -6,7 +6,7 @@
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/spicedata-4.cir
+.include ../mat/spicedata-45.cir
 
 .op
 
@@ -30,19 +30,19 @@ echo  "Transient analysis"
 echo "********************************************"
 tran 1e-5 20e-3
 
-hardcopy trans4.ps v(6)
+hardcopy trans4.ps v(6) v(1)
 echo trans4_FIG
 
 echo "********************************************"
 echo  "Frequency analysis"
 echo "********************************************"
 
-ac dec 10 10 100MEG
+ac dec 10 0.1 1MEG
 
-hardcopy acm.ps db(v(6)) v(6)
-echo acm_FIG
-hardcopy acp.ps v(6)
-echo acp_FIG
+hardcopy db.ps db(v(6)) db(v(1)) db(v(6)-v(8))
+echo db_FIG
+hardcopy ph.ps ph(v(6))*180/3.1415926 ph(v(1))*180/3.1415926 ph(v(6)-v(8))*180/3.1415926
+echo ph_FIG
 
 .endc
 
