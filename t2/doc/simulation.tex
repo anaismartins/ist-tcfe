@@ -3,9 +3,9 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-\subsection{Operating Point Analysis}
+\subsection{Operating Point Analysis - The given Circuit for $t<0$}
 
-Table~\ref{tab:op} shows the simulated operating point results for the circuit under analysis.
+Table~\ref{tab:sim1} shows the simulated operating point results for the circuit under analysis, for $t<0$.
 
 \begin{table}[htb!]
   \centering
@@ -17,16 +17,39 @@ Table~\ref{tab:op} shows the simulated operating point results for the circuit u
   \caption{Operating point results. A variable preceded by @ is of type {\em current}
     and expressed in Ampere; other variables are of type {\it voltage} and expressed in
     Volt.}
-  \label{tab:op}
+  \label{tab:sim1}
 \end{table}
 
-These results were produced using the \textit{Ngspice software}. In order for the \textit{software} to be able to recognise the Current-Controlled Voltage Source, defined in Figure \ref{fig2} as $H_c$, we had to add a new Independent Voltage Source with a voltage of 0V, which is also represented in \ref{fig2}.
+These results were produced using the \textit{Ngspice software}.
 
+For this range of time, the circuit is time static, which means that the Capacitor C behaves as an open circuit. This is shown in Figure \ref{fig:sim1}.
+As well as that modification, we also had to add a new Independent Voltage Source with a voltage of 0V whose current would be $I_d$, in order for \textit{Ngspice} to recognise the Current-Controlled Voltage Source, defined in Figure \ref{fig:sim1} as $H_d$. Bearing this in mind the Voltage Source was added between node 0 and a new node 9, with node 9 being placed between the GROUND and the first terminal of $R_6$.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{t1-2.pdf}
+\includegraphics[width=0.4\linewidth]{t2-t-1-new-0V.pdf}
 \caption{The original circuit with an added voltage source of value 0V.}
-\label{fig2}
+\label{fig:sim1}
+\end{figure}
+
+OP2
+
+\begin{table}[htb!]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op2_tab}
+  \end{tabular}
+  \caption{Operating point results. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:op2}
+\end{table}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{t2-t-2-new-0V.pdf}
+\caption{The original circuit with an added voltage source of value 0V.}
+\label{fig3}
 \end{figure}
 
 
@@ -39,15 +62,4 @@ In fact, by inspection it's possible to conclude that pratically all the values 
 
 As it's possible to check in the following table, the relative uncertainties ($|theoretical - simulated|/|theoretical|$) are considerably slim.
 Although we have a rather significant uncertainty for the value of V7 (theoretical value: -9.7816698e-01 V , simulated value: 8.139731e+00 V, uncertainty: 2.0000000e+00); the smallest uncertainty, which null, reports to the value of $I_1$ (theoretical value: 2.3690260e-04 A , simulated value: 2.369026e-04 A). It's relevant to note that this number isn't actually zero, but instead, the program doesn't have enough precison to compute a detectable error. 
-
-\begin{table}[htb!]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Relative Uncertainty [A or V]} \\ \hline
-    \input{../errors/errors.tex}
-  \end{tabular}
-  \caption{Relative Uncertainty of the simulation results relative to the theorical values.}
-  \label{tab:errors}
-\end{table}
 
