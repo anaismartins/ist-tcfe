@@ -104,13 +104,13 @@ Vd = Kd*Id;
 filename = "v(i)-2.tex";
 file3 = fopen(filename, "w");
 
-fprintf(file3, "V0 & %7.7e\\\\\hline ", double(X(1)));
-fprintf(file3, "V2 & %7.7e\\\\\hline ", double(X(2)));
-fprintf(file3, "V3 & %7.7e\\\\\hline ", double(X(3)));
-fprintf(file3, "V5 & %7.7e\\\\\hline ", double(X(4)));
-fprintf(file3, "V6 & %7.7e\\\\\hline ", double(X(5)));
-fprintf(file3, "V7 & %7.7e\\\\\hline ", double(X(6)));
-fprintf(file3, "V8 & %7.7e\\\\\hline ", double(X(7)));
+fprintf(file3, "V0 & %7.7e\\\\\\hline ", double(X(1)));
+fprintf(file3, "V2 & %7.7e\\\\\\hline ", double(X(2)));
+fprintf(file3, "V3 & %7.7e\\\\\\hline ", double(X(3)));
+fprintf(file3, "V5 & %7.7e\\\\\\hline ", double(X(4)));
+fprintf(file3, "V6 & %7.7e\\\\\\hline ", double(X(5)));
+fprintf(file3, "V7 & %7.7e\\\\\\hline ", double(X(6)));
+fprintf(file3, "V8 & %7.7e\\\\\\hline ", double(X(7)));
 
 %outras tensoes que nao fazem parte da matriz
 
@@ -136,16 +136,16 @@ I7 = (X(6)-X(7))/R7;
 filename = "i(i)-2.tex";
 file4 = fopen(filename, "w");
 
-fprintf(file4, "Ix & %7.7e\\\\\hline ", double(X(8)));
-fprintf(file4, "Iy & %7.7e\\\\\hline ", double(X(9)));
-fprintf(file4, "I1 & %7.7e\\\\\hline ", I1);
-fprintf(file4, "I2 & %7.7e\\\\\hline ", I2);
-fprintf(file4, "I3 & %7.7e\\\\\hline ", I3);
-fprintf(file4, "I4 & %7.7e\\\\\hline ", I4);
-fprintf(file4, "I5 & %7.7e\\\\\hline ", I5);
-fprintf(file4, "I7 & %7.7e\\\\\hline ", I7);
-fprintf(file4, "Ib & %7.7e\\\\\hline ", Ib);
-fprintf(file4, "Id & %7.7e\\\\\hline ", Id);
+fprintf(file4, "Ix & %7.7e\\\\\\hline ", double(X(8)));
+fprintf(file4, "Iy & %7.7e\\\\\\hline ", double(X(9)));
+fprintf(file4, "I1 & %7.7e\\\\\\hline ", I1);
+fprintf(file4, "I2 & %7.7e\\\\\\hline ", I2);
+fprintf(file4, "I3 & %7.7e\\\\\\hline ", I3);
+fprintf(file4, "I4 & %7.7e\\\\\\hline ", I4);
+fprintf(file4, "I5 & %7.7e\\\\\\hline ", I5);
+fprintf(file4, "I7 & %7.7e\\\\\\hline ", I7);
+fprintf(file4, "Ib & %7.7e\\\\\\hline ", Ib);
+fprintf(file4, "Id & %7.7e\\\\\\hline ", Id);
 
 fflush(file4);
 fclose(file4);
@@ -153,7 +153,7 @@ fclose(file4);
 filename = "Req-t2-2.tex";
 file5 = fopen(filename, "w");
 
-fprintf(file5, "Req & %7.7e\\\\\hline ", double(Vx/X(8)));
+fprintf(file5, "Req & %7.7e\\\\\\hline ", double(Vx/X(8)));
 
 fflush(file5);
 fclose(file5);
@@ -202,7 +202,7 @@ fprintf(spice45, "R5 5 6 %f\n", R5);
 fprintf(spice45, "R6 9 7 %f\n", R6);
 fprintf(spice45, "R7 7 8 %f\n", R7);
 
-fprintf(spice45, "Vs 1 0 1.0 ac 1.0 sin(0 6.283185307 1.0k)\n");
+fprintf(spice45, "Vs 1 0 0.0 ac 1.0 sin(0 1.0 1.0k)\n");
 
 fprintf(spice45, "Ve 0 9 0V\n");
 fprintf(spice45, "Hd 5 8 Ve %f\n", Kd);
