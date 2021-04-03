@@ -175,7 +175,7 @@ fprintf(spice3, "R5 5 6 %f\n", R5);
 fprintf(spice3, "R6 9 7 %f\n", R6);
 fprintf(spice3, "R7 7 8 %f\n", R7);
 
-fprintf(spice3, "Vs 1 0 1.0 ac 1.0 sin(0 6.283185307 1.0)\n");
+fprintf(spice3, "Vs 1 0 0.0 ac 1.0 sin(0 1.0 1.0)\n");
 
 fprintf(spice3, "Ve 0 9 0V\n");
 fprintf(spice3, "Hd 5 8 Ve %f\n", Kd);
