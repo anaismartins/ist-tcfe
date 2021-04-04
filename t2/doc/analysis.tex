@@ -139,7 +139,7 @@ Ohm's Law are in \ref{tab:nodeCurrents2} and the equivalent resistor, $R_{eq}$, 
     {\bf Name} & {\bf Currents [A]} \\ \hline
     \input{../mat/t2-t2-currents.tex}
   \end{tabular}
-  \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
+  \caption{Node Analysis Computation Results: Currents (A) computed using ohms law}
   \label{tab:nodeCurrents2}
 \end{table}
 
@@ -198,7 +198,7 @@ For a simple RC series circuit (with a voltage source) we can derive the differe
 
 ,where $K$ is an integration constant.
 
-To determine $K$, we need an initial condition, such as $V_6(t=0) = V_x$, determined in the last section. The final expression for $V_6n(t)$ is then:
+To determine $K$, we need an initial condition, such as $V_6(t=0) = V_x$, determined in the last section. The final expression for $V_{6n}(t)$ is then:
 
 \begin{center}
   \begin{equation}
@@ -208,12 +208,12 @@ To determine $K$, we need an initial condition, such as $V_6(t=0) = V_x$, determ
 
 
 
-We used \textit{GNUOctave} to compute and plot $V_{6n}$ against time ([0, 20] ms), using a $1\miu s$ step, obtaining the following graphic:
+We used \textit{GNUOctave} to compute and plot $V_{6n}$ against time ([0, 20] ms), using a $1\mu s$ step, obtaining the following graphic:
 
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.4\linewidth]{../mat/t2-t3.pdf}
-\caption{$V_{6n}(t)$, for t \in [0, 20] ms}
+\caption{$V_{6n}(t)$, for t $\in$ [0, 20] ms}
 \label{fig4}
 \end{figure}
 
@@ -228,7 +228,7 @@ For $t>0$, the independent voltage source, $v_s$, provides a sinusoidal excitati
 \label{fig5}
 \end{figure}
 
-Moreover, the impedance of the resistor is equal to the resistor itself ($Z_i = R_i$) and the capacitor impedance can be written using the simple expression $\frac{1}{j\omega C}$, in which $\omega = 2\pi f$ ($f =  1kHz$), the angular frequency of the source $v_s$ and C is the capacitance, a characteristic of the given capacitor. 
+Moreover, the impedance of the resistor is equal to the resistor itself ($Z_i = R_i$) and the capacitor impedance can be written using the simple expression $Z_c = \frac{1}{j\omega C}$, in which $\omega = 2\pi f$ ($f =  1kHz$), the angular frequency of the source $v_s$ and C is the capacitance, a characteristic of the given capacitor. 
 
 \begin{table}[h]
   \centering
@@ -243,7 +243,7 @@ Moreover, the impedance of the resistor is equal to the resistor itself ($Z_i = 
 
 \subsection{Determining the Final Total Solution for $V_6(t)$}
 
-The final solution for node 6, $V_6(t)$, is obtained by summing its natural and forced solutions. We know that the forced solution will oscillate with the same frequency of the source $v_s$, but we don't know its amplitude yet. Well, that's exatly why we did what we did in the previous section. Since $v_s$ is a sine wave, we want $V_{6f}(t)$ to be a sine wave aswell, so we know we will have to extract the imaginary part of the whatever expression we obtain. That expression is as follows
+The final solution for node 6, $V_6(t)$, is obtained by summing its natural and forced solutions. We know that the forced solution will oscillate with the same frequency of the source $v_s$, but we don't know its amplitude yet. Well, that's exatly why we did what we did in the previous section. Since $v_s$ is a sine wave, we want $V_{6f}(t)$ to be a sine wave aswell, so we know we will have to extract the imaginary part of whatever expression we obtain. That expression is as follows
 
 \begin{center}
   \begin{equation}
@@ -259,12 +259,12 @@ Plotting $v_s(t)$ and $V_6(t)$, we end up with
 \label{cfergter}
 \end{figure}
 
-\subsection{Bode Plots}
+\subsection{Frequency analysis}
 
-In this section, we analyse the frequency responses of $V_c(f) = V_6(f) - V_8(f)$ and $V_6(f)$, aswell as the behaviour of the source when we vary the frequency from 0.1 Hz to 1 MHz. This is usually done using a logarithmic scale for the frequency (base 10). We will plot the magnitude expressed in decibel (dB), a unit designed to easily give a human understanding to its value, since this circuit could, for example, be used in an amplifier, aswell as the phase expressed in degrees. Well, so far, every exercise was done using numeric computation, which provides less error, but this cannot be done here, since the nodal analysis requires every variable to be dependent on the frequency, $f$, otherwise, we would need milions of matrices... We call this symbolic computation. After running the same procedure as we did for subsection 4, even using those equations, we 
+In this section, we analyse the frequency responses of $V_c(f) = V_6(f) - V_8(f)$ and $V_6(f)$, aswell as the behaviour of the source when we vary the frequency from 0.1 Hz to 1 MHz. This is usually done using a logarithmic scale for the frequency (base 10). We will plot the magnitude expressed in decibel (dB), a unit designed to easily give a human understanding to its value, since this circuit could, for example, be used in an amplifier, aswell as the phase expressed in degrees. Well, so far, every exercise was done using numeric computation, which provides less error, but this cannot be done here, since the nodal analysis requires every variable to be dependent on the frequency, $f$, otherwise, we would need milions of matrices... We call this symbolic computation. After running the same procedure as we did for subsection 4, even using those equations, we of course end up with nodal voltages, this time dependent on the frequency, $V_i(f)$. To do a bode plot, it is necessary to have a transfer function that depends on a variable, usually called $s$. $s$, in this case, is just $j \times f$, and this is very convenient since everywhere that $f$ appears in a given nodal voltage, is in its imaginary part. We therefore end up with an expression for $V_i(f)$ whose numerator and denominator is a polinomial in terms of $s$. Well, it's exactly in this form ([numerator denominator]) that transfer functions are written in $GNUOctave$, so we are done. All that remains is actually plotting the results, but this is done simply using the $bode$ command.
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.4\linewidth]{../mat/t2-t6.pdf}
-\caption{Bode plots for $v_s$, $V_c$ and $V_6$, f \in [0.1, $10^6$] Hz}
+\caption{Bode plots for $v_s$, $V_c$ and $V_6$, f $\in$ [0.1, $10^6$] Hz}
 \label{cfergter}
 \end{figure}
