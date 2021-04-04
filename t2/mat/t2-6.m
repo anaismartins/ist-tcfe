@@ -41,23 +41,46 @@ valores4 = fileread('v(i)-4.tex');
 
 valores4 = strsplit(valores4, {"\n"," ", "hline", "&", "\\"});
 
-fclose(file1);
+fclose(file4);
 
-V8PHA = str2double(cell2mat(valores4(16)) );
+V6real = str2double(cell2mat(valores4(12)));
+V6imag = str2double(cell2mat(valores4(28)));
 
-fase = acos(V8PHA/V8);
 
-printf("fase = %f", fase);
+t=20e-3; %s
+f = logspace(-1, 6, 20000); %10^-1 até 10^6, 20000 pontos
+omega = 2*pi*f;
+hf = figure();
 
-%time axis: -5ms to 20ms with 1us steps
-##t=20e-3; %s
-##f = 0.1:1e-2:1e6; %f
-##omega = 2*pi*f;
-##
-##v6n = Vx * exp(-t/(Req*C));
-##v6fCOMP = 1/(sqrt(1+omega*omega*Req*Req*C*C))*exp(j*(omega*t-atan(omega*Req*C)));
-##v6f = imag(v6fCOMP);
-##hf = figure();
+%magnitudes
+
+v6n = Vx * exp(-t/(Req*C));
+v6fCOMP = (V6real+j*V6imag)*exp(j*omega*t);
+v6f = imag(v6fCOMP);
+v6 = v6n + v6f;
+semilogx(f, v6n+abs(v6fCOMP));
+hold on;
+
+xlabel("f[Hz]");
+ylabel("V[V]");
+
+legend("v6");
+
+print (hf, "t2-6-mag.eps", "-depsc");
+
+hold off;
+
+%fases
+
+semilogx(f, angle((v6fCOMP)));
+hold on;
+
+xlabel("f[Hz]");
+ylabel("fase [rad]");
+
+legend("v6");
+
+print (hf, "t2-6-fase.eps", "-depsc");
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %ate aqui fixe... talvez seja perciso tirar valores de v8 tmb mas no biggie
@@ -67,31 +90,3 @@ printf("fase = %f", fase);
 
 %vcn = v6n - v8n
 
-
-
-##f = 1000; %Hz
-##omega = 2*pi*f; %rad/s
-##
-##v6fPHA = 1/(sqrt(1+omega*omega*Req*Req*C*C))*exp(j*(omega*t-atan(omega*Req*C)));
-##v6f = imag(v6fPHA);
-##hf = figure();
-##
-##line([-5e-3 0], [Vx Vx], "color", "b");
-##hold on;
-##line([-5e-3 0], [Vs Vs], "color", "r");
-##hold on;
-##plot(t, v6n+v6f, "b");
-##hold on;
-##plot(t, sin(omega*t), "r");
-##hold on;
-##
-##axis([-5e-3, 20e-3, -5, 10]);
-##xlabel("t[s]");
-##ylabel("V[V]");
-##
-##%plot(t1, Vs, "r");
-##%plot(t2, sin(omega*t2), "r");
-##
-##legend('v6(t)', 'vs(t)');
-##
-##print (hf, "t2-5.eps", "-depsc");

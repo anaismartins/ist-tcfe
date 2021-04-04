@@ -117,7 +117,7 @@ fclose(file4);
 ##V6real = real(X(6));
 ##V6imag = imag(X(6));
 ##
-##v6fCOMP = (V6real+V6imag)*exp(j*omega*t);
+##v6fCOMP = (V6real+j*V6imag)*exp(j*omega*t);
 ##v6f = imag(v6fCOMP);
 ##
 ##hf = figure ();

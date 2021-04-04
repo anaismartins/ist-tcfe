@@ -51,7 +51,7 @@ v6n = Vx * exp(-t/(Req*C));
 f = 1000; %Hz
 omega = 2*pi*f; %rad/s
 
-v6fCOMP = (V6real+V6imag)*exp(j*omega*t);
+v6fCOMP = (V6real+j*V6imag)*exp(j*omega*t);
 v6f = imag(v6fCOMP);
 hf = figure();
 
