@@ -29,28 +29,6 @@ Kb = str2double(cell2mat(valores(50)));
 Kd = str2double(cell2mat(valores(53)));
 
 
-%ler ficheiro
-
-%{
-R1 = textscan(file, "R1 = %f");
-R2 = textscan(file, "R2 = %f");
-R3 = textscan(file, "R3 = %f");
-R4 = textscan(file, "R4 = %f");
-R5 = textscan(file, "R5 = %f");
-R6 = textscan(file, "R6 = %f");
-R7 = textscan(file, "R7 = %f");
-
-Vs = textscan(file, "Vs = %f");
-
-C = textscan(file, "C = %f");
-
-Kb = textscan(file, "Kb = %f");
-
-Kd = textscan(file, "Kd = %f");
-
-%}
-
-
 %corrigir unidades
 
 R1 = double(R1)*1000; %ohm

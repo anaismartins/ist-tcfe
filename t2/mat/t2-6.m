@@ -11,6 +11,8 @@ fclose(file1);
 
 Req = str2double(cell2mat(valores1(2)) );
 
+
+
 file2 = fopen("voltage-nodes-t2-1.tex", "r");
 
 valores2 = fileread('voltage-nodes-t2-1.tex');
@@ -22,6 +24,8 @@ fclose(file2);
 V8 = str2double(cell2mat(valores2(16)) );
 
 Vx = str2double(cell2mat(valores2(12)) ) - V8;
+
+
 
 file3 = fopen("../data.txt", "r");
 
@@ -35,7 +39,11 @@ Vs = str2double(cell2mat(valores3(44)) );
 C = str2double(cell2mat(valores3(47)) );
 C = C*(10^(-6)); %farad
 
-file4 = fopen("Req-t2-2.tex", "r");
+
+
+%file4 = fopen("Req-t2-2.tex", "r");
+
+file4 = fopen("v(i)-4.tex", "r");
 
 valores4 = fileread('v(i)-4.tex');
 
@@ -47,18 +55,21 @@ V6real = str2double(cell2mat(valores4(12)));
 V6imag = str2double(cell2mat(valores4(28)));
 
 
+
 t=20e-3; %s
 f = logspace(-1, 6, 20000); %10^-1 até 10^6, 20000 pontos
 omega = 2*pi*f;
 hf = figure();
 
-%magnitudes
 
+
+%magnitudes
 v6n = Vx * exp(-t/(Req*C));
 v6fCOMP = (V6real+j*V6imag)*exp(j*omega*t);
 v6f = imag(v6fCOMP);
 v6 = v6n + v6f;
 semilogx(f, v6n+abs(v6fCOMP));
+
 hold on;
 
 xlabel("f[Hz]");
@@ -70,9 +81,11 @@ print (hf, "t2-6-mag.eps", "-depsc");
 
 hold off;
 
-%fases
 
+
+%fases
 semilogx(f, angle((v6fCOMP)));
+
 hold on;
 
 xlabel("f[Hz]");
