@@ -4,23 +4,10 @@ clear all
 pkg load symbolic
 pkg load control
 
-file1 = fopen("t2-t2-Req.tex", "r");
-
-valores1 = fileread('t2-t2-Req.tex');
-
-valores1 = strsplit(valores1, {"\n"," ", "hline", "&", "\\"});
-
-fclose(file1);
-
-Req = str2double(cell2mat(valores1(2)) );
-
 file2 = fopen("../data.txt", "r");
 
 valores2 = fileread('../data.txt');
 
-file2 = fopen("t2-t1-voltages.tex", "r");
-
-valores2 = fileread('t2-t1-voltages.tex');
 valores2 = strsplit(valores2, {"\n"," "});
 
 fclose(file2);
@@ -128,7 +115,6 @@ D6 = [D6_imag, D6_real]
 N8 = [N8_imag, N8_real]
 D8 = [D8_imag, D8_real]
 
-print (hf, "t2-t6-mag.eps", "-depsc");
 %a tirar o f da expressão
 
 file3 = fopen("valores-bode.tex", "w");
@@ -162,42 +148,4 @@ hold on;
 
 xlabel("f[Hz]");
 
-print (hf, "t2-6.eps", "-depsc");
-
-##%magnitudes
-##
-##semilogx(f, v6n+abs(v6fCOMP));
-##
-##hold on;
-##
-##xlabel("f[Hz]");
-##ylabel("V[V]");
-##
-##legend("v6");
-##
-##print (hf, "t2-6-mag.eps", "-depsc");
-##
-##hold off;
-
-print (hf, "t2-t6-fase.eps", "-depsc");
-
-%fases
-##semilogx(f, angle((v6fCOMP)));
-##
-##hold on;
-##
-##xlabel("f[Hz]");
-##ylabel("fase [rad]");
-##
-##legend("v6");
-##
-##print (hf, "t2-6-fase.eps", "-depsc");
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%ate aqui fixe... talvez seja perciso tirar valores de v8 tmb mas no biggie
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5v8n = ????
-
-%vcn = v6n - v8n
-
+print (hf, "t2-t6.eps", "-depsc");
