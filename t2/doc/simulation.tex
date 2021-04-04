@@ -7,6 +7,8 @@
 
 Table~\ref{tab:sim1} shows the simulated operating point results for the circuit under analysis, for $t<0$.
 
+ 
+
 \begin{table}[htb!]
   \centering
   \begin{tabular}{|l|r|}
@@ -25,6 +27,8 @@ These results and the ones that follow in this section were produced using the \
 For this range of time, the circuit is time static, which means that the Capacitor C behaves as an open circuit. This is shown in Figure \ref{fig:sim1}.
 As well as that modification, we also had to add a new Independent Voltage Source with a voltage of 0V whose current would be $I_d$, in order for \textit{Ngspice} to recognise the Current-Controlled Voltage Source, defined in Figure \ref{fig:sim1} as $H_d$. Bearing this in mind the Voltage Source was added between node 0 and a new node 9, with node 9 being placed between the GROUND and the first terminal of $R_6$.
 
+ 
+
 \begin{figure}[h] \centering
 \includegraphics[width=0.6\linewidth]{t2-sim1.pdf}
 \caption{The original circuit at $t < 0$ with an added voltage source of value 0V.}
@@ -34,6 +38,8 @@ As well as that modification, we also had to add a new Independent Voltage Sourc
 \subsection{Operating Point Analysis - Finding the Inital Conditions}
 
 In this section, we analyse the following circuit:
+
+ 
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.5\linewidth]{t2-sim2.pdf}
@@ -45,6 +51,8 @@ Once again, the 0V Source is added for Ngspice to be able to recognise $H_d$.
 Analysing this circuit is useful for us to be able to find the inital conditions of the original circuit at $V_6$ and $V_8$, the nodes that the Capacitor is connected to. We need this information because, from now on, the analysis of the circuit will be time-dependent and we need to know the inital conditions for the circuit.
 
 The results for the Operating Point Analysis are represented in Table \ref{tab:sim2}.
+
+ 
 
 \begin{table}[htb!]
   \centering
@@ -65,6 +73,8 @@ As expected, these results give us the values we were looking for: $V_6 = 8.6836
 
 For our first time-dependent analysis, we analyse the original circuit in the interval $t \in [0, 20]ms$, with no forced frequency, adding onto it, once again, the 0V Source:
 
+ 
+
 \begin{figure}[h] \centering
 \includegraphics[width=0.5\linewidth]{t2-sim345.pdf}
 \caption{The original circuit with an added voltage source of value 0V.}
@@ -75,10 +85,48 @@ This schematic of the circuit is the one that will also be followed in the next 
 
 For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained in the previous section, with the AC Independent Voltage Source $V_s$ following a sinusoidal signal, displayed in Figure \ref{fig:sim345}. The result of the Transient Analysis made by \textit{Ngspice} is shown in Figure \ref{fig:sim-graph3}.
 
+ 
+
 \begin{figure}[h] \centering
 \includegraphics[width=0.4\linewidth]{../sim/trans3.pdf}
-\caption{Voltage of $V_6$ vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with No Forced Frequency}
+\caption{Voltage of $V_6$ (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with No Forced Frequency}
 \label{fig:sim-graph3}
 \end{figure}
 
 As expected, the voltage of $V_6$ decays exponentially, as the Capacitor stores more and more energy as time goes by.
+
+\subsection{Transient Analysis - Forced Frequency of 1kHz}
+
+In this section, we repeat the exact same steps taken in the previous one, except we introduce a forced frequency signal of 1kHz on $V_s$. In Figure \ref{fig:sim-graph4}, we can observe the stimulus and the response in node 6.
+
+ 
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{../sim/trans4.pdf}
+\caption{Voltage of $V_6$ and of the stimulus (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with a Forced Frequency of 1kHz}
+\label{fig:sim-graph4}
+\end{figure}
+
+It is clear that the shape of $V_6(t)$ is the same as before, only now modulated by the stimulus, represented in Figure \ref{fig:sim-graph4} in blue, with the label v(1), because the voltage in node 1 is made up of a difference in potencial in the GROUND (whose volatge is 0) and by the voltage created by $V_s$.
+
+\subsection{Frequency Analysis}
+
+We now look at the original circuit in a range of forced frequencies of 0.1Hz to 1MHz. In Figure {fig:sim-graph5db}, we can observe the Amplitudes of $V_6$, $V_s$ and $V_c$ in dB, respectively represented by db(v(6)), db(v(1)) and db(v(6) - v(8)), as a function of the logarithm of the ranges of frequencies previously mentioned.
+
+ 
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{../sim/db.pdf}
+\caption{Amplitude of $V_6$, $V_s$ and $V_c$ (dB) vs. Frequency (Hz) - Frequency Analysis of the Original Circuit}
+\label{fig:sim-graph5db}
+\end{figure}
+
+Lastly, we take a look at the phase of $V_6$, $V_s$ and $V_c$, respectively ph(v(6)), ph(v(1)) and ph(v(6) - v(8)), as a function of the same range of frequencies in Figure \ref{fig:sim-graph5ph}.
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{../sim/ph.pdf}
+\caption{Phase of $V_6$, $V_s$ and $V_c$ (degrees) vs. Frequency (Hz) - Frequency Analysis of the Original Circuit}
+\label{fig:sim-graph5ph}
+\end{figure}
+
+As we can observe, all of the phases are 0 at $f=0.1Hz$ and then vary according to the frequency. Looking at the whole plot, particularly at the graph of the phase of $V_s$, we can assume that the phase that \textit{Ngspice} calculates the phase as (value for the fase at a certain node - value for the phase of the Voltage Source).
