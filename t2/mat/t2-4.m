@@ -22,21 +22,6 @@ fclose(file2);
 C = str2double(cell2mat(valores2(47)) );
 C = C*(10^(-6)); %farad
 
-f = 1000; %Hz
-omega = 2*pi*f; %rad/s
-
-t=0:1e-6:20e-3; %s
-
-v6fPHA = exp(j*omega*t)/(1+j*omega*Req*C);
-v6f = imag(v6fPHA);
-
-hf = figure ();
-plot (t, v6f);
-
-xlabel ("t[s]");
-ylabel ("v6f [V]");
-print (hf, "t2-4.eps", "-depsc");
-
 file3 = fopen("../data.txt", "r");
 
 valores3 = fileread('../data.txt');
@@ -70,6 +55,9 @@ Kb = Kb*0.001; %siemen
 
 Kd = Kd*1000; %ohm
 
+f = 1000; %Hz
+omega = 2*pi*f; %rad/s
+
 %   v0, v1, v2, v3, v5, v6, v7, v8
 
 A = [1, 0, 0, 0, 0, 0, 0, 0;
@@ -86,7 +74,7 @@ A = [1, 0, 0, 0, 0, 0, 0, 0;
 
 1/R6, 0, 0, 0, 0, 0, -1/R6-1/R7, 1/R7;
 
-1/R4, 0, 1/R3, 0, -1/R3-1/R5-1/R4, 1/R5, 1/R7, -1/R7]
+1/R4, 0, 1/R3, 0, -1/R3-1/R5-1/R4, 1/R5+j*omega*C, 1/R7, -1/R7-j*omega*C]
 
 %1/R6+1/R4, 1/R1, -1/R1, 0, -1/R4, 0, -1/R6, 0]
 
@@ -101,14 +89,40 @@ X = A\B
 filename = "v(i)-4.tex";
 file4 = fopen(filename, "w");
 
-fprintf(file4, "V0 & %7.7e\\\\\hline ", double(X(1)));
-fprintf(file4, "V1 & %7.7e\\\\\hline ", double(X(2)));
-fprintf(file4, "V2 & %7.7e\\\\\hline ", double(X(3)));
-fprintf(file4, "V3 & %7.7e\\\\\hline ", double(X(4)));
-fprintf(file4, "V5 & %7.7e\\\\\hline ", double(X(5)));
-fprintf(file4, "V6 & %7.7e\\\\\hline ", double(X(6)));
-fprintf(file4, "V7 & %7.7e\\\\\hline ", double(X(7)));
-fprintf(file4, "V8 & %7.7e\\\\\hline ", double(X(8)));
+fprintf(file4, "V0real & %7.7e\\\\\hline ", real(X(1)));
+fprintf(file4, "V1real & %7.7e\\\\\hline ", real(X(2)));
+fprintf(file4, "V2real & %7.7e\\\\\hline ", real(X(3)));
+fprintf(file4, "V3real & %7.7e\\\\\hline ", real(X(4)));
+fprintf(file4, "V5real & %7.7e\\\\\hline ", real(X(5)));
+fprintf(file4, "V6real & %7.7e\\\\\hline ", real(X(6)));
+fprintf(file4, "V7real & %7.7e\\\\\hline ", real(X(7)));
+fprintf(file4, "V8real & %7.7e\\\\\hline ", real(X(8)));
+
+fprintf(file4, "\n\n\n");
+
+fprintf(file4, "V0imag & %7.7e\\\\\hline ", imag(X(1)));
+fprintf(file4, "V1imag & %7.7e\\\\\hline ", imag(X(2)));
+fprintf(file4, "V2imag & %7.7e\\\\\hline ", imag(X(3)));
+fprintf(file4, "V3imag & %7.7e\\\\\hline ", imag(X(4)));
+fprintf(file4, "V5imag & %7.7e\\\\\hline ", imag(X(5)));
+fprintf(file4, "V6imag & %7.7e\\\\\hline ", imag(X(6)));
+fprintf(file4, "V7imag & %7.7e\\\\\hline ", imag(X(7)));
+fprintf(file4, "V8imag & %7.7e\\\\\hline ", imag(X(8)));
 
 fflush(file4);
 fclose(file4);
+
+##t=0:1e-6:20e-3; %s
+##
+##V6real = real(X(6));
+##V6imag = imag(X(6));
+##
+##v6fCOMP = (V6real+j*V6imag)*exp(j*omega*t);
+##v6f = imag(v6fCOMP);
+##
+##hf = figure ();
+##plot (t, v6f);
+##
+##xlabel ("t[s]");
+##ylabel ("v6f [V]");
+##print (hf, "t2-4.eps", "-depsc");
