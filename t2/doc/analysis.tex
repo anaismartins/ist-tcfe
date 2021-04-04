@@ -61,7 +61,7 @@ The value obtained are listed in the next tables:
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Voltages [V]} \\ \hline
-    \input{../mat/voltage-nodes-t2-1.tex}
+    \input{../mat/t2-t1-voltages.tex}
   \end{tabular}
   \caption{T2 1) Node Analysis Computation Results: Voltages computed using KCL equations}
   \label{tab:nodeVoltages1}
@@ -73,7 +73,7 @@ The value obtained are listed in the next tables:
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Currents [A]} \\ \hline
-    \input{../mat/currents-nodes-t2-1.tex}
+    \input{../mat/t2-t1-currents.tex}
   \end{tabular}
   \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
   \label{tab:nodeCurrents1}
@@ -86,14 +86,12 @@ The value obtained are listed in the next tables:
 
 \subsection{Determining the Equivalent Resistor as Seen From Capacitor Terminals}
 
-TABELAS DO 2 DO OCTAVE
-
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Voltages [V]} \\ \hline
-    \input{../mat/v(i)-2.tex}
+    \input{../mat/t2-t2-voltages.tex}
   \end{tabular}
   \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
   \label{tab:nodeVoltages2}
@@ -105,7 +103,18 @@ TABELAS DO 2 DO OCTAVE
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Currents [A]} \\ \hline
-    \input{../mat/i(i)-2.tex}
+    \input{../mat/t2-t2-currents.tex}
+  \end{tabular}
+  \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
+  \label{tab:nodeCurrents2}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Currents [A]} \\ \hline
+    \input{../mat/t2-t2-Req.tex}
   \end{tabular}
   \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
   \label{tab:nodeCurrents2}
@@ -168,13 +177,45 @@ To determine $K$, we need an initial condition, such as $V_6(t=0) = V_x$, determ
 We used \textit{GNUOctave} to compute and plot $V_{6n}$ against time ([0, 20] ms), using a $1\times10^{-6}$ s step, obtaining the following graphic:
 
 
-FALTA METER O GRAFICO I STILL NEED TO FIGURE THAT OUT
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{t2-t3.eps}
+\caption{The original circuit, with some current directions added.}
+\label{cfergter}
+\end{figure}
 
 
 \subsection{Determining the Forced Solution for $V_6(t)$}
 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Voltages [V]} \\ \hline
+    \input{../mat/t2-t4-voltages.tex}
+  \end{tabular}
+  \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
+  \label{tab:nodeVoltages2}
+\end{table}
+
 \subsection{Determining the Final Total Solution for $V_6(t)$}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{t2-t5.eps}
+\caption{The original circuit, with some current directions added.}
+\label{cfergter}
+\end{figure}
 
 
 \subsection{NEM PERCEBO O QUE RAIO ELES QUEREM AQUI}
 
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{t2-t6-mag.eps}
+\caption{The original circuit, with some current directions added.}
+\label{cfergter}
+\end{figure}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{t2-t6-fase.eps}
+\caption{The original circuit, with some current directions added.}
+\label{cfergter}
+\end{figure}

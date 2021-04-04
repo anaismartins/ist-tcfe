@@ -86,7 +86,7 @@ Vb = X(3) - X(5);
 
 %print values in table
 
-filename = "voltage-nodes-t2-1.tex";
+filename = "t2-t1-voltages.tex";
 file0 = fopen(filename, "w");
 
 for i = 1:8
@@ -126,7 +126,7 @@ I7 = (X(7) - X(8))/R7;
 %Id e Ib em cima
 
 
-filename1 = "currents-nodes-t2-1.tex";
+filename1 = "t2-t1-currents.tex";
 file1 = fopen(filename1, "w");
 
 

@@ -1,9 +1,9 @@
 close all
 clear all
 
-file1 = fopen("Req-t2-2.tex", "r");
+file1 = fopen("t2-t2-Req.tex", "r");
 
-valores1 = fileread('Req-t2-2.tex');
+valores1 = fileread('t2-t2-Req.tex');
 
 valores1 = strsplit(valores1, {"\n"," ", "hline", "&", "\\"});
 
@@ -13,9 +13,9 @@ Req = str2double(cell2mat(valores1(2)) );
 
 
 
-file2 = fopen("voltage-nodes-t2-1.tex", "r");
+file2 = fopen("t2-t1-voltages.tex", "r");
 
-valores2 = fileread('voltage-nodes-t2-1.tex');
+valores2 = fileread('t2-t1-voltages.tex');
 
 valores2 = strsplit(valores2, {"\n"," ", "hline", "&", "\\"});
 
@@ -43,9 +43,9 @@ C = C*(10^(-6)); %farad
 
 %file4 = fopen("Req-t2-2.tex", "r");
 
-file4 = fopen("v(i)-4.tex", "r");
+file4 = fopen("t2-t4-voltages.tex", "r");
 
-valores4 = fileread('v(i)-4.tex');
+valores4 = fileread('t2-t4-voltages.tex');
 
 valores4 = strsplit(valores4, {"\n"," ", "hline", "&", "\\"});
 
@@ -77,7 +77,7 @@ ylabel("V[V]");
 
 legend("v6");
 
-print (hf, "t2-6-mag.eps", "-depsc");
+print (hf, "t2-t6-mag.eps", "-depsc");
 
 hold off;
 
@@ -93,7 +93,7 @@ ylabel("fase [rad]");
 
 legend("v6");
 
-print (hf, "t2-6-fase.eps", "-depsc");
+print (hf, "t2-t6-fase.eps", "-depsc");
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %ate aqui fixe... talvez seja perciso tirar valores de v8 tmb mas no biggie

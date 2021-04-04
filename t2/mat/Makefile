@@ -1,5 +1,5 @@
 all: t2-1.log t2-2.log t2-3.log t2-4.log t2-5.log t2-6.log
-	
+
 t2-1.log: t2-1.m
 	octave $< > $@
 

@@ -1,9 +1,9 @@
 close all
 clear all
 
-file1 = fopen("voltage-nodes-t2-1.tex", "r");
+file1 = fopen("t2-t1-voltages.tex", "r");
 
-valores1 = fileread('voltage-nodes-t2-1.tex');
+valores1 = fileread('t2-t1-voltages.tex');
 
 valores1 = strsplit(valores1, {"\n"," ", "hline", "&", "\\"});
 
@@ -101,7 +101,7 @@ Vd = Kd*Id;
 
 %print voltage values in table
 
-filename = "v(i)-2.tex";
+filename = "t2-t2-voltages.tex";
 file3 = fopen(filename, "w");
 
 fprintf(file3, "V0 & %7.7e\\\\\\hline ", double(X(1)));
@@ -133,7 +133,7 @@ I7 = (X(6)-X(7))/R7;
 
 %print current values in table
 
-filename = "i(i)-2.tex";
+filename = "t2-t2-currents.tex";
 file4 = fopen(filename, "w");
 
 fprintf(file4, "Ix & %7.7e\\\\\\hline ", double(X(8)));
@@ -150,7 +150,7 @@ fprintf(file4, "Id & %7.7e\\\\\\hline ", Id);
 fflush(file4);
 fclose(file4);
 
-filename = "Req-t2-2.tex";
+filename = "t2-t2-Req.tex";
 file5 = fopen(filename, "w");
 
 fprintf(file5, "Req & %7.7e\\\\\\hline ", double(Vx/X(8)));

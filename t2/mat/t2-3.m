@@ -1,9 +1,9 @@
 close all
 clear all
 
-file1 = fopen("Req-t2-2.tex", "r");
+file1 = fopen("t2-t2-Req.tex", "r");
 
-valores1 = fileread('Req-t2-2.tex');
+valores1 = fileread('t2-t2-Req.tex');
 
 valores1 = strsplit(valores1, {"\n"," ", "hline", "&", "\\"});
 
@@ -15,9 +15,9 @@ Req = str2double(cell2mat(valores1(2)) );
 
 
 
-file2 = fopen("voltage-nodes-t2-1.tex", "r");
+file2 = fopen("t2-t1-voltages.tex", "r");
 
-valores2 = fileread('voltage-nodes-t2-1.tex');
+valores2 = fileread('t2-t1-voltages.tex');
 
 valores2 = strsplit(valores2, {"\n"," ", "hline", "&", "\\"});
 
@@ -61,7 +61,7 @@ axis([0, 20e-3, 0, 10]);
 xlabel("t[s]");
 ylabel("v6n[V]");
 %print(hf, "t2-3.pdf");
-print (hf, "t2-3.eps", "-depsc");
+print (hf, "t2-t3.eps", "-depsc");
 
 %printf("\n\n\n v1(20ms) = %f\n\n\n",v1(20e-3))
 

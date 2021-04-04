@@ -1,9 +1,9 @@
 close all
 clear all
 
-file1 = fopen("Req-t2-2.tex", "r");
+file1 = fopen("t2-t2-Req.tex", "r");
 
-valores1 = fileread('Req-t2-2.tex');
+valores1 = fileread('t2-t2-Req.tex');
 
 valores1 = strsplit(valores1, {"\n"," ", "hline", "&", "\\"});
 
@@ -86,28 +86,28 @@ X = A\B
 
 %print voltage values in table
 
-filename = "v(i)-4.tex";
+filename = "t2-t4-voltages.tex";
 file4 = fopen(filename, "w");
 
-fprintf(file4, "V0real & %7.7e\\\\\hline ", real(X(1)));
-fprintf(file4, "V1real & %7.7e\\\\\hline ", real(X(2)));
-fprintf(file4, "V2real & %7.7e\\\\\hline ", real(X(3)));
-fprintf(file4, "V3real & %7.7e\\\\\hline ", real(X(4)));
-fprintf(file4, "V5real & %7.7e\\\\\hline ", real(X(5)));
-fprintf(file4, "V6real & %7.7e\\\\\hline ", real(X(6)));
-fprintf(file4, "V7real & %7.7e\\\\\hline ", real(X(7)));
-fprintf(file4, "V8real & %7.7e\\\\\hline ", real(X(8)));
+fprintf(file4, "V0real & %7.7e\\\\\\hline ", real(X(1)));
+fprintf(file4, "V1real & %7.7e\\\\\\hline ", real(X(2)));
+fprintf(file4, "V2real & %7.7e\\\\\\hline ", real(X(3)));
+fprintf(file4, "V3real & %7.7e\\\\\\hline ", real(X(4)));
+fprintf(file4, "V5real & %7.7e\\\\\\hline ", real(X(5)));
+fprintf(file4, "V6real & %7.7e\\\\\\hline ", real(X(6)));
+fprintf(file4, "V7real & %7.7e\\\\\\hline ", real(X(7)));
+fprintf(file4, "V8real & %7.7e\\\\\\hline ", real(X(8)));
 
 fprintf(file4, "\n\n\n");
 
-fprintf(file4, "V0imag & %7.7e\\\\\hline ", imag(X(1)));
-fprintf(file4, "V1imag & %7.7e\\\\\hline ", imag(X(2)));
-fprintf(file4, "V2imag & %7.7e\\\\\hline ", imag(X(3)));
-fprintf(file4, "V3imag & %7.7e\\\\\hline ", imag(X(4)));
-fprintf(file4, "V5imag & %7.7e\\\\\hline ", imag(X(5)));
-fprintf(file4, "V6imag & %7.7e\\\\\hline ", imag(X(6)));
-fprintf(file4, "V7imag & %7.7e\\\\\hline ", imag(X(7)));
-fprintf(file4, "V8imag & %7.7e\\\\\hline ", imag(X(8)));
+fprintf(file4, "V0imag & %7.7e\\\\\\hline ", imag(X(1)));
+fprintf(file4, "V1imag & %7.7e\\\\\\hline ", imag(X(2)));
+fprintf(file4, "V2imag & %7.7e\\\\\\hline ", imag(X(3)));
+fprintf(file4, "V3imag & %7.7e\\\\\\hline ", imag(X(4)));
+fprintf(file4, "V5imag & %7.7e\\\\\\hline ", imag(X(5)));
+fprintf(file4, "V6imag & %7.7e\\\\\\hline ", imag(X(6)));
+fprintf(file4, "V7imag & %7.7e\\\\\\hline ", imag(X(7)));
+fprintf(file4, "V8imag & %7.7e\\\\\\hline ", imag(X(8)));
 
 fflush(file4);
 fclose(file4);
@@ -125,4 +125,4 @@ fclose(file4);
 ##
 ##xlabel ("t[s]");
 ##ylabel ("v6f [V]");
-##print (hf, "t2-4.eps", "-depsc");
+##print (hf, "t2-t4.eps", "-depsc");
