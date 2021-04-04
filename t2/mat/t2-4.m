@@ -76,8 +76,6 @@ A = [1, 0, 0, 0, 0, 0, 0, 0;
 
 1/R4, 0, 1/R3, 0, -1/R3-1/R5-1/R4, 1/R5+j*omega*C, 1/R7, -1/R7-j*omega*C]
 
-%1/R6+1/R4, 1/R1, -1/R1, 0, -1/R4, 0, -1/R6, 0]
-
 printf("Determinante da matriz A: %f", det(A))
 
 B = [0; 1; 0; 0; 0; 0; 0; 0]
