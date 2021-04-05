@@ -65,6 +65,8 @@ The value obtained are listed in the next tables:
   \label{tab:nodeCurrents1}
 \end{table}
 
+
+
 \begin{table}[ht]
   \centering
   \begin{tabular}{|l|r|}
@@ -77,9 +79,22 @@ The value obtained are listed in the next tables:
 \end{table}
 
 
+\newpage
+
 \subsection{Determining the Equivalent Resistor as Seen From Capacitor Terminals}
 
-In order to determine the equivalent resistor, one must eliminate the independent voltage source, in this case $v_s$, (FALTA ACABAR AQUI)
+We start by turning off the independent voltage source, $v_s$, so we can study how the capacitor's charge disspates through the circuit. This is equivalent to connecting the capacitor in series with an equivalent resistor. This will be needed in the following section, where we'll be determining the differential equation that describes the original circuit.
+
+Once we turn off $v_s$, it's crucial to make sure that there aren't discontinuous jumps in the circuits voltage, otherwise, we would obtain an infinite current as the capactior's equation states (voltage derivative):
+
+\begin{center}
+  \begin{equation}
+    I_c(t) =  C \frac{dv(t)}{dt}
+  \end{equation} 
+\end{center}
+
+Straightfowardly, the voltages at the capacitor's terminals must remain the same as before turning $v_s$ off. To do so, we can, theoretically, substitute the capacitor with an independent voltage source, $V_x$, where $V_x = V_6- V_8$, forcing the circuit's equations, while $v_s$ is off, to follow this boundary conditions.
+
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.5\linewidth]{t2-t2.pdf}
@@ -156,7 +171,7 @@ After reducing the rather complex circuit to a circuit with one voltage source, 
 
 To study this, we've worked out the voltage natural solution in node six ($V_{6n}$), in the interval [0, 20] ms.
 
-For a simple RC series circuit (with a voltage source) we can derive the differential equation which describes the system. The natural solution is obtained by removing the voltage source: manipulating the differential equation yields 
+For a simple RC series circuit (with a voltage source) we can derive the differential equation which describes the system. The natural solution is obtained by removing the voltage source: manipulating the differential equation yields: 
 
 %\begin{center}
 %  \begin{equation}
