@@ -1,0 +1,219 @@
+
+Circuit: *
+
+********************************************
+Transient analysis
+********************************************
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+1                                            0
+2                                 -5.65257e-13
+3                                 -1.76251e-12
+5                                 -4.82939e-13
+6                                       8.6837
+9                                            0
+7                                   1.9179e-13
+8                                  2.86705e-13
+hd#branch                           0.00286705
+ve#branch                         -9.44855e-17
+vs#branch                         -5.49969e-16
+
+
+No. of Data Rows : 2008
+
+The file "trans3.ps" may be printed on a postscript printer.
+trans3_FIG
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+1                                            0
+2                                 -5.65257e-13
+3                                 -1.76251e-12
+5                                 -4.82939e-13
+6                                       8.6837
+9                                            0
+7                                   1.9179e-13
+8                                  2.86705e-13
+hd#branch                           0.00286705
+ve#branch                         -9.44855e-17
+vs#branch                         -5.49969e-16
+
+
+No. of Data Rows : 59
+	Node                                  Voltage
+	----                                  -------
+	----	-------
+	V(8)                             0.000000e+00
+	V(7)                             0.000000e+00
+	V(9)                             0.000000e+00
+	V(6)                             0.000000e+00
+	V(5)                             0.000000e+00
+	V(3)                             0.000000e+00
+	V(2)                             0.000000e+00
+	V(1)                             0.000000e+00
+
+	Source	Current
+	------	-------
+
+	@c1[i]                           0.000000e+00
+	@gb[i]                           0.000000e+00
+	@r7[i]                           0.000000e+00
+	@r6[i]                           0.000000e+00
+	@r5[i]                           0.000000e+00
+	@r4[i]                           0.000000e+00
+	@r3[i]                           0.000000e+00
+	@r2[i]                           0.000000e+00
+	@r1[i]                           0.000000e+00
+	vs#branch                        0.000000e+00
+	ve#branch                        0.000000e+00
+	hd#branch                        0.000000e+00
+
+ Capacitor models (Fixed capacitor)
+      model                     C
+
+        cap                     0
+         cj                     0
+       cjsw                     0
+       defw                 1e-05
+       defl                     0
+     narrow                     0
+      short                     0
+        del                     0
+        tc1                     0
+        tc2                     0
+         di                     0
+      thick                     0
+     bv_max                 1e+99
+
+ Resistor models (Simple linear resistor)
+      model                     R
+
+        rsh                     0
+     narrow                     0
+      short                     0
+        tc1                     0
+        tc2                     0
+        tce                     0
+       defw                 1e-05
+          l                 1e-05
+         kf                     0
+         af                     0
+          r                     0
+     bv_max                 1e+99
+         lf                     1
+         wf                     1
+         ef                     1
+
+ Capacitor: Fixed capacitor
+     device                    c1
+      model                     C
+capacitance                 1e-06
+      dtemp                     0
+     bv_max                 1e+99
+          i           6.59587e-06
+          p           1.25273e-06
+
+ CCVS: Linear current controlled current source
+     device                    hd
+          i          -3.01331e-05
+          v              0.191726
+          p           -5.7773e-06
+
+ Resistor: Simple linear resistor
+     device                    r7                    r6                    r5
+      model                     R                     R                     R
+ resistance               1004.55               2029.83               3028.79
+         ac               1004.55               2029.83               3028.79
+      dtemp                     0                     0                     0
+     bv_max                 1e+99                 1e+99                 1e+99
+      noisy                     1                     1                     1
+          i           2.35373e-05           2.35373e-05           5.94339e-07
+          p           5.56523e-07           1.12453e-06           1.06989e-09
+
+ Resistor: Simple linear resistor
+     device                    r4                    r3                    r2
+      model                     R                     R                     R
+ resistance               4111.06               3115.62               2077.16
+         ac               4111.06               3115.62               2077.16
+      dtemp                     0                     0                     0
+     bv_max                 1e+99                 1e+99                 1e+99
+      noisy                     1                     1                     1
+          i           2.92637e-05          -2.75103e-07          -6.00153e-06
+          p           3.52056e-06           2.35795e-10           7.48159e-08
+
+ Resistor: Simple linear resistor
+     device                    r1
+      model                     R
+ resistance                1027.8
+         ac                1027.8
+      dtemp                     0
+     bv_max                 1e+99
+      noisy                     1
+          i           5.72643e-06
+          p           3.37035e-08
+
+ VCCS: Voltage controlled current source
+     device                    gb
+          m                     0
+          i          -6.00153e-06
+          v             0.0115231
+          p          -6.91564e-08
+
+ Vsource: Independent voltage source
+     device                    ve                    vs
+         dc                     0                     0
+      acmag                     0                     1
+      pulse         -                     0
+                                          1
+                                          1
+        sin         -                     0
+                                          1
+                                          1
+        exp         -                     0
+                                          1
+                                          1
+        pwl         -                     0
+                                          1
+                                          1
+       sffm         -                     0
+                                          1
+                                          1
+         am         -                     0
+                                          1
+                                          1
+    trnoise         -                     0
+                                          1
+                                          1
+   trrandom         -                     0
+                                          1
+                                          1
+          i           2.35373e-05          -5.72643e-06
+          p                    -0           7.17712e-07
+
+
+Total analysis time (seconds) = 0.01
+
+Total elapsed time (seconds) = 0.011 
+
+Total DRAM available = 15826.645 MB.
+DRAM currently available = 10627.641 MB.
+Total ngspice program size =   22.281 MB.
+Resident set size =   10.105 MB.
+Shared ngspice pages =    7.957 MB.
+Text (code) pages =    5.070 MB.
+Stack = 0 bytes.
+Library pages =    2.539 MB.
+

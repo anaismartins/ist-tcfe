@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{1 Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{2 Theoretical Analysis}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{2.1 Node Analysis \(t<0\)}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{2.2 Determining the Equivalent Resistor as Seen From Capacitor Terminals}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{2.3 Determining the Natural Solution for V6\(t\)}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{2.4 Determining the Forced Solution for V6\(t\)}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{2.5 Determining the Final Total Solution for V6\(t\)}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{2.6 Frequency analysis}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{3 Simulation Analysis}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{3.1 Operating Point Analysis - The Circuit for t<0}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{3.2 Operating Point Analysis - Finding the Inital Conditions}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.3}{3.3 Transient Analysis - No Forced Frequency}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.4}{3.4 Transient Analysis - Forced Frequency of 1kHz}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.5}{3.5 Frequency Analysis}{section.3}% 14
+\BOOKMARK [1][-]{section.4}{4 Comparing the Results}{}% 15
+\BOOKMARK [1][-]{section.5}{5 Conclusion}{}% 16
