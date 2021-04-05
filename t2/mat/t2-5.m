@@ -19,6 +19,8 @@ valores2 = strsplit(valores2, {"\n"," ", "hline", "&", "\\"});
 
 fclose(file2);
 
+V6 = str2double(cell2mat(valores2(12)) );
+
 Vx = str2double(cell2mat(valores2(12)) ) - str2double(cell2mat(valores2(16)) );
 
 file3 = fopen("../data.txt", "r");
@@ -58,6 +60,8 @@ hf = figure();
 line([-5e-3 0], [Vx Vx], "color", "b");
 hold on;
 line([-5e-3 0], [Vs Vs], "color", "r");
+hold on;
+line([0 0], [0 Vs], "color", "r");
 hold on;
 plot(t, v6n+v6f, "b");
 hold on;

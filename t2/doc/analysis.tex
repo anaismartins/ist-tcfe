@@ -261,3 +261,7 @@ In this section, we analyse the frequency responses of $V_c(f) = V_6(f) - V_8(f)
 \caption{Bode plots for $v_s$, $V_c$ and $V_6$, f $\in$ [0.1, $10^6$] Hz}
 \label{cfergter}
 \end{figure}
+
+The first thing that the reader might notice is that the amplitude of $v_s$ is always zero. This happens because $v_s$ is the voltage source, so it mantains its amplitude constant throughout frequency changes, unlike $V_6$. It is zero because the amplitude would be 1 in Volts, but, transforming the units into dB, we have to do the base 10 logarithm of the amplitude in Volts, which results in an amplitude in dB of zero.
+
+As we can observe, all of the phases are 0 at $f=0.1Hz$ and then vary according to the frequency. The phase of $v_s$ is always 0, because its sine wave has no phase.
