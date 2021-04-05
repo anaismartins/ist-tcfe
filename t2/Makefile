@@ -6,7 +6,7 @@
 
 NUMBER = 96506
 
-all:
+all: python
 	make -C mat
 	make -C sim
 	make -C doc
@@ -21,6 +21,6 @@ clean:
 	make -C mat clean
 	make -C sim clean
 	make -C doc clean
-	@rm -f ../report-2.pdf 
+	@rm -f data.txt
 
 .PHONY: all clean python
