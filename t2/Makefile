@@ -15,8 +15,6 @@ all: python
 python:
 	echo "$(NUMBER)" | python t2_datagen.py > data.txt
 
-	
-
 clean:
 	make -C mat clean
 	make -C sim clean

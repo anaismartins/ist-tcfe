@@ -18,7 +18,6 @@ t2-5.log: t2-5.m
 t2-6.log: t2-6.m
 	octave $< > $@
 
-
 convert:
 	ls *eps | xargs -n1 epstopdf
 
