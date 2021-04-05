@@ -8,7 +8,7 @@
 In this particular section, the circuit is analysed in $t<0$, therefore, we can apply the usual node analysis, with no sinusoidal tensions in the voltage source Vs: for $t<0$ $v_s = Vs$.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{t2-t1.pdf}
+\includegraphics[width=0.5\linewidth]{t2-t1.pdf}
 \caption{The circuit at $t<0$, without the capacitor.}
 \label{fig2}
 \end{figure}
@@ -51,7 +51,6 @@ Using \textit{GNUOctave}, we computed the values of the node voltages by solving
   \end{equation} 
 \end{center}
 
-\newpage
 
 The value obtained are listed in the next tables:
 
@@ -82,14 +81,14 @@ The value obtained are listed in the next tables:
 
 
 
-
+\newpage
 
 \subsection{Determining the Equivalent Resistor as Seen From Capacitor Terminals}
 
 In order to determine the equivalent resistor, one must eliminate the independent voltage source, in this case $v_s$, (FALTA ACABAR AQUI)
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{t2-t2.pdf}
+\includegraphics[width=0.5\linewidth]{t2-t2.pdf}
 \caption{The circuit used to determine $R_{eq}$}
 \label{fig3}
 \end{figure}
@@ -155,6 +154,8 @@ Ohm's Law are in \ref{tab:nodeCurrents2} and the equivalent resistor, $R_{eq}$, 
 \end{table}
 
 
+
+\clearpage
 \subsection{Determining the Natural Solution for $V_6(t)$}
 
 After reducing the rather complex circuit to a circuit with one voltage source, one resistor, $R_{eq}$, (between nodes with voltage $V_s$ and $V_6$, with this direction of voltage drop) and one capacitor, we can easily determine the natural solution on the system. More specifically, we can observe the behaviour of the capacitor, dissipating voltage through the resistors without any external excitation or driving force. 
@@ -212,18 +213,19 @@ We used \textit{GNUOctave} to compute and plot $V_{6n}$ against time ([0, 20] ms
 
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{../mat/t2-t3.pdf}
+\includegraphics[width=0.6\linewidth]{../mat/t2-t3.pdf}
 \caption{$V_{6n}(t)$, for t $\in$ [0, 20] ms}
 \label{fig4}
 \end{figure}
 
 
+\newpage
 \subsection{Determining the Forced Solution for $V_6(t)$}
 
 For $t>0$, the independent voltage source, $v_s$, provides a sinusoidal excitation, which means the capacitor will now behave as expected and will dissipate current through it, $I_c$: this complicates the circuit tremendously. Working with sinusoidal functions in such big circuits requires a lot of computational work, thus, we will not do that. By transfering our voltages, currents and resistors to the complex domain, we can analyse the circuit and obtain complex solutions which, in the end, can be retrievable to the real world. The nodal analysis will be in everything similar to the previous sections, except for the fact that we substitute voltage $V_i$ for phasor $\tilde{V_i}$, current $I_i$ for $\tilde{I_i}$ and resistor $R_i$ for impedance $Z_i$.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{t2-t3456.pdf}
+\includegraphics[width=0.6\linewidth]{t2-t3456.pdf}
 \caption{The circuit for $t>0$, all variables in the complex domain}
 \label{fig5}
 \end{figure}
@@ -241,6 +243,10 @@ Moreover, the impedance of the resistor is equal to the resistor itself ($Z_i = 
   \label{tab:nodeVoltages4}
 \end{table}
 
+
+
+
+\newpage
 \subsection{Determining the Final Total Solution for $V_6(t)$}
 
 The final solution for node 6, $V_6(t)$, is obtained by summing its natural and forced solutions. We know that the forced solution will oscillate with the same frequency of the source $v_s$, but we don't know its amplitude yet. Well, that's exatly why we did what we did in the previous section. Since $v_s$ is a sine wave, we want $V_{6f}(t)$ to be a sine wave aswell, so we know we will have to extract the imaginary part of whatever expression we obtain. That expression is as follows
@@ -254,17 +260,21 @@ The final solution for node 6, $V_6(t)$, is obtained by summing its natural and 
 Plotting $v_s(t)$ and $V_6(t)$, we end up with
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{../mat/t2-t5.pdf}
+\includegraphics[width=0.6\linewidth]{../mat/t2-t5.pdf}
 \caption{The original circuit, with some current directions added.}
 \label{cfergter}
 \end{figure}
+
+
+
+\newpage
 
 \subsection{Frequency analysis}
 
 In this section, we analyse the frequency responses of $V_c(f) = V_6(f) - V_8(f)$ and $V_6(f)$, aswell as the behaviour of the source when we vary the frequency from 0.1 Hz to 1 MHz. This is usually done using a logarithmic scale for the frequency (base 10). We will plot the magnitude expressed in decibel (dB), a unit designed to easily give a human understanding to its value, since this circuit could, for example, be used in an amplifier, aswell as the phase expressed in degrees. Well, so far, every exercise was done using numeric computation, which provides less error, but this cannot be done here, since the nodal analysis requires every variable to be dependent on the frequency, $f$, otherwise, we would need milions of matrices... We call this symbolic computation. After running the same procedure as we did for subsection 4, even using those equations, we of course end up with nodal voltages, this time dependent on the frequency, $V_i(f)$. To do a bode plot, it is necessary to have a transfer function that depends on a variable, usually called $s$. $s$, in this case, is just $j \times f$, and this is very convenient since everywhere that $f$ appears in a given nodal voltage, is in its imaginary part. We therefore end up with an expression for $V_i(f)$ whose numerator and denominator is a polinomial in terms of $s$. Well, it's exactly in this form ([numerator denominator]) that transfer functions are written in $GNUOctave$, so we are done. All that remains is actually plotting the results, but this is done simply using the $bode$ command.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{../mat/t2-t6.pdf}
+\includegraphics[width=0.95\linewidth]{../mat/t2-t6.pdf}
 \caption{Bode plots for $v_s$, $V_c$ and $V_6$, f $\in$ [0.1, $10^6$] Hz}
 \label{cfergter}
 \end{figure}
