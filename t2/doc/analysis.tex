@@ -9,7 +9,7 @@ In this particular section, the circuit is analysed in $t<0$, therefore, we can 
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.5\linewidth]{t2-t1.pdf}
-\caption{The circuit at $t<0$, without the capacitor.}
+\caption{The circuit at $t<0$}
 \label{fig2}
 \end{figure}
 
@@ -61,7 +61,7 @@ The value obtained are listed in the next tables:
     {\bf Name} & {\bf Currents [A]} \\ \hline
     \input{../mat/t2-t1-currents.tex}
   \end{tabular}
-  \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using ohms law}
+  \caption{T2 1) Node Analysis Computation Results: Currents (A) computed using Ohm's law}
   \label{tab:nodeCurrents1}
 \end{table}
 
@@ -81,7 +81,7 @@ The value obtained are listed in the next tables:
 
 \newpage
 
-\subsection{Determining the Equivalent Resistor as Seen From Capacitor Terminals}
+\subsection{Determining the Equivalent Resistance as Seen From Capacitor Terminals}
 
 We start by turning off the independent voltage source, $v_s$, so we can study how the capacitor's charge disspates through the circuit. This is equivalent to connecting the capacitor in series with an equivalent resistor. This will be needed in the following section, where we'll be determining the differential equation that describes the original circuit.
 
@@ -173,32 +173,6 @@ To study this, we've worked out the voltage natural solution in node six ($V_{6n
 
 For a simple RC series circuit (with a voltage source) we can derive the differential equation which describes the system. The natural solution is obtained by removing the voltage source: manipulating the differential equation yields: 
 
-%\begin{center}
-%  \begin{equation}
-%    I_c = I_c \Leftrightarrow \frac{V_s-V_6(t)}{R_{eq}} = C\frac{dV_6(t)}{dt}
-%  \end{equation} 
-%\end{center}
-
-
-%\begin{center}
-%  \begin{equation}
-%    \Leftrightarrow V_s = V_6(t) + R_{eq}C\frac{dV_6(t)}{dt}
-%  \end{equation} 
-%\end{center}
-
-
-%As said before, in this step we want to determine the natural solution and, for that, we need to turn off external excitations, particularly, the voltage source $v_s$: $V_s = 0$. Which yields:
-
-%\begin{center}
-%  \begin{equation}
-%    V_6(t) + R_{eq}C\frac{dV_6(t)}{dt} = 0
-%  \end{equation} 
-%\end{center}
-
-
-
-%This is, recognizabily, a first order homogeneous differential equation, which have very well known solutions in the form of:
-
 \begin{center}
   \begin{equation}
     V_{6n}(t) = K exp\left(-\frac{t}{RC}\right)
@@ -270,7 +244,7 @@ Plotting $v_s(t)$ and $V_6(t)$, we end up with
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.6\linewidth]{../mat/t2-t5.pdf}
-\caption{The original circuit, with some current directions added.}
+\caption{Voltage of $V_6$ and of the stimulus (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with a Forced Frequency of 1kHz}
 \label{cfergter}
 \end{figure}
 
