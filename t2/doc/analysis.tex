@@ -213,7 +213,28 @@ For $t>0$, the independent voltage source, $v_s$, provides a sinusoidal excitati
 \label{fig5}
 \end{figure}
 
-Moreover, the impedance of the resistor is equal to the resistor itself ($Z_i = R_i$) and the capacitor impedance can be written using the simple expression $Z_c = \frac{1}{j\omega C}$, in which $\omega = 2\pi f$ ($f =  1kHz$), the angular frequency of the source $v_s$ and C is the capacitance, a characteristic of the given capacitor. 
+Moreover, the impedance of the resistor is equal to the resistor itself ($Z_i = R_i$) and the capacitor impedance can be written using the simple expression $Z_c = \frac{1}{j\omega C}$, in which $\omega = 2\pi f$ ($f =  1kHz$), the angular frequency of the source $v_s$ and C is the capacitance, a characteristic of the given capacitor. The equations to solve are then
+
+\begin{equation} 
+\begin{cases}
+
+    Node\, 0: \tilde{V_0} = 0 \\
+    Node\, 1: \tilde{V_1} - \tilde{V_0} = \tilde{V_s} \\
+    Node\, 2: \frac{\tilde{V_1} - \tilde{V_2}}{Z_1} + \frac{\tilde{V_3} - \tilde{V_2}}{Z_2} - \frac{\tilde{V_2} - \tilde{V_5}}{Z_3} = 0 \\
+    Node\, 3: -\frac{\tilde{V_3} - \tilde{V_2}}{Z_2} + \tilde{I_b} = 0 \\
+    Node\, 5: \tilde{V_5} - \tilde{V_8} = \tilde{V_d} \\
+    Node\, 6: \frac{\tilde{V_5} - \tilde{V_6}}{Z_5} - \tilde{I_b} - \tilde{I_c} = 0 \\
+    Node\, 7: \frac{\tilde{V_0} - \tilde{V_7}}{Z_6} - \frac{\tilde{V_7} - \tilde{V_8}}{Z_7} = 0 \\
+    Supernode\, 5-8: \frac{\tilde{V_2} - \tilde{V_5}}{Z_3} - \frac{\tilde{V_5} - \tilde{V_6}}{Z_5} + \frac{\tilde{V_7} - \tilde{V_8}}{Z_7} - \frac{\tilde{V_5} - \tilde{V_0}}{Z_4} + \tilde{I_c}= 0 \\
+    %Supernode\, 0-1: \frac{\tilde{V_1} - \tilde{V_2}}{Z_1} + \frac{\tilde{V_0} - \tilde{V_7}}{Z_6} - \frac{\tilde{V_5} - \tilde{V_0}}{Z_4} = 0 \\
+    \tilde{I_b} = K_b\,(\tilde{V_2} - \tilde{V_5}) \\
+    \tilde{V_d} = K_d\,\frac{\tilde{V_0} - \tilde{V_7}}{Z_6}\\
+    \tilde{I_c} = j 2\pi f C  (\tilde{V_6} - \tilde{V_8})\\
+    \tilde{V_s} = 1 \\
+    
+\end{cases}
+\label{eq:phasors}
+\end{equation}
 
 \begin{table}[h]
   \centering
