@@ -3,7 +3,13 @@
 \section{Comparing the Results}
 \label{sec:comparing}
 
-1
+In this section, we will be comparing the results obtained by both the Theoretical Analysis and the Simulation.
+
+\subsubsection{Results for the System at \textit{t < 0}}
+
+In the following tables, we can observe the results already presented in previous sections now side by side, with the first
+2 tables being part of the Theoretical Analysis and the 3rd one being part of the Simulation. These are displayed in this
+way as a means of easier representation.
 
 \begin{tabular}{|l|r|}
     \hline    
@@ -23,8 +29,9 @@
     \input{../sim/op_tab}
 \end{tabular}
 
+The first thing the reader may notice is that, while the Theoretical Analysis results have 7 decimal places, the Simulation ones only have either 5 or 6, depending on the variable and with Cientific Notation. With this being said, all of the results of the currents are accurate until, at least, 4 decimal places with Cientific Notation, which translates into around 8 accurate decimal places in normal decimal notation. All of the results of the voltages are accurate until either the last number that appears in the Simulation results or the second to last number. Both of these observations are extremely satisfactory and lead us to conclude that our study of the circuit for $t < 0$ was successful.
 
-2
+Now we take a look at the results of our study of the inital conditions of the circuit.
 
   \begin{tabular}{|l|r|}
     \hline    
@@ -43,3 +50,7 @@
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../sim/op2_tab}
   \end{tabular}
+
+Considering the extremely low numbers we obtained for most of the variables (e-14, e-15, ..., until e-20), these variables will be considered zero, as they are too small for the computer to actually make accurate calculations.
+
+So, we will be only taking a look at the values for $I_5$ and $V_6$. Both of these are, once again, accurate until the last number displayed in the Simualtion results. This is, once again, an extremely satisfactory result that leaves us confident in saying these are the correct results for the Initial Conditions of the circuit.
