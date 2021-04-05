@@ -133,6 +133,8 @@ We now look at the original circuit in a range of forced frequencies of 0.1Hz to
 \label{fig:sim-graph5db}
 \end{figure}
 
+The first thing that the reader might notice is that the amplitude of $V_s$ is always zero. This happens because $V_s$ is the voltage source, so it mantains its amplitude constant throughout frequency changes, unlike $V_6$. It is zero because the amplitude would be 1 in Volts, but, transforming the units into dB, we have to do the base 10 logarithm of the amplitude in Volts, which results in an amplitude in dB of zero.
+
 Lastly, we take a look at the phase of $V_6$, $V_s$ and $V_c$, respectively ph(v(6)), ph(v(1)) and ph(v(6) - v(8)), as a function of the same range of frequencies in Figure \ref{fig:sim-graph5ph}.
 
 \begin{figure}[h] \centering

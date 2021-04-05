@@ -31,6 +31,8 @@ way as a means of easier representation.
 
 The first thing the reader may notice is that, while the Theoretical Analysis results have 7 decimal places, the Simulation ones only have either 5 or 6, depending on the variable and with Cientific Notation. With this being said, all of the results of the currents are accurate until, at least, 4 decimal places with Cientific Notation, which translates into around 8 accurate decimal places in normal decimal notation. All of the results of the voltages are accurate until either the last number that appears in the Simulation results or the second to last number. Both of these observations are extremely satisfactory and lead us to conclude that our study of the circuit for $t < 0$ was successful.
 
+\subsubsection{Results for the Initial Conditions of the System}
+
 Now we take a look at the results of our study of the inital conditions of the circuit.
 
   \begin{tabular}{|l|r|}
@@ -54,3 +56,50 @@ Now we take a look at the results of our study of the inital conditions of the c
 Considering the extremely low numbers we obtained for most of the variables (e-14, e-15, ..., until e-20), these variables will be considered zero, as they are too small for the computer to actually make accurate calculations.
 
 So, we will be only taking a look at the values for $I_5$ and $V_6$. Both of these are, once again, accurate until the last number displayed in the Simualtion results. This is, once again, an extremely satisfactory result that leaves us confident in saying these are the correct results for the Initial Conditions of the circuit.
+
+\subsubsection{Time- and Frequency-Dependent Analysis}
+
+Lastly, here are the graphs we obtained by analysing the system side by side. It is clear that all of them are identical, which leads us to conclude, once more, that the study was succsseful.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{../mat/t2-t3.pdf}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{../sim/trans3.pdf}
+\end{subfigure}
+\caption{Results for f = 0Hz}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{../mat/t2-t5.pdf}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{../sim/trans4.pdf}
+\end{subfigure}
+\caption{Results for f = 1kHz}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{../mat/t2-t6.pdf}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{../sim/db.pdf}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{../sim/ph.pdf}
+\end{subfigure}
+\caption{Results for the Frequency-Dependent Analysis}
+\end{figure}
