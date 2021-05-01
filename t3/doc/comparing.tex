@@ -1,0 +1,121 @@
+\clearpage
+
+\section{Comparing the Results}
+\label{sec:comparing}
+
+In this section, we will be comparing the results obtained by both the Theoretical Analysis and the Simulation.
+
+\subsection{Results for the System at \textit{t $<$ 0}}
+
+In the following tables, we can observe the results already presented in previous sections now side by side, with the first
+2 tables being part of the Theoretical Analysis and the 3rd one being part of the Simulation. These are displayed in this
+way as a means of easier representation.
+
+\begin{table}[htb!]
+  \begin{tabular}{|l|r|}
+      \hline    
+      {\bf Name} & {\bf Currents [A]} \\ \hline
+      \input{../mat/t2-t1-currents.tex}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Voltages [V]} \\ \hline
+    \input{../mat/t2-t1-voltages.tex}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op_tab}
+  \end{tabular}
+  \caption{Results for the Circuit at $t<0$}
+\end{table}
+
+The first thing the reader may notice is that, while the Theoretical Analysis results have 7 decimal places, the Simulation ones only have either 5 or 6, depending on the variable and with Cientific Notation. With this being said, all of the results of the currents are accurate until, at least, 4 decimal places with Cientific Notation, which translates into around 8 accurate decimal places in normal decimal notation. All of the results of the voltages are accurate until either the last number that appears in the Simulation results or the second to last number. Both of these observations are extremely satisfactory and lead us to conclude that our study of the circuit for $t < 0$ was successful.
+
+\clearpage
+\subsection{Results for the Initial Conditions of the System}
+
+Now we take a look at the results of our study of the inital conditions of the circuit.
+
+\begin{table}[htb!]
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Currents [A]} \\ \hline
+    \input{../mat/t2-t2-currents.tex}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Voltages [V]} \\ \hline
+    \input{../mat/t2-t2-voltages.tex}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op2_tab}
+  \end{tabular}
+  \caption{Results for the Circuit Built for finding the Inital Conditions}
+\end{table}
+
+
+Considering the extremely low numbers we obtained for most of the variables (e-14, e-15, ..., until e-20), these variables will be considered zero, as they are too small for the computer to actually make accurate calculations.
+
+So, we will be only taking a look at the values for $I_5$ and $V_6$. Both of these are, once again, accurate until the last number displayed in the Simualtion results. This is, once again, an extremely satisfactory result that leaves us confident in saying these are the correct results for the Initial Conditions of the circuit.
+
+\clearpage
+\subsection{Time- and Frequency-Dependent Analysis}
+
+Lastly, here are the graphs we obtained by analysing the system side by side, Figures \ref{fig:sbs1}, \ref{fig:sbs2} and \ref{fig:sbs3}. It is clear that all of them are identical, which leads us to conclude, once more, that the study was succsseful.
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{../mat/t2-t3.pdf}
+\end{subfigure}%
+\begin{subfigure}{.4\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{../sim/trans3.pdf}
+\end{subfigure}
+\caption{Results for f = 0Hz}
+\label{fig:sbs1}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{../mat/t2-t5.pdf}
+\end{subfigure}%
+\begin{subfigure}{.4\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{../sim/trans4.pdf}
+\end{subfigure}
+\caption{Results for f = 1kHz}
+\label{fig:sbs2}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.45\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../mat/t2-t6.pdf}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../sim/db.pdf}
+\end{subfigure}
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../sim/ph.pdf}
+\end{subfigure}
+\caption{Results for the Frequency-Dependent Analysis}
+\label{fig:sbs3}
+\end{figure}
