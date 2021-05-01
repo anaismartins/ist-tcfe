@@ -1,0 +1,23 @@
+vin 2 1 0 sin(0 230 2*pi*50)
+
+*MUDAR VALORES DO CAPACITOR E DA RESISTẼNCIA
+Ci 4 0 1u
+Ri 4 0 1k
+
+Dp1 3 4 Default
+
+* positive limiter
+Dp2 5 6 Default
+Dp3 6 7 Default
+Dp4 7 0 Default
+
+.model Default D
+
+
+
+*transformer mudar Ns de acordo com o que quisermos
+*fonte: https://sourceforge.net/p/ngspice/discussion/133842/thread/87641fa4/
+.subckt IT 1 2 3 0 Np=1 Ns=1
+E1 1 2 3 0 {  Np / Ns }
+F1 3 0 E1 { -Np / Ns }
+.ends it
