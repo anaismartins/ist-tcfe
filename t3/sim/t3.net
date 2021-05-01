@@ -1,6 +1,14 @@
-vin 2 1 0 sin(0 230 2*pi*50)
+* forces current values to be saved
+.options savecurrents
 
-*MUDAR VALORES DO CAPACITOR E DA RESISTẼNCIA
+******************************************
+
+.model Default D
+
+* input voltage source
+vin 2 1 0 sin(0 230 100pi)
+
+* MUDAR VALORES DO CAPACITOR E DA RESISTẼNCIA
 Ci 4 0 1u
 Ri 4 0 1k
 
@@ -11,8 +19,6 @@ Dp2 5 6 Default
 Dp3 6 7 Default
 Dp4 7 0 Default
 
-.model Default D
-
 
 
 *transformer mudar Ns de acordo com o que quisermos
@@ -21,3 +27,22 @@ Dp4 7 0 Default
 E1 1 2 3 0 {  Np / Ns }
 F1 3 0 E1 { -Np / Ns }
 .ends it
+
+.op
+
+.end
+
+.control
+
+******************************************
+* analise no tempo
+tran 1e-5 20e-3
+
+
+plot (v(4)-v(0))
+
+******************************************
+hardcopy primeiro.ps (v(4)-v(0))
+* hardcopy vospice400.ps v(1) v(2)
+
+.endc
