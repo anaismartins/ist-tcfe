@@ -5,8 +5,27 @@
 
 .model Default D
 
+*transformer mudar Ns de acordo com o que quisermos
+*fonte: https://sourceforge.net/p/ngspice/discussion/133842/thread/87641fa4/
+*.subckt IT 2 1 3 0  Np=1 Ns=1
+*E1 2 1 3 0 {  Np / Ns }
+*F1 3 0 E1 { -Np / Ns }
+*.ends it
+
 * input voltage source
-vin 2 1 0 sin(0 230 100pi)
+Vin 2 1 0 ac 1.0 sin(0 230 100pi)
+
+*n = 30
+
+*Vaux 2 8 0V
+*V2 = V1*n = 230*30
+Ht 3 0 Vin 6900
+
+*isto tem de se mudar, como ir buscar I2?
+*I1 = n*I2
+Gt 2 1 (3, 0) 10m
+
+
 
 * MUDAR VALORES DO CAPACITOR E DA RESISTẼNCIA
 Ci 4 0 1u
@@ -18,15 +37,6 @@ Dp1 3 4 Default
 Dp2 5 6 Default
 Dp3 6 7 Default
 Dp4 7 0 Default
-
-
-
-*transformer mudar Ns de acordo com o que quisermos
-*fonte: https://sourceforge.net/p/ngspice/discussion/133842/thread/87641fa4/
-.subckt IT 1 2 3 0 Np=1 Ns=1
-E1 1 2 3 0 {  Np / Ns }
-F1 3 0 E1 { -Np / Ns }
-.ends it
 
 .op
 
@@ -46,3 +56,5 @@ hardcopy primeiro.ps (v(4)-v(0))
 * hardcopy vospice400.ps v(1) v(2)
 
 .endc
+
+.END
