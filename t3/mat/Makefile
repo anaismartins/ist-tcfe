@@ -1,10 +1,7 @@
-all: t3.log convert
+all: t3.log
 
 t3.log: t3.m
 	octave $< > $@
-
-convert:
-	ls *eps | xargs -n1 epstopdf
 
 clean:
 	@rm -f *.log octave-workspace *.eps *~ *.tex *.cir *.pdf
