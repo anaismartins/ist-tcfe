@@ -16,26 +16,26 @@ Vin 1 0 0 ac 1.0 sin(0 230 50)
 *voltage controlled voltage source
 E1 3 2 1 0 19
 
-Vaux 2 0 0V
+Vaux 2 6 0V
 *current controlled current source
 F1 1 0 Vaux 19
 
 
 * MUDAR VALORES DO CAPACITOR E DA RESISTẼNCIA
-Cfw 3 0 1u
-Rfw 4 5 0.5k
+Cfw 7 0 1u
+Rfw 7 8 0.5k
 
-Dp1.1 3 4 Default
-Dp1.2 3 4 Default
-Dp1.3 5 0 Default
-Dp1.4 5 0 Default
+Dp1.1 4 7 Default
+Dp1.2 6 7 Default
+Dp1.3 5 6 Default
+Dp1.4 5 4 Default
 
 * positive limiter
-Dp2 6 7 Default
-Dp3 7 8 Default
-Dp4 8 4 Default
+Dp2 8 9 Default
+Dp3 9 10 Default
+Dp4 10 0 Default
 
-Rl 3 6 0.5k
+*Rl 3 6 0.5k
 
 .END
 
@@ -61,11 +61,11 @@ set color6=rgb:4/0/0
 tran 1e-5 200e-3
 
 ******************************************
-hardcopy envelope.ps v(3)
+hardcopy envelope.ps v(7)
 echo envelope_FIG
 * hardcopy vospice400.ps v(1) v(2)
 
-hardcopy regulator.ps v(6)
+hardcopy regulator.ps v(3)
 echo regulator_FIG
 
 ******************************************
