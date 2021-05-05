@@ -10,15 +10,15 @@
 Vin 1 0 0 ac 1.0 sin(0 230 50)
 
 **********************
-*n = 0.045
+*n = 19
 **********************
 
 *voltage controlled voltage source
-E1 3 2 1 0 0.045
+E1 3 2 1 0 19
 
 Vaux 2 0 0V
 *current controlled current source
-F1 1 0 Vaux 0.045
+F1 1 0 Vaux 19
 
 
 * MUDAR VALORES DO CAPACITOR E DA RESISTẼNCIA
@@ -61,16 +61,17 @@ set color6=rgb:4/0/0
 tran 1e-5 200e-3
 
 ******************************************
-hardcopy primeiro.ps v(3)
-echo primeiro_FIG
+hardcopy envelope.ps v(3)
+echo envelope_FIG
 * hardcopy vospice400.ps v(1) v(2)
 
-hardcopy diode.ps v(6)-v(5)
+hardcopy regulator.ps v(6)
+echo regulator_FIG
 
 ******************************************
-meas tran output AVG v(4)
-meas tran max MAX v(4)
-meas tran min MIN v(4)
+meas tran output AVG v(3)
+meas tran max MAX v(3)
+meas tran min MIN v(3)
 
 .endc
 
