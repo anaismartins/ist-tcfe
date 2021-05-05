@@ -10,25 +10,25 @@
 Vin 1 0 0 ac 1.0 sin(0 230 50)
 
 **********************
-*n = 19
+*n = 0.09
 **********************
 
 *voltage controlled voltage source
-E1 3 2 1 0 19
+E1 3 2 1 0 0.09
 
 Vaux 2 6 0V
 *current controlled current source
-F1 1 0 Vaux 19
+F1 1 0 Vaux 0.09
 
 
 * MUDAR VALORES DO CAPACITOR E DA RESISTẼNCIA
 Cfw 7 0 1u
 Rfw 7 8 0.5k
 
-Dp1.1 4 7 Default
+Dp1.1 3 7 Default
 Dp1.2 6 7 Default
-Dp1.3 5 6 Default
-Dp1.4 5 4 Default
+Dp1.3 0 6 Default
+Dp1.4 0 3 Default
 
 * positive limiter
 Dp2 8 9 Default
@@ -65,13 +65,13 @@ hardcopy envelope.ps v(7)
 echo envelope_FIG
 * hardcopy vospice400.ps v(1) v(2)
 
-hardcopy regulator.ps v(3)
+hardcopy regulator.ps v(8)
 echo regulator_FIG
 
 ******************************************
-meas tran output AVG v(3)
-meas tran max MAX v(3)
-meas tran min MIN v(3)
+meas tran output AVG v(8)
+meas tran max MAX v(8)
+meas tran min MIN v(8)
 
 .endc
 
