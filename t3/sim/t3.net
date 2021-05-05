@@ -61,11 +61,13 @@ set color6=rgb:4/0/0
 tran 1e-5 200e-3
 
 ******************************************
+hardcopy v_out.ps v(8)
+echo v_out_FIG
+
 hardcopy envelope.ps v(7)
 echo envelope_FIG
-* hardcopy vospice400.ps v(1) v(2)
 
-hardcopy regulator.ps v(8)
+hardcopy regulator.ps v(8) - v(7)
 echo regulator_FIG
 
 ******************************************
