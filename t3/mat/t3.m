@@ -19,3 +19,7 @@ Vin = 230 * cos(w * t); %V
 
 V3 = n * Vin;
 
+Von = 12./3.; %vout/nº de díodos
+
+V7 = abs(V3); %ACHO EU (o burro do mike)
+
