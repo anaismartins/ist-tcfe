@@ -23,3 +23,5 @@ Von = 12./3.; %vout/nº de díodos
 
 V7 = abs(V3); %ACHO EU (o burro do mike)
 
+toff = 1/w * atan(1/(w*R*C)); %para t>toff Vcondensador=A*cos(w*toff)*exp(^-((t-toff)/(R*C)))
+
