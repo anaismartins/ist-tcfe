@@ -16,48 +16,41 @@ Vin 1 0 0 ac 1.0 sin(0 230 50)
 *voltage controlled voltage source
 E1 3 2 1 0 200
 
-Vaux 2 6 0V
+Vaux 2 4 0V
 *current controlled current source
 F1 1 0 Vaux 200
 
 
 * MUDAR VALORES DO CAPACITOR E DA RESISTẼNCIA
-Cfw 7 0 1u
-Rfw 7 8 0.5k
+Cenvelope 5 0 1u
+Rregulator 5 6 0.5k
 
-Dp1 3 7 Default
-Dp2 6 7 Default
-Dp3 0 6 Default
-Dp4 0 3 Default
+Renvelope 5 0 0.5k
+
+Dbridge1 3 5 Default
+Dbridge2 4 5 Default
+Dbridge3 0 4 Default
+Dbridge4 0 3 Default
 
 * positive limiter
-Dp11 8 9 Default
-Dp12 9 11 Default
-Dp13 10 11 Default
-Dp14 11 0 Default
-
-Dp21 8 12 Default
-Dp22 12 13 Default
-Dp23 13 14 Default
-Dp24 14 0 Default
-
-Dp31 8 15 Default
-Dp32 15 16 Default
-Dp33 16 17 Default
-Dp34 17 0 Default
-
-Dp41 8 18 Default
-Dp42 18 19 Default
-Dp43 19 20 Default
-Dp44 20 0 Default
-
-Dp51 8 21 Default
-Dp52 21 22 Default
-Dp53 22 23 Default
-Dp54 23 0 Default
-
-
-*Rl 3 6 0.5k
+Dp1 6 7 Default
+Dp2 7 8 Default
+Dp3 8 9 Default
+Dp4 9 10 Default
+Dp5 10 11 Default
+Dp6 11 12 Default
+Dp7 12 13 Default
+Dp8 13 14 Default
+Dp9 14 15 Default
+Dp10 15 16 Default
+Dp11 16 17 Default
+Dp12 17 18 Default
+Dp13 18 19 Default
+Dp14 19 20 Default
+Dp15 20 21 Default
+Dp16 21 22 Default
+Dp17 22 23 Default
+Dp18 23 24 Default
 
 .END
 
@@ -83,19 +76,19 @@ set color6=rgb:4/0/0
 tran 1e-5 200e-3
 
 ******************************************
-hardcopy v_out.ps v(8)
+hardcopy v_out.ps v(6)
 echo v_out_FIG
 
-hardcopy envelope.ps v(7)
+hardcopy envelope.ps v(5)
 echo envelope_FIG
 
-hardcopy regulator.ps v(8) - v(7)
+hardcopy regulator.ps v(6) - v(5)
 echo regulator_FIG
 
 ******************************************
-meas tran output AVG v(8)
-meas tran max MAX v(8)
-meas tran min MIN v(8)
+meas tran output AVG v(6)
+meas tran max MAX v(6)
+meas tran min MIN v(6)
 
 .endc
 
