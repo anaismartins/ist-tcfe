@@ -19,9 +19,15 @@ Vin = 230 * cos(w * t); %V
 
 V3 = n * Vin;
 
-Von = 12./3.; %vout/nº de díodos
+Von = 12./20.; %vout/nº de díodos
 
 V7 = abs(V3); %ACHO EU (o burro do mike)
 
 toff = 1/w * atan(1/(w*R*C)); %para t>toff Vcondensador=A*cos(w*toff)*exp(^-((t-toff)/(R*C)))
+
+eta = 1;
+V_T = 25e-3; %mV
+I_S = 1e-14; %...A
+
+rd = (20 * eta * V_T) / (I_S * exp(Vd / (20 * eta * Vd));
 
