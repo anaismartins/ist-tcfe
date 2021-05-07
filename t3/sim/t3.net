@@ -2,30 +2,30 @@
 .options savecurrents
 
 ******************************************
-.TRAN 1ms 200ms
+.TRAN 1ms 5.2s 5s 
 
 .model Default D
 
 * input voltage source
-Vin 1 0 0 ac 1.0 sin(0 230 50)
+Vin 1 0 0 ac 1.0 sin(90 230 50)
 
 **********************
-*n = 200
+*n = 0.04
 **********************
 
 *voltage controlled voltage source
-E1 3 2 1 0 200
+E1 3 2 1 0 0.153
 
 Vaux 2 4 0V
 *current controlled current source
-F1 1 0 Vaux 200
+F1 1 0 Vaux 0.153
 
 
 * MUDAR VALORES DO CAPACITOR E DA RESISTẼNCIA
-Cenvelope 5 0 1u
-Rregulator 5 6 0.5k
+Cenvelope 5 0 485u
+Rregulator 5 6 300k
 
-Renvelope 5 0 0.5k
+Renvelope 5 0 700k
 
 Dbridge1 3 5 Default
 Dbridge2 4 5 Default
@@ -51,6 +51,13 @@ Dp15 20 21 Default
 Dp16 21 22 Default
 Dp17 22 23 Default
 Dp18 23 24 Default
+Dp19 24 25 Default
+*Dp20 25 26 Default
+*Dp21 26 27 Default
+*Dp22 27 28 Default
+Dp23 25 0 Default
+
+
 
 .END
 
@@ -73,7 +80,7 @@ set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
 * analise no tempo
-tran 1e-5 200e-3
+tran 1e-3 5.2 5
 
 ******************************************
 hardcopy v_out.ps v(6)
@@ -84,6 +91,12 @@ echo envelope_FIG
 
 hardcopy regulator.ps v(6) - v(5)
 echo regulator_FIG
+
+hardcopy novo1.ps v(3) - v(2)
+echo regulator_FIG
+
+*hardcopy novo2.ps v(6) - v(5)
+*echo regulator_FIG
 
 ******************************************
 meas tran output AVG v(6)
