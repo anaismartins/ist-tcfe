@@ -61,25 +61,52 @@ x0 = 0;
 %ton = fsolve("f", x0);
 
 i = 0;
-while(i < 10)
-  if(t > ((249+i)*toff) && t < ((249+i)*ton))
-    vout = Vcos;
-  end
-  
- if(t < ((249+i)*toff) && t >~ ((249+i)*ton))
-   vout = Vexp;
- end
+%while(i < 10)
+%  if(t > ((249+i)*toff) && t < ((249+i)*ton))
+%    vout = Vcos;
+%  end
+%  
+% if(t < ((249+i)*toff) && t > ((249+i)*ton))
+%   vout = Vexp;
+% end
+%  
+%  i = i + 1;
+%end
+
+vouthr= zeros(1, length(t));
+vout = zeros(1, length(t)); %alocação dos vetores
+
+for dt = 1:length(t)
+  if(Vs(dt) >= nd*Von)
+    vouthr(dt) = Vs(dt) - 2*Von;
+  elseif (Vs(dt) <= -2*Von)
+    vouthr(dt) = -Vs(dt) - 2*Von;
+  else
+    vouthr(dt) = 0;
+  endif
+endfor
+
+i = 0;
+for dt = 1:length(t)
+  if t(dt) < (249+i)*toff
+    vout(dt) = Vs(dt);
+  elseif Vexp(dt) > vouthr(dt)
+    vout(dt) = Vexp(dt);
+  else 
+    vout(dt) = Vs(dt);
+  endif
   
   i = i + 1;
-end
+endfor
 
-plot(t,vout);
+plot(t, vout);
 voutf = figure();
 hold on;
 
 xlim([5, 5.2]);
+ylim([11.5, 12.5]);
 xlabel("t[s]");
-ylabel("v0[V]");
+ylabel("vout[V]");
 print (voutf, "mat-envelope.eps", "-depsc");
 
 
