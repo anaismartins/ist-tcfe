@@ -45,6 +45,7 @@ Having the diode between nodes 3 and 5 turned on means that the currente passing
 \end{equation}
 \end{center}
 
+----------------------------------VALOR OBTIDO NO OCTAVE
 
 From this moment on, with the circuit cut off at node 5, the capacitor unloads the accumulated voltage through the resistor, until the diode turns itself on again.\par
 
@@ -56,9 +57,25 @@ Solving the differential equation ($v_0(t) = C\frac{dv_0(t)}{dt}$), in t, $t_{of
 \end{equation}
 \end{center}
 
+
+$t_{on}$ is hit when the voltage in 5 evens and gets smaller than voltage 3 again, i.e the voltage in the envelope detector circuit's input equals its output. To compute this instant we must apply:
+
+\begin{center}
+\begin{equation}
+	 V_s cos(\omega t_{on}) = V_s cos(\omega t_{on}).e^{-\frac{ t_{on}-t_{off} }{RC}}
+\end{equation}
+\end{center}
+
+--------------------------------------VALOR OBTIDO NO OCTAVE
+
+\subsubsection{Envelope Detector Plot}
+
 In other words, the ploted envelope detector voltage should be, in $t_{on} < t < t_{off}$, a sinusoidal wave form (cossine), whereas, in $t_{off} < t < t_{on}$, a decaying exponencial, which approximates the whole sinusoidal wave (AC current)to a straight line (DC current).
 
 
-%%%%%%%%%%%%%%%PLOT OF THE ENVELOPE DETECTOR VOLTAGE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+---------------------------------PLOT DO ENVELOPE OBTIDO NO OCTAVE
 
 \subsection{Voltage Regulator}
+
+
+
