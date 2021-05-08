@@ -32,6 +32,6 @@ merit = 1/((Cenvelope+Renvelope+Rregulator+2)*(ripple + abs(12 - avg) + 10e-6))
 
 out = open("./doc/values.tex", "w")
 
-out.write(str(ripple))
-out.write("\n")
-out.write(str(merit))
+out.write("average value & " + str(abs(12-avg)) + "\\\\ \\hline\n")
+out.write("ripple & " + str(ripple) + "\\\\ \\hline\n")
+out.write("merit & " + str(merit) + "\\\\ \\hline")

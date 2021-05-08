@@ -7,6 +7,7 @@
 all:
 	make -C mat
 	make -C sim
+	python calculations.py
 	make -C doc
 	cp doc/report-3.pdf ../
 
@@ -15,4 +16,4 @@ clean:
 	make -C sim clean
 	make -C doc clean
 
-.PHONY: all clean
+.PHONY: all clean python
