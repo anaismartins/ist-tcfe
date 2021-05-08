@@ -103,7 +103,10 @@ meas tran output AVG v(6)
 meas tran max MAX v(6)
 meas tran min MIN v(6)
 
-.print output max min
+
+echo "op_TAB" 
+print output max min
+echo "op_END"
 
 .endc
 
