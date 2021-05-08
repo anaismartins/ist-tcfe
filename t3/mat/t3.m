@@ -22,14 +22,14 @@ Vin = 230 * cos(w * t); %V
 
 Vs = n * Vin;
 
-A = 230/n;
+A = 230*n;
 
 Von = 12./nd; %vout/nº de díodos
 vlim = nd * Von;
 
 V7 = abs(Vs); %ACHO EU (o burro do mike)
 
-toff = 1/(w) * atan(1/(w*Re*C));
+toff = (1/w) * atan(1/(w*Re*C));
 %para t>toff Vcondensador=A*cos(w*toff)*exp(^(-(t-toff)/(R*C)))
 
 eta = 1;
@@ -43,8 +43,7 @@ rd = (nd * eta * V_T) / (I_S * exp(Vd / (nd * eta * Vd)));
 %time axis: 5000ms to 5200ms with 1us steps
 
 % para t > toff
-Vexp = A * cos(w*toff) * exp(-(t-toff)/(Re*C)); % usa-se Re aqui ou uma soma?
-Vcos = Vs;
+Vexp = (A * cos(w*toff) - 2 * Von) * exp(-(t-toff)/(Re*C)); % usa-se Re aqui ou uma soma?
 
 printf("toff = %.10f", toff);
 
@@ -73,11 +72,16 @@ i = 0;
 %  i = i + 1;
 %end
 
-vouthr= zeros(1, length(t));
+vouthr = zeros(1, length(t));
 vout = zeros(1, length(t)); %alocação dos vetores
 
+for i = 1:length(t)
+  Vexp(i) = (A * cos(w*(toff+5+floor((i*1e-5)/T)*T)) - 2 * Von) * exp(-(i-(toff+5+floor((i*1e-5)/T)*T))/(Re*C));
+endfor
+
+
 for dt = 1:length(t)
-  if(Vs(dt) >= nd*Von)
+  if(Vs(dt) >= 2*Von)
     vouthr(dt) = Vs(dt) - 2*Von;
   elseif (Vs(dt) <= -2*Von)
     vouthr(dt) = -Vs(dt) - 2*Von;
@@ -86,28 +90,31 @@ for dt = 1:length(t)
   endif
 endfor
 
-i = 0;
+figure
+plot(t, Vs, "r-;vS;")
+hold on;
+plot(t, vouthr, "c-;Rectified;")
+xlabel ("t[s]")
+ylabel ("V[V]")
+print ("mat-bridge.eps", "-depsc");
+
 for dt = 1:length(t)
-  if t(dt) < (249+i)*toff
-    vout(dt) = Vs(dt);
-  elseif Vexp(dt) > vouthr(dt)
+  if Vexp(dt) > vouthr(dt)
     vout(dt) = Vexp(dt);
   else 
-    vout(dt) = Vs(dt);
+    vout(dt) = vouthr(dt);
   endif
-  
-  i = i + 1;
 endfor
 
-plot(t, vout);
 voutf = figure();
+plot(t, vout);
 hold on;
 
-xlim([5, 5.2]);
-ylim([11.5, 12.5]);
 xlabel("t[s]");
 ylabel("vout[V]");
 print (voutf, "mat-envelope.eps", "-depsc");
+
+
 
 
 %Vripple = A * (1 - exp(-T/(2*Re*C))); % é com o R do envelope? acho que isto não é preciso
