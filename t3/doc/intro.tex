@@ -3,18 +3,22 @@
 \label{sec:introduction}
 
 % state the learning objective 
-The objective of this laboratory assignment is to study a circuit containing an Independent AC Voltage Souce, $V_s(t)$, a Voltage Controlled Current Source, $I_d$, a Current Controlled Voltage Source, $V_d$, a Capacitor $C$, and seven resistors, $R_1$ to $R_7$. The circuit that we were first presented with is displayed in Figure \ref{fig:circ}, with some added current directions to ease the process of finding equations in our Analysis section. As we make modifications to the circuit along the report to suit our needs, the circuit used for those will also be displayed.
+In this lab assignment, we will be presenting a circuit made by us, including an envelope detector and a voltage regulator, as well as a transformer and a voltage source.
+
+The envolpe detector is made up by a voltage source, fours diodes, a resistance and a capacitor, with the diodes being displayed in a diamond shape, so the current goes through one of the pairs of diodes, one being having the positive current and another the negative.
+
+The voltage regulator is made up of a voltage source, a resistance, and a varying number of diodes in series. In our case, we have 20 diodes.
+
+The circuit above described is displayed in Figure \ref{fig:circuit}.
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.6\linewidth]{circuit.pdf}
-\caption{The original circuit, with some current directions added.}
-\label{fig1}
+\caption{The circuit we will be working with.}
+\label{fig:circuit}
 \end{figure}
 
 In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is
-presented, including the study of what happens for $t<0$, finding the the equivalent resistor as seen from the capacitor
-terminals, the natural and forced solutions of the circuit in $t>0$, as well as frequency analysis.
-
+presented, including an individual analysis for the envelope detector and the voltage regulator.
 In Section~\ref{sec:simulation}, the circuit is analysed by
 simulation using the \textit{software Ngspice}, ultimately, studying the same as in the Theoretical Analysis section.
 The results in each Analsysis are compared \ref{sec:comparing}.
