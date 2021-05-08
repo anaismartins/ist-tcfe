@@ -3,7 +3,7 @@
 
 \subsection{Envelope Detector}
 
-The envelope detector circuit takes advantage of the capacitor properties to flaten the AC signal recieved from the transformer, approximating it to a DC current. This circuit is periodic in time and has two very distinct phases, associated to the diodes characteristics: $D_{on}$ - meaning the diode is active and, therefore, behaves like a shunt and $D_{off}$ - the diode opens the circuit.  To analyse the behaviour of this portion of the AC/DC converter we must study the envelope detector voltage, i.e the voltage at the capacitors terminals, $v_0$. According to the description above we get:
+The envelope detector circuit takes advantage of the capacitor properties to flaten the AC signal recieved from the transformer, approximating it to a DC current. This circuit is periodic in time and has two very distinct phases, associated to the diodes characteristics: $D_{on}$ - meaning the diode is active and, therefore, behaves like a shunt and $D_{off}$ - the diode opens the circuit. To analyse the behaviour of this portion of the AC/DC converter we must study the envelope detector voltage, i.e the voltage at the capacitors terminals, $v_0$. According to the description above we get:
 
 \begin{center}
 $
@@ -14,14 +14,13 @@ v_s \, , \, D_{on} \\ - R i_c \, , \, D_{off}\\
 $
 \end{center}
 
-, where $i_c$, the current in the capacitor's branch is given by: $i_c = C\frac{dv_0}{dt}$ and $v_s$ is the voltage recieved from the transformer: $v_s(t) = V_scos(\omega t)$.
+Where $i_c$, the current in the capacitor's branch is given by: $i_c = C\frac{dv_0}{dt}$ and $v_s$ is the voltage received from the transformer: $v_s(t) = V_scos(\omega t)$.
 
 \subsubsection{$D_{ON}$}
 
 At $D_{on}$, as seen, $v_0(t) = v_s(t)$ , $i_c = C\frac{dv_s}{dt}$ and, by Ohm's law, $i_R = \frac{v_s}{R}$.\par
 
 Further analysing the capacitors current, we obtain:
-
 
 \begin{center}
 	\begin{equation}
@@ -31,12 +30,11 @@ Further analysing the capacitors current, we obtain:
 
 Which grows negative with the time derivative. This means that, periodically, $i_c$ contributes to the accumumlation of voltage in the $5^{th}$ node, which, at some point, turns the rectifier bridge off: at $t_{off}$, where the voltage in node 5 is greater than the voltage in node 3, and the diode in between opens the circuit.
 
-
 *Note that, in $D_{ON}$, as the diode acts like a shunt: $i_D = i_C + i_R$.
 
 \subsubsection{$D_{OFF}$}
 
-Having the diode between nodes 3 and 5 turned on means that the currente passing in its branch is null ($i_D = 0 $) so: $i_R = -i_c$. This expression can be used to calculate $t_{off}$ theoretically. In the limit we have $v_0 = v_s$ which, applied to the previous expression, yields:
+Having the diode between nodes 3 and 5 turned on means that the current passing in its branch is null ($i_D = 0 $) so: $i_R = -i_c$. This expression can be used to calculate $t_{off}$ theoretically. In the limit we have $v_0 = v_s$ which, applied to the previous expression, yields:
 
 
 \begin{center}
@@ -45,7 +43,11 @@ Having the diode between nodes 3 and 5 turned on means that the currente passing
 \end{equation}
 \end{center}
 
-----------------------------------VALOR OBTIDO NO OCTAVE
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value} \\ %\hline RETIRAR % QUANDO TIVERMOS VALORES --------------------------------------------------
+  %\input{../mat/toff.tex}
+\end{tabular}
 
 From this moment on, with the circuit cut off at node 5, the capacitor unloads the accumulated voltage through the resistor, until the diode turns itself on again.\par
 
@@ -66,22 +68,48 @@ $t_{on}$ is hit when the voltage in 5 evens and gets smaller than voltage 3 agai
 \end{equation}
 \end{center}
 
---------------------------------------VALOR OBTIDO NO OCTAVE
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value} \\ %\hline RETIRAR % QUANDO TIVERMOS VALORES------------------------------------------------
+  %\input{../mat/ton.tex}
+\end{tabular}
 
 \subsubsection{Envelope Detector Plot}
 
-In other words, the ploted envelope detector voltage should be, in $t_{on} < t < t_{off}$, a sinusoidal wave form (cossine), whereas, in $t_{off} < t < t_{on}$, a decaying exponencial, which approximates the whole sinusoidal wave (AC current)to a straight line (DC current).
+In other words, the ploted envelope detector voltage should be, in $t_{on} < t < t_{off}$, a sinusoidal wave form (cossine), whereas, in $t_{off} < t < t_{on}$, a decaying exponencial, which approximates the whole sinusoidal wave (AC current) to a straight line (DC current) - Figure \ref{fig:mat-envelope}.
 
+In this circuit, we are assuming the diode as the ideal diode. This means that, when $v < V_{ON}$, there is no current going through the diode, which means that that turns into an open circuit, and when $v \geq V_{ON}$, the current going through the ideal diode is infinite, which means there is a short circuit in that node.
 
----------------------------------PLOT DO ENVELOPE OBTIDO NO OCTAVE
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{mat-envelope.eps}
+\caption{Envelope detector output from the theoretical analysis.}
+\label{fig:mat-envelope}
+\end{figure}
 
 \subsection{Voltage Regulator}
 
-NAO SEI O QUE DIZERRRR
+The voltage regulator circuit, connected in parallel to the envelope detector circuit, attenuates the output oscillations without frequency dependence - Figure \ref{fig:mat-bridge}.
 
-The voltage regulator circuit, connected in parallel to the envelope detector circuit, attenuates the output oscillations without frequency dependence:
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{mat-bridge.eps}
+\caption{Voltage regulator output from the theoretical analysis.}
+\label{fig:mat-bridge}
+\end{figure}
 
--------------------------------PLOT DO REGULATOR
+\subsection{Final Values}
 
+The final values we found for this system by the theoretical analysis were the following:
 
+\begin{tabular}{|l|r|}
+	\hline    
+    {\bf Variable} & {\bf Value} \\ %\hline TIRAR O % QUANDO TIVERMOS O VALOR -------------------------
+    %\input{../mat/vout.tex}
+\end{tabular}
 
+\begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value} \\ %\hline TIRAR O % QUANDO TIVERMOS O VALOR -------------------------
+    %\input{../mat/ripple.tex}
+\end{tabular}
+
+Even though, COMENTARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR

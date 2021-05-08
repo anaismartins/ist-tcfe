@@ -5,48 +5,67 @@
 
 In this section, we will be comparing the results obtained by both the Theoretical Analysis and the Simulation.
 
-\subsection{Results for the System at \textit{t $<$ 0}}
-
-In the following tables, we can observe the results already presented in previous sections now side by side, with the first
-2 tables being part of the Theoretical Analysis and the 3rd one being part of the Simulation. These are displayed in this
+In the following tables, we can observe the results already presented in previous sections now side by side, with the first table being the result of the simulation and the second one being the result from the theoretical analysis. These are displayed in this
 way as a means of easier representation.
 
 \begin{table}[htb!]
   \begin{tabular}{|l|r|}
       \hline    
-      {\bf Name} & {\bf Currents [A]} \\ \hline
-      \input{../mat/t2-t1-currents.tex}
+      {\bf Variable} & {\bf Value} \\ \hline
+      \input{../sim/out_TAB.tex}
   \end{tabular}
 \quad
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Voltages [V]} \\ \hline
-    \input{../mat/t2-t1-voltages.tex}
+    {\bf Variable} & {\bf Value} \\ %\hline TIRAR O % QUANDO TIVERMOS O VALOR -------------------------
+    %\input{../mat/vout.tex}
   \end{tabular}
-\quad
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/op_tab}
-  \end{tabular}
-  \caption{Results for the Circuit at $t<0$}
 \end{table}
 
-\clearpage
-\subsection{Time- and Frequency-Dependent Analysis}
+\begin{table}[htb!]
+  \begin{tabular}{|l|r|}
+      \hline    
+      {\bf Variable} & {\bf Value} \\ \hline
+      \input{../sim/ripple.tex}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value} \\ %\hline TIRAR O % QUANDO TIVERMOS O VALOR -------------------------
+    %\input{../mat/ripple.tex}
+  \end{tabular}
+\end{table}
 
-Lastly, here are the graphs we obtained by analysing the system side by side, Figures \ref{fig:sbs1}, \ref{fig:sbs2} and \ref{fig:sbs3}. It is clear that all of them are identical, which leads us to conclude, once more, that the study was succsseful.
+It is easy to tell that these values are not as close to each other as we're used to. This happens because, during the theoretical analysis, we are using first order approximations and using the ideal diode model.
+
+\clearpage
+
+Lastly, here are the graphs we obtained by analysing the system side by side, Figures \ref{fig:sbs1} and \ref{fig:sbs2}. Once again, they are not as close to each other as we are used to because of the same reasons as mentioned above.
 
 \begin{figure}[ht]
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.9\linewidth]{../mat/t2-t3.pdf}
+  \includegraphics[width=.9\linewidth]{../sim/sim-envelope.pdf}
 \end{subfigure}%
 \begin{subfigure}{.4\textwidth}
   \centering
-  \includegraphics[width=.9\linewidth]{../sim/trans3.pdf}
+  \includegraphics[width=.9\linewidth]{mat-envelope.eps}
 \end{subfigure}
-\caption{Results for f = 0Hz}
+\caption{Voltages at the envelope detector in simulation and theoretical respectively.}
 \label{fig:sbs1}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{../sim/sim-regulator.pdf}
+\end{subfigure}%
+\begin{subfigure}{.4\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{mat-bridge.eps}
+\end{subfigure}
+\caption{Voltages at the evoltage regulator in simulation and theoretical respectively.}
+\label{fig:sbs2}
 \end{figure}

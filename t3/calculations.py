@@ -1,13 +1,15 @@
-f = open("./sim/op_tab.tex", "r")
+f = open("./sim/out_tab.tex", "r")
+f2 = open("./sim/rip_tab.tex", "r")
 
 lines = f.readlines()
+lines2 = f2.readlines()
 
 """ Cenvelopestring = lines[1].split(" & ")
 Renvelopestring = lines[2].split(" & ")
 Rregulatorstring = lines[3].split(" & ") """
 avgstring = lines[0].split(" & ")
-maxstring = lines[1].split(" & ")
-minstring = lines[2].split(" & ")
+maxstring = lines2[0].split(" & ")
+minstring = lines2[1].split(" & ")
 
 """ Cenvelopes = Cenvelopestring[1].split("\\\\")
 Renvelopes = Renvelopestring[2].split("\\\\")
@@ -30,8 +32,16 @@ Rregulator = 300 #placeholder
 ripple = max - min
 merit = 1/((Cenvelope+Renvelope+Rregulator+2)*(ripple + abs(12 - avg) + 10e-6))
 
-out = open("./doc/values.tex", "w")
+ripplef = open("./sim/ripple.tex", "w")
 
-out.write("average value & " + str(abs(12-avg)) + "\\\\ \\hline\n")
-out.write("ripple & " + str(ripple) + "\\\\ \\hline\n")
-out.write("merit & " + str(merit) + "\\\\ \\hline")
+ripplef.write("ripple & " + str(ripple) + "\\\\ \\hline\n")
+
+
+meritf = open("./sim/merit.tex", "w")
+
+meritf.write("merit & " + str(merit) + "\\\\ \\hline")
+
+f.close()
+f2.close()
+ripplef.close()
+meritf.close()

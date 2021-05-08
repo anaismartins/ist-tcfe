@@ -104,9 +104,13 @@ meas tran max MAX v(6)
 meas tran min MIN v(6)
 
 
-echo "op_TAB" 
-print output max min
-echo "op_END"
+echo "out_TAB" 
+print output
+echo "out_END"
+
+echo "rip_TAB"
+print max min
+echo "rip_END"
 
 .endc
 

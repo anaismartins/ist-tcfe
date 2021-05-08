@@ -7,7 +7,7 @@ In Figure \ref{fig:circuit-ngspice}, the circuit used by \textit{Ngspice} is dis
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.6\linewidth]{circuit-ngspice.pdf}
-\caption{The circuit we will be working with.}
+\caption{The circuit we will be working with in Ngspice.}
 \label{fig:circuit-ngspice}
 \end{figure}
 
@@ -16,13 +16,33 @@ After playing around with the numbers for a while to make sure the output voltag
 \begin{tabular}{|l|r|}
   \hline    
   {\bf Variable} & {\bf Value} \\ \hline
-  \input{../sim/op_TAB}
+  \input{../sim/out_TAB}
 \end{tabular}
 
 \begin{tabular}{|l|r|}
   \hline    
   {\bf Variable} & {\bf Value} \\ \hline
-  \input{values.tex}
+  \input{../sim/ripple.tex}
+\end{tabular}
+
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value} \\ \hline
+  \input{../sim/merit.tex}
 \end{tabular}
 
 Considering the goal was to get an average of 12V, this result is extremely satisfactory. The ripple is also very low, which, once again, is extremely satisfactory. We then conclude that the simulation analysis was successful.
+
+To add to this, we got the following plots for the envelope detector and voltage regulator circuits (Figures \ref{fig:sim-envelope} and \ref{fig:sim-regulator} respectively).
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../sim/sim-envelope.pdf}
+\caption{Envelope detector output from the simulation analysis.}
+\label{fig:sim-envelope}
+\end{figure}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../sim/sim-regulator.pdf}
+\caption{Voltage regulator output from the simulation analysis.}
+\label{fig:sim-regulator}
+\end{figure}
