@@ -16,6 +16,7 @@ t = 0:1e-5:200e-3;
 
 f = 50; %Hz
 w = 2 * pi * f; %rad.s⁻¹
+T = 1/f;
 
 Vin = 230 * cos(w * t); %V
 
@@ -25,21 +26,21 @@ Von = 12./nd; %vout/nº de díodos
 
 V7 = abs(V3); %ACHO EU (o burro do mike)
 
-toff = 1/w * atan(1/(w*Re*C)); %para t>toff Vcondensador=A*cos(w*toff)*exp(^-((t-toff)/(R*C)))
+toff = 1/w * atan(1/(w*Re*C));
+%para t>toff Vcondensador=A*cos(w*toff)*exp(^-((t-toff)/(R*C)))
 
 eta = 1;
 V_T = 25e-3; %mV
 I_S = 1e-14; %...A
-Vd = 120; %V ACHO EU VEJAM AQUI
+Vd = 230; %V ACHO EU VEJAM AQUI
 
 rd = (nd * eta * V_T) / (I_S * exp(Vd / (nd * eta * Vd)));
 
 %envelope
 %time axis: 0 to 20ms with 1us steps
-t=0:1e-6:20e-3; %s
-A = 1; % não sei que caralho é isto
+A = 1; % acho eu
 % para t off
-v0 = A * cos(w*toff)* exp(-(t-toff)/(Re*C)); % que raio é o A
+v0 = A * cos(w*toff)* exp(-(t-toff)/(Re*C)); % usa-se Re aqui ou uma soma?
 v0f = figure();
 
 
@@ -49,4 +50,7 @@ hold on
 axis([0, 20e-3, 0, 10]);
 xlabel("t[s]");
 ylabel("v0[V]");
-print (v0f, "t2-t3.eps", "-depsc");
+print (v0f, "mat-envelope.eps", "-depsc");
+
+
+Vripple = A * (1 - exp(-T/(Re*C))); % é com o R do envelope?

@@ -10,7 +10,7 @@
 Vin 1 0 0 ac 1.0 sin(90 230 50)
 
 **********************
-*n = 0.04
+*n = 0.153
 **********************
 
 *voltage controlled voltage source
@@ -80,20 +80,23 @@ set color6=rgb:4/0/0
 tran 1e-3 5.2 5
 
 ******************************************
-hardcopy v_out.ps v(6)
-echo v_out_FIG
+hardcopy sim-v_out.ps v(6)
+echo sim-v_out_FIG
 
-hardcopy envelope.ps v(5)
-echo envelope_FIG
+hardcopy sim-envelope.ps v(5)
+echo sim-envelope_FIG
 
-hardcopy regulator.ps v(6) - v(5)
-echo regulator_FIG
+hardcopy sim-regulator.ps v(6) - v(5)
+echo sim-regulator_FIG
 
-hardcopy novo1.ps v(3) - v(2)
-echo regulator_FIG
+*hardcopy novo1.ps v(3) - v(2)
+*echo novo1_FIG
 
 *hardcopy novo2.ps v(6) - v(5)
 *echo regulator_FIG
+
+hardcopy sim-out_12.ps v(6)-12
+echo sim-out_12_FIG
 
 ******************************************
 meas tran output AVG v(6)
