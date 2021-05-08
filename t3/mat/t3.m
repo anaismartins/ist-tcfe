@@ -45,7 +45,6 @@ rd = (nd * eta * V_T) / (I_S * exp(Vd / (nd * eta * Vd)));
 % para t > toff
 Vexp = A * cos(w*toff) * exp(-(t-toff)/(Re*C)); % usa-se Re aqui ou uma soma?
 Vcos = Vs;
-v0f = figure();
 
 printf("toff = %.10f", toff);
 
@@ -64,23 +63,24 @@ x0 = 0;
 i = 0;
 while(i < 10)
   if(t > ((249+i)*toff) && t < ((249+i)*ton))
-    v0 = Vcos;
+    vout = Vcos;
   end
   
  if(t < ((249+i)*toff) && t >~ ((249+i)*ton))
-   v0 = Vexp;
+   vout = Vexp;
  end
   
   i = i + 1;
 end
 
-plot(t,v0);
+plot(t,vout);
+voutf = figure();
 hold on;
 
 xlim([5, 5.2]);
 xlabel("t[s]");
 ylabel("v0[V]");
-print (v0f, "mat-envelope.eps", "-depsc");
+print (voutf, "mat-envelope.eps", "-depsc");
 
 
 %Vripple = A * (1 - exp(-T/(2*Re*C))); % é com o R do envelope? acho que isto não é preciso
