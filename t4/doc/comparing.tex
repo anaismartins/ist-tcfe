@@ -1,0 +1,71 @@
+\clearpage
+
+\section{Comparing the Results}
+\label{sec:comparing}
+
+In this section, we will be comparing the results obtained by both the Theoretical Analysis and the Simulation.
+
+In the following tables, we can observe the results already presented in previous sections now side by side, with the first table being the result of the simulation and the second one being the result from the theoretical analysis. These are displayed in this
+way as a means of easier representation.
+
+\begin{table}[htb!]
+  \begin{tabular}{|l|r|}
+      \hline    
+      {\bf Variable} & {\bf Value} \\ \hline
+      \input{../sim/out_TAB.tex}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value} \\ \hline %TIRAR O % QUANDO TIVERMOS O VALOR -------------------------
+    \input{../mat/vout.tex}
+  \end{tabular}
+\end{table}
+
+\begin{table}[htb!]
+  \begin{tabular}{|l|r|}
+      \hline    
+      {\bf Variable} & {\bf Value} \\ \hline
+      \input{../sim/ripple.tex}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value} \\ \hline %TIRAR O % QUANDO TIVERMOS O VALOR -------------------------
+    \input{../mat/ripple.tex}
+  \end{tabular}
+\end{table}
+
+It is easy to tell that these values are not as close to each other as we're used to. This happens because, during the theoretical analysis, we are using first order approximations and using the ideal diode model.
+
+\clearpage
+
+Lastly, here are the graphs we obtained by analysing the system side by side, Figures \ref{fig:sbs1} and \ref{fig:sbs2}. Once again, they are not as close to each other as we are used to because of the same reasons as mentioned above.
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{../sim/sim-envelope.pdf}
+\end{subfigure}%
+\begin{subfigure}{.4\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{mat-envelope.eps}
+\end{subfigure}
+\caption{Voltages at the envelope detector in simulation and theoretical respectively.}
+\label{fig:sbs1}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{../sim/sim-regulator.pdf}
+\end{subfigure}%
+\begin{subfigure}{.4\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{mat-bridge.eps}
+\end{subfigure}
+\caption{Voltages at the evoltage regulator in simulation and theoretical respectively.}
+\label{fig:sbs2}
+\end{figure}
