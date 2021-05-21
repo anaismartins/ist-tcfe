@@ -5,7 +5,8 @@
 .MODEL BC547A NPN(IS=1.533E-14 ISE=7.932E-16 ISC=8.305E-14 XTI=3 BF=178.7 BR=8.628 IKF=0.1216 IKR=0.1121 XTB=1.5 VAF=69.7 VAR=44.7 VJE=0.4209 VJC=0.2 RE=0.6395 RC=0.6508 RB=1 RBM=1 IRB=1E-06 CJE=1.61E-11 CJC=4.388p XCJC=0.6193 FC=0.7762 NF=1.002 NR=1.004 NE=1.436 NC=1.207 MJE=0.3071 MJC=0.2793 TF=4.995E-10 TR=1m2 ITF=0.7021 VTF=3.523 XTF=139 EG=1.11)
 
 Vcc vcc 0 12.0
-Vin in 0 0 ac 1.0 sin(0 10m 1k)
+*desligado Vin
+Vin in 0 0
 Rin in in2 100
 
 * input coupling capacitor
@@ -31,64 +32,15 @@ Rout emit2 vcc 100
 * output coupling capacitor
 Co emit2 out 1u
 
-* load
-RL out 0 8
+* switched load to dummy source
+VL out 0 0 ac 1.0 sin(0 10m 1k)
+
 .op
 .end
 
 .control
 
-* time analysis
-tran 1e-5 1e-2
-hardcopy vo1.ps vdb(coll)
-
-* frequency analysis
-ac dec 10 10 100MEG
-hardcopy vo1f.ps vdb(coll)
-
-*https://sourceforge.net/p/ngspice/discussion/133842/thread/2031ad61/
-
-
-hardcopy vo2f.ps vdb(out) //isto é o gain porque vdb(in) = 0, acho eu...
-
-*input impedance in kohm
-
-echo "*******************"
-echo "* input impedance *"
-echo "*******************"
-
-
-print v(in2)[40]/vin#branch[40]/(-1000) //acho que vin#branch é a corrente na fonte Vin
-
-*need a different setup to measure output impedance
-
-print v(out)[40]/vcc#branch[40]/1000 //não deve estar bem
-
-echo "**************"
-echo "* merit data *"
-echo "**************"
-
-meas ac gain MAX vdb(out)
-print out
-
-*bandwidth
-let gain3 = gain - 3.0
-
-print gain3
-
-meas ac f1 WHEN vdb(out) = gain3 RISE=1
-meas ac f2 WHEN vdb(out) = gain3 FALL=1
-
-let bandwidth = f2 - f1
-
-print bandwidth
-
-print f1 f2
-
-let cost = 1000 + 1 + 0.1 + 80 + 20 + 1 + 0.1 + 0.1 + 0.008 + 2 * 0.1 //capacitors, resistors e transistors
-
-let merit = gain * bandwidth / (cost * f1)
-
-print merit
+*output impedance in kOhms
+print v(out)[40]/VL#branch[40]/(-1000) 
 
 .endc 
