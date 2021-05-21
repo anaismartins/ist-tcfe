@@ -38,29 +38,47 @@ RL out 0 8
 
 .control
 
-
 * time analysis
 tran 1e-5 1e-2
-plot v(coll)
+*plot v(coll)
 hardcopy vo1.ps vdb(coll)
 
+*gain
+meas tran vi MAX v(in)
+meas tran vo MAX v(vcc)
+print vi vo
+* vo / vi = gain????
 
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(coll)
-plot vp(coll)
+*plot vdb(coll)
+*plot vp(coll)
 hardcopy vo1f.ps vdb(coll)
 
+*https://sourceforge.net/p/ngspice/discussion/133842/thread/2031ad61/
+*v(out) é onde tem o passbad, é lá que se mede o gain???
+meas ac out1 MAX v(out)
+print out
+
+*bandwidth
+let f3db = out1 - 3.0
+meas ac f1 WHEN v(out)=f3db RISE=1
+meas ac f2 WHEN v(out)=f3db FALL=1
+
+*este é capaz de fazer o mesmo mas mais fácil, out tem é de ser
+meas ac fdiff TRIG v(out) VAL=f3db RISE=1 TARG v(out) VAL=f3db RISE=2
+
+print f1 f2
 
 
-plot vdb(out)
-plot vp(out)
-hardcopy vo2f.ps vdb(coll)
+*plot vdb(out)
+*plot vp(out)
+hardcopy vo2f.ps vdb(out)
 
 *input impedance in kohm
-*print all
+*print all ISTO NÃO DÁ AS IMPEDÂNCIAS???
 
-plot abs(v(in2)[40]/vin#branch[40]/(-1000))
+*plot abs(v(in2)[40]/vin#branch[40]/(-1000))
 print v(in2)[40]/vin#branch[40]/(-1000)
 
 *need a different setup to measure output impedance
