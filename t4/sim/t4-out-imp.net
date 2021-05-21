@@ -40,7 +40,10 @@ VL out 0 0 ac 1.0 sin(0 10m 1k)
 
 .control
 
+ac dec 10 10 100MEG
+
 *output impedance in kOhms
-print v(out)[40]/VL#branch[40]/(-1000) 
+let zout = v(out)[40]/i(VL)[40]/(-1000)
+print zout
 
 .endc 

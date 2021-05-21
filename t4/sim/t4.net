@@ -60,10 +60,6 @@ echo "*******************"
 
 print v(in2)[40]/vin#branch[40]/(-1000) //acho que vin#branch é a corrente na fonte Vin
 
-*need a different setup to measure output impedance
-
-print v(out)[40]/vcc#branch[40]/1000 //não deve estar bem
-
 echo "**************"
 echo "* merit data *"
 echo "**************"
