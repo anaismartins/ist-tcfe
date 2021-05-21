@@ -1,6 +1,6 @@
 all: t4.log
 
-t3.log: t4.m
+t4.log: t4.m
 	octave $< > $@
 
 clean:
