@@ -39,7 +39,7 @@ AVIsimple_DB = 20*log10(abs(AV1simple));
 
 RE1=100;
 ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)));
-ZX = ro1*((RSB+rpi1)*RE1/(RSB+rpi1+RE1))/(1/(1/ro1+1/(rpi1+RSB)+1/RE1+gm1*rpi1/(rpi1+RSB)));
+ZX = ro1*((RB+rpi1)*RE1/(RSB+rpi1+RE1))/(1/(1/ro1+1/(rpi1+RSB)+1/RE1+gm1*rpi1/(rpi1+RSB)));
 ZX = ro1*(   1/RE1+1/(rpi1+RSB)+1/ro1+gm1*rpi1/(rpi1+RSB)  )/(   1/RE1+1/(rpi1+RSB) ); % outro a definir ZX logo a seguir?????
 ZO1 = 1/(1/ZX+1/RC1);
 
@@ -75,4 +75,48 @@ ZI=ZI1;
 ZO=1/(go2+gm2/gpi2*gB+ge2+gB);
 
 %freq axis: 10Hz to 100MHz com 10 pontos por década
-f = logspace(1, 8, 10);
+%f = logspace(1, 8, 10); afinal não vou fazer assim, porque implica contas simbólicas
+
+RE1 = 100; %de volta ao valor inicial
+RL = 8;
+Ci = 1e-3;
+CB = 1e-3;
+Co = 1e-6;
+a = 1;
+
+for i = 1:0.1:8.1 %ou seja, 10 pontos por década
+  f = power(10, i);
+  omega = 2 * pi * f;
+  ZCi = 1 / (j * omega * Ci);
+  ZCB = 1 / (j * omega * CB);
+  ZCo = 1 / (j * omega * Co);
+  Zin = RS + 1 / (j * omega * Ci);
+  ZE1 = 1 / (1 / RE1 + j * omega * CB);
+  ZE2 = 1 / (1 / RE2 + 1 / (RL + 1 / (j * omega * Co))); %RE2||(RL + ZCo)
+  Vin = 0.01 * exp(j * pi / 2); %seno tem fase de pi/2
+  
+  A = [1, 0, 0, 0, 0;
+      1/Zin, -1/Zin-1/RB-1/rpi1, 1/rpi1, 0, 0;
+      0, gm1+1/rpi1, -gm1-1/rpi1-1/ZE1-1/ro1, 1/ro1, 0;
+      0, gm1, -gm1-1/ro1, 1/RC1+gpi2+1/ro1, -gpi2;
+      0, 0, 0, gpi2+gm2, -gpi2-gm2-go2-1/ZE2];
+  
+  B = [Vin; 0; 0; 0; 0];
+  
+  X = A\B;
+  Voutcomp = RL / (RL + 1/(j*omega*Co)) * X(5); %divisor de tensão
+  Vout = abs(Voutcomp);
+  gain(a) = Vout / abs(Vin);
+  gaindB(a) = 20 * log(gain(a));
+  
+  a = a + 1;
+endfor
+
+f = 1:0.1:8.1; %início, fim e 70 pontos pelo meio
+hf = figure();
+plot(f, gaindB);
+legend("Gain");
+xlabel("log(f)[Hz]");
+ylabel("Gain[dB]");
+
+print (hf, "gainteo.eps", "-depsc");
