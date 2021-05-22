@@ -90,10 +90,11 @@ for i = 1:0.1:8.1 %ou seja, 10 pontos por década
   ZCi = 1 / (j * omega * Ci);
   ZCB = 1 / (j * omega * CB);
   ZCo = 1 / (j * omega * Co);
-  Zin = RS + 1 / (j * omega * Ci);
-  ZE1 = 1 / (1 / RE1 + j * omega * CB);
-  ZE2 = 1 / (1 / RE2 + 1 / (RL + 1 / (j * omega * Co))); %RE2||(RL + ZCo)
+  Zin = RS + ZCi;
+  ZE1 = 1 / (1 / RE1 + 1/ZCB);
+  ZE2 = 1 / (1 / RE2 + 1 / (RL + ZCo)); %RE2||(RL + ZCo)
   Vin = 0.01 * exp(j * pi / 2); %seno tem fase de pi/2
+  
   
   A = [1, 0, 0, 0, 0;
       1/Zin, -1/Zin-1/RB-1/rpi1, 1/rpi1, 0, 0;
@@ -104,10 +105,13 @@ for i = 1:0.1:8.1 %ou seja, 10 pontos por década
   B = [Vin; 0; 0; 0; 0];
   
   X = A\B;
-  Voutcomp = RL / (RL + 1/(j*omega*Co)) * X(5); %divisor de tensão
+  
+  %até aqui tudo bem
+  
+  Voutcomp = (RL / (RL + ZCo)) * X(5); %divisor de tensão
   Vout = abs(Voutcomp);
-  gain(a) = Vout / abs(Vin);
-  gaindB(a) = 20 * log(gain(a));
+  gain(a) = abs(Voutcomp / Vin);
+  gaindB(a) = 20 * log10(gain(a));
   
   a = a + 1;
 endfor
