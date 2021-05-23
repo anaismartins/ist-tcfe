@@ -19,8 +19,7 @@ This graph is the consequence of a passband filter, which means that there is on
 
 Additionaly, we worked out the bandwidth, which is shown in Table \ref{tab:bandwidth}.
 
-\begin{tabular}{|l|r|}
-  \label{tab:bandwidth}
+\begin{tabular} \label{tab:bandwidth}
   \hline    
   {\bf Variable} & {\bf Value} \\ \hline
   \input{../sim/bandwidth_tab.tex}
@@ -30,13 +29,20 @@ The value of the bandwidth shows for how long the passband filter works - i.e. f
 
 \subsection{Input and Output Impedances}
 
-To work out the input impedance, we simply measured the voltage in node \textit{in2}, the node of the input stage of the circuit, and divided it by teh current going through it. The result is shown in Table \ref{tab:zin}.
+To work out the input impedance, we simply measured the voltage in node \textit{in2}, the node of the input stage of the circuit, and divided it by the current going through it. The result is shown in Table \ref{tab:zin}, with the first value being the real part and the second value being the imaginary part.
 
-\begin{tabular}{|l|r|}
-\label{tab:zin}
+\begin{tabular} \label{tab:zin}
   \hline    
-  {\bf Variable} & {\bf Value} \\ \hline
+  {\bf Variable} & {\bf Value ($k\Omega$)} \\ \hline
   \input{../sim/zin_tab.tex}
 \end{tabular}
 
-For measuring the output impedance, we had to change the circuit used in \textit{NGSpice}.
+For measuring the output impedance, we had to change the circuit used in \textit{NGSpice}. We turned off source $V_{in}$, leaving it in short circuit. Furthermore, we substituted the load, which was the component that was overseeing the whole circuit, with a dummy voltage source equal to the one we turned of, calling it $V_L$ as it is in the place of the load. This circuit can be observed in Figure \ref{fig:circuit-2-spice}.
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{circuit-with-node-names-out.pdf}
+\caption{Circuit used for measuring the output impedance.}
+\label{fig:circuit-2-spice}
+\end{figure}
+
+The final result of the output load is seen is Table \ref{tab:out-load}, dividing the values we got for the voltage in node \textit{out} and dividing it through the current going through it.
