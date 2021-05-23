@@ -58,11 +58,11 @@ echo "*******************"
 echo "* input impedance *"
 echo "*******************"
 
-let zin = v(in2)[40]/vin#branch[40]/(-1000)
+let zincomp = v(in2)[40]/vin#branch[40]/(-1000)
 
-echo "zin_TAB"
-print zin
-echo "zin_END"
+let zin = real(zincomp)
+
+print zincomp
 
 echo "**************"
 echo "* merit data *"

@@ -43,8 +43,10 @@ VL out 0 0 ac 1.0 sin(0 10m 1k)
 ac dec 10 10 100MEG
 
 *output impedance in kOhms
-let zout = v(out)[40]/i(VL)[40]/(-1000)
-print zout
+let zoutcomp = v(out)[40]/i(VL)[40]/(-1000)
+print zoutcomp
+
+let zout = real(zoutcomp)
 
 echo "zout_TAB"
 print zout
