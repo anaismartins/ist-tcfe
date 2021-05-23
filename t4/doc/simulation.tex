@@ -9,14 +9,14 @@ The circuit, as is presented on Figure \ref{fig:circuit}, was simulated using \t
 
 \subsection{Voltage Gain}
 
-We first took a look at what happened in node \textit{out}, which suffered the effect from both of the stages of the circuit, using frequency analysis. The result is presented in Figure \ref{fig:vo2f}.
+We first took a look at what happened in node \textit{out} compared to node \textit{in2}, which suffered the effect from both of the stages of the circuit, using frequency analysis. The result is presented in Figure \ref{fig:sim-gain}.
 
 \vspace{-3cm}
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{../sim/vo2f.pdf}
+\includegraphics[width=0.5\linewidth]{../sim/gain.pdf}
 \caption{Output Voltage Gain Simulated}
-\label{fig:vo2f}
+\label{fig:sim-gain}
 \end{figure}
 
 This graph is the consequence of a passband filter, which means that there is only a specific set of values - a band, if you will - where the circuit works the way it is supposed to. In this case, the passband filter works between around $10^4$ and $10^6$ Hz, which means the amplifier barely works for the human ear.
@@ -34,7 +34,6 @@ The value for the highest point in the graoh is shown below.
 \end{center}
 
 \vspace{0.4cm}
-
 
 Additionaly, we worked out the bandwidth, which is shown below.
 

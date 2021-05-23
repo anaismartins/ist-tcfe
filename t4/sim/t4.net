@@ -38,19 +38,11 @@ RL out 0 8
 
 .control
 
-* time analysis
-tran 1e-5 1e-2
-hardcopy vo1.ps vdb(coll)
 
 * frequency analysis
 ac dec 10 10 100MEG
-hardcopy vo1f.ps vdb(coll)
 
 *https://sourceforge.net/p/ngspice/discussion/133842/thread/2031ad61/
-
-
-hardcopy vo2f.ps vdb(out)
-echo vo2f_FIG
 
 *input impedance in kohm
 
@@ -68,7 +60,7 @@ echo "**************"
 echo "* merit data *"
 echo "**************"
 
-meas ac gain MAX vdb(out)
+meas ac gain MAX vdb(out) - vdb(in2)
 
 *bandwidth
 let gain3 = gain - 3.0
