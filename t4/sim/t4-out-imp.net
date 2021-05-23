@@ -46,4 +46,8 @@ ac dec 10 10 100MEG
 let zout = v(out)[40]/i(VL)[40]/(-1000)
 print zout
 
+echo "zout_TAB"
+print zout
+echo "zout_END"
+
 .endc 
