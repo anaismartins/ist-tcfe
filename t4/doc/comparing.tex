@@ -17,8 +17,18 @@ way as a means of easier representation.
   \centering
   \begin{tabular}{|l|r|}
   \hline    
-  {\bf Variable} & {\bf Value} \\ \hline
-  \input{../sim/bandwidth_tab.tex}
+  {\bf Variable} & {\bf Value (dB)} \\ \hline
+  \input{../sim/gain_tab.tex}
+  \end{tabular}
+  \begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value ($k\Omega$)} \\ \hline
+  \input{../sim/zin_tab.tex}
+ \end{tabular}
+ \begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value ($k\Omega$)} \\ \hline
+  \input{../sim/zout_tab.tex}
   \end{tabular}
 \end{subfigure}%
 \begin{subfigure}{.4\textwidth}
@@ -26,11 +36,37 @@ way as a means of easier representation.
   \begin{tabular}{|l|r|}
   \hline    
   {\bf Variable} & {\bf Value} \\ \hline
-  \input{../mat/gainteo.tex}
+  \input{../mat/totalteo.tex}
   \end{tabular}
 \end{subfigure}
-\caption{MUDAR LEGENDA}
+\caption{Simulation Values (LEFT) and Theoretical Values (RIGHT)}
 \label{fig:sbs1}
 \end{figure}
+
+
+In the tables above we can compare the gain (no units), the input impedance (on the left - $k\Omega$, on the right - $\Omega$) and the output impedance (on the left - $k\Omega$, on the right - $\Omega$)).
+
+\vspace{2cm}
+
+
+\subsection{Plot Comparison}
+
+\vspace{-3cm}
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{../sim/vo2f.pdf}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \vspace{3cm}
+  \includegraphics[width=1\linewidth]{gainteo.eps}
+\end{subfigure}
+\caption{Simulation Gain Values (LEFT) and Theoretial Gain Values (RIGHT)}
+\label{fig:sbs3}
+\end{figure}
+
 
 
