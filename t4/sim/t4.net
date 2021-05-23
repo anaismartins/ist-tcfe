@@ -57,8 +57,9 @@ echo "*******************"
 echo "* input impedance *"
 echo "*******************"
 
+let zin = v(in2)[40]/vin#branch[40]/(-1000)
 
-print v(in2)[40]/vin#branch[40]/(-1000) //acho que vin#branch é a corrente na fonte Vin
+print zin //acho que vin#branch é a corrente na fonte Vin
 
 echo "**************"
 echo "* merit data *"
@@ -86,5 +87,17 @@ let cost = 1000 + 1 + 0.1 + 80 + 20 + 1 + 0.1 + 0.1 + 0.008 + 2 * 0.1 //capacito
 let merit = gain * bandwidth / (cost * f1)
 
 print merit
+
+echo "zin_TAB"
+print zin
+echo "zin_END"
+
+echo "gain_TAB"
+print gain
+echo "gain_END"
+
+echo "merit_TAB"
+print merit
+echo "merit_END"
 
 .endc 
