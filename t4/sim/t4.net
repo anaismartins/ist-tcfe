@@ -60,10 +60,10 @@ echo "**************"
 echo "* merit data *"
 echo "**************"
 
-meas ac gain MAX vdb(out) - vdb(in2)
+let gaindb = vdb(out)[40] - vdb(in2)[40]
 
 *bandwidth
-let gain3 = gain - 3.0
+let gain3 = gaindb - 3.0
 
 print gain3
 
@@ -80,7 +80,7 @@ print f1 f2
 
 let cost = 1000 + 1 + 0.1 + 80 + 20 + 1 + 0.1 + 0.1 + 0.008 + 2 * 0.1 //capacitors, resistors e transistors
 
-let merit = gain * bandwidth / (cost * f1)
+let merit = v(out)[40]/v(in2)[40] * bandwidth / (cost * f1)
 
 print merit
 
@@ -92,7 +92,7 @@ hardcopy gain.ps vdb(out) - vdb(in2)
 echo gain_FIG
 
 echo "gain_TAB"
-print gain
+print gaindb
 echo "gain_END"
 
 echo "merit_TAB"
