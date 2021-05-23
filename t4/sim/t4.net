@@ -69,7 +69,9 @@ echo "* merit data *"
 echo "**************"
 
 meas ac gain MAX vdb(out)
-print out
+echo "gain_TAB"
+print gain
+echo "gain_END"
 
 *bandwidth
 let gain3 = gain - 3.0
