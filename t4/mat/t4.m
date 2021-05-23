@@ -47,6 +47,21 @@ RE1=0;
 ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)));
 ZO1 = 1/(1/ro1+1/RC1);
 
+file = fopen("gainteo.tex", "w");
+
+fprintf(file, "IB1 & %.4e\\\\\\hline ", IB1);
+fprintf(file, "IC1 & %.4e\\\\\\hline ", IC1);
+fprintf(file, "IE1 & %.4e\\\\\\hline ", IE1);
+fprintf(file, "VE1 & %.4e\\\\\\hline ", VE1);
+fprintf(file, "VO1 & %.4e\\\\\\hline ", VO1);
+fprintf(file, "VCE1 & %.4e\\\\\\hline ", VCE);
+fprintf(file, "gain1 & %.4e\\\\\\hline ", abs(AV1));
+fprintf(file, "ZI1 & %.4e\\\\\\hline ", ZI1);
+fprintf(file, "ZO1 & %.4e\\\\\\hline ", ZO1);
+
+fflush(file);
+fclose(file);
+
 %ouput stage
 BFP = 227.3; %parâmetro do transistor PNP
 VAFP = 37.2; %parâmetro do transistor PNP
@@ -67,12 +82,35 @@ AV2 = gm2/(gm2+gpi2+go2+ge2);
 ZI2 = (gm2+gpi2+go2+ge2)/gpi2/(gpi2+go2+ge2);
 ZO2 = 1/(gm2+gpi2+go2+ge2);
 
+file = fopen("outputteo.tex", "w");
+
+fprintf(file, "VI2 & %.4e\\\\\\hline ", VI2);
+fprintf(file, "IE2 & %.4e\\\\\\hline ", IE2);
+fprintf(file, "IC2 & %.4e\\\\\\hline ", IC2);
+fprintf(file, "VO2 & %.4e\\\\\\hline ", VO2);
+fprintf(file, "gain2 & %.4e\\\\\\hline ", abs(AV2));
+fprintf(file, "ZI2 & %.4e\\\\\\hline ", ZI2);
+fprintf(file, "ZO2 & %.4e\\\\\\hline ", ZO2);
+
+fflush(file);
+fclose(file);
+
+
 %total
 gB = 1/(1/gpi2+ZO1);
 AV = (gB+gm2/gpi2*gB)/(gB+ge2+go2+gm2/gpi2*gB)*AV1;
 AV_DB = 20*log10(abs(AV));
 ZI=ZI1;
 ZO=1/(go2+gm2/gpi2*gB+ge2+gB);
+
+file = fopen("totalteo.tex", "w");
+
+fprintf(file, "gain & %.4e\\\\\\hline ", abs(AV));
+fprintf(file, "ZI & %.4e\\\\\\hline ", ZI);
+fprintf(file, "ZO & %.4e\\\\\\hline ", ZO);
+
+fflush(file);
+fclose(file);
 
 %freq axis: 10Hz to 100MHz com 10 pontos por década
 %f = logspace(1, 8, 10); afinal não vou fazer assim, porque implica contas simbólicas
@@ -105,8 +143,6 @@ for i = 1:0.1:8.1 %ou seja, 10 pontos por década
   B = [Vin; 0; 0; 0; 0];
   
   X = A\B;
-  
-  %até aqui tudo bem
   
   Voutcomp = (RL / (RL + ZCo)) * X(5); %divisor de tensão
   Vout = abs(Voutcomp);
