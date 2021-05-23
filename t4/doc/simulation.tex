@@ -17,9 +17,9 @@ We first took a look at what happened in node \textit{out}, which suffered the e
 
 This graph is the consequence of a passband filter, which means that there is only a specific set of values - a band, if you will - where the circuit works the way it is supposed to. In this case, the passband filter works between around $10^4$ and $10^6$ Hz, which means the amplifier barely works for the human ear.
 
-Additionaly, we worked out the bandwidth, which is shown in Table \ref{tab:bandwidth}.
+Additionaly, we worked out the bandwidth, which is shown below.
 
-\begin{tabular} \label{tab:bandwidth}
+\begin{tabular}{|l|r|}
   \hline    
   {\bf Variable} & {\bf Value} \\ \hline
   \input{../sim/bandwidth_tab.tex}
@@ -29,9 +29,9 @@ The value of the bandwidth shows for how long the passband filter works - i.e. f
 
 \subsection{Input and Output Impedances}
 
-To work out the input impedance, we simply measured the voltage in node \textit{in2}, the node of the input stage of the circuit, and divided it by the current going through it. The result is shown in Table \ref{tab:zin}, with the first value being the real part and the second value being the imaginary part.
+To work out the input impedance, we simply measured the voltage in node \textit{in2}, the node of the input stage of the circuit, and divided it by the current going through it. The result is shown in the table below, with the first value being the real part and the second value being the imaginary part.
 
-\begin{tabular} \label{tab:zin}
+\begin{tabular}{|l|r|}
   \hline    
   {\bf Variable} & {\bf Value ($k\Omega$)} \\ \hline
   \input{../sim/zin_tab.tex}
@@ -46,3 +46,11 @@ For measuring the output impedance, we had to change the circuit used in \textit
 \end{figure}
 
 The final result of the output load is seen is Table \ref{tab:out-load}, dividing the values we got for the voltage in node \textit{out} and dividing it through the current going through it.
+
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value ($k\Omega$)} \\ \hline
+  \input{../sim/zout_tab.tex}
+\end{tabular}
+
+\subsection{Merit}
