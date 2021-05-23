@@ -55,7 +55,7 @@ fprintf(file, "IE1 & %.4e\\\\\\hline ", IE1);
 fprintf(file, "VE1 & %.4e\\\\\\hline ", VE1);
 fprintf(file, "VO1 & %.4e\\\\\\hline ", VO1);
 fprintf(file, "VCE1 & %.4e\\\\\\hline ", VCE);
-fprintf(file, "gain1 (dB) & %.4e\\\\\\hline ", abs(AV1_DB));
+fprintf(file, "gain1 (dB) & %.4e\\\\\\hline ", abs(AVI_DB));
 fprintf(file, "ZI1 & %.4e\\\\\\hline ", ZI1);
 fprintf(file, "ZO1 & %.4e\\\\\\hline ", ZO1);
 
