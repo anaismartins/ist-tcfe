@@ -146,7 +146,7 @@ for i = 1:0.1:8.1 %ou seja, 10 pontos por década
   
   Voutcomp = (RL / (RL + ZCo)) * X(5); %divisor de tensão
   Vout = abs(Voutcomp);
-  gain(a) = abs(Voutcomp / Vin);
+  gain(a) = abs(Voutcomp / (Vin - IB1*RS)); %Vout/Vin2
   gaindB(a) = 20 * log10(gain(a));
   
   a = a + 1;
