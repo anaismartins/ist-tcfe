@@ -105,7 +105,7 @@ ZO=1/(go2+gm2/gpi2*gB+ge2+gB);
 
 file = fopen("totalteo.tex", "w");
 
-fprintf(file, "gain & %.4e\\\\\\hline ", abs(AV_DB));
+fprintf(file, "gain (dB) & %.4e\\\\\\hline ", abs(AV_DB));
 fprintf(file, "ZI & %.4e\\\\\\hline ", ZI);
 fprintf(file, "ZO & %.4e\\\\\\hline ", ZO);
 
