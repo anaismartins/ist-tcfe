@@ -49,7 +49,8 @@ hardcopy vo1f.ps vdb(coll)
 *https://sourceforge.net/p/ngspice/discussion/133842/thread/2031ad61/
 
 
-hardcopy vo2f.ps vdb(out) //isto é o gain porque vdb(in) = 0, acho eu...
+hardcopy vo2f.ps vdb(out)
+echo vo2f_FIG
 
 *input impedance in kohm
 
@@ -59,7 +60,9 @@ echo "*******************"
 
 let zin = v(in2)[40]/vin#branch[40]/(-1000)
 
-print zin //acho que vin#branch é a corrente na fonte Vin
+echo "zin_TAB"
+print zin
+echo "zin_END"
 
 echo "**************"
 echo "* merit data *"
@@ -78,7 +81,9 @@ meas ac f2 WHEN vdb(out) = gain3 FALL=1
 
 let bandwidth = f2 - f1
 
+echo "bandwidth_TAB"
 print bandwidth
+echo "bandwidth_END"
 
 print f1 f2
 

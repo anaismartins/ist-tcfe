@@ -3,3 +3,40 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
+The circuit, as is presented on Figure \ref{fig:circuit}, was simulated using \textit{NGSpice}.
+
+\subsection{Voltage Gain}
+
+We first took a look at what happened in node \textit{out}, which suffered the effect from both of the stages of the circuit, using frequency analysis. The result is presented in Figure \ref{fig:vo2f}.
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../sim/vo2f.pdf}
+\caption{Output Voltage Gain Simulated}
+\label{fig:vo2f}
+\end{figure}
+
+This graph is the consequence of a passband filter, which means that there is only a specific set of values - a band, if you will - where the circuit works the way it is supposed to. In this case, the passband filter works between around $10^4$ and $10^6$ Hz, which means the amplifier barely works for the human ear.
+
+Additionaly, we worked out the bandwidth, which is shown in Table \ref{tab:bandwidth}.
+
+\begin{tabular}{|l|r|}
+  \label{tab:bandwidth}
+  \hline    
+  {\bf Variable} & {\bf Value} \\ \hline
+  \input{../sim/bandwidth_tab.tex}
+\end{tabular}
+
+The value of the bandwidth shows for how long the passband filter works - i.e. for how much of the frequencies tested the circuit actually amplifies.
+
+\subsection{Input and Output Impedances}
+
+To work out the input impedance, we simply measured the voltage in node \textit{in2}, the node of the input stage of the circuit, and divided it by teh current going through it. The result is shown in Table \ref{tab:zin}.
+
+\begin{tabular}{|l|r|}
+\label{tab:zin}
+  \hline    
+  {\bf Variable} & {\bf Value} \\ \hline
+  \input{../sim/zin_tab.tex}
+\end{tabular}
+
+For measuring the output impedance, we had to change the circuit used in \textit{NGSpice}.
