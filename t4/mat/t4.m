@@ -55,7 +55,7 @@ fprintf(file, "IE1 & %.4e\\\\\\hline ", IE1);
 fprintf(file, "VE1 & %.4e\\\\\\hline ", VE1);
 fprintf(file, "VO1 & %.4e\\\\\\hline ", VO1);
 fprintf(file, "VCE1 & %.4e\\\\\\hline ", VCE);
-fprintf(file, "gain1 & %.4e\\\\\\hline ", abs(AV1));
+fprintf(file, "gain1 (dB) & %.4e\\\\\\hline ", abs(AV1_DB));
 fprintf(file, "ZI1 & %.4e\\\\\\hline ", ZI1);
 fprintf(file, "ZO1 & %.4e\\\\\\hline ", ZO1);
 
@@ -88,7 +88,7 @@ fprintf(file, "VI2 & %.4e\\\\\\hline ", VI2);
 fprintf(file, "IE2 & %.4e\\\\\\hline ", IE2);
 fprintf(file, "IC2 & %.4e\\\\\\hline ", IC2);
 fprintf(file, "VO2 & %.4e\\\\\\hline ", VO2);
-fprintf(file, "gain2 & %.4e\\\\\\hline ", abs(AV2));
+fprintf(file, "gain2 (dB) & %.4e\\\\\\hline ", 20*log10(abs(AV2)));
 fprintf(file, "ZI2 & %.4e\\\\\\hline ", ZI2);
 fprintf(file, "ZO2 & %.4e\\\\\\hline ", ZO2);
 
@@ -105,7 +105,7 @@ ZO=1/(go2+gm2/gpi2*gB+ge2+gB);
 
 file = fopen("totalteo.tex", "w");
 
-fprintf(file, "gain & %.4e\\\\\\hline ", abs(AV));
+fprintf(file, "gain & %.4e\\\\\\hline ", abs(AV_DB));
 fprintf(file, "ZI & %.4e\\\\\\hline ", ZI);
 fprintf(file, "ZO & %.4e\\\\\\hline ", ZO);
 
