@@ -70,15 +70,22 @@ print all
 
 * time analysis
 tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps vdb(out)
 
 
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(out)
-plot vp(out)
+
 hardcopy vo1f.ps vdb(out)
+
+let gain = v(out)/v(in)
+let gaindB = vdb(out)-vdb(in)
+
+hardcopy gain.ps gaindB
+
+meas ac gain_max MAX gain
+meas ac gaindB_max MAX gaindB
+*meas ac f1 WHEN gaindB = gain3 RISE=1 vai ser para medir as frequências do passa banda
+*meas ac f2 WHEN gaindB = gain3 FALL=1
 
 *input impedance in kohm
 print v(in)[40]/R1[i]/1000
