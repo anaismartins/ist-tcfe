@@ -56,6 +56,9 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 X1 0 inv_in vcc vee out uA741
 
 R1 in inv_in 1000
+R3 in inv_in 1000
+R4 in inv_in 1000
+
 R2 inv_in out 10000
 
 * load
@@ -67,6 +70,20 @@ RL out 0 8
 .control
 
 print all
+
+******************************************
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+******************************************
 
 * time analysis
 tran 1e-5 1e-2
