@@ -87,7 +87,8 @@ set color6=rgb:4/0/0
 
 * time analysis
 tran 1e-5 1e-2
-
+plot v(out)
+hardcopy vo1.ps v(out)
 
 * frequency analysis
 ac dec 10 10 100MEG
@@ -105,7 +106,7 @@ meas ac gaindB_max MAX gaindB
 *meas ac f2 WHEN gaindB = gain3 FALL=1
 
 *input impedance in kohm
-print v(in)[40]/R1[i]/1000
+*print v(in)[40]/R1[i]/1000
 
 *need a different setup to measure output impedance
 
