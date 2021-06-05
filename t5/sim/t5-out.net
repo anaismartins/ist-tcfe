@@ -51,7 +51,7 @@
 
 Vcc vcc 0 5.0
 Vee vee 0 -5.0
-Vin in 0 0 ac 1.0 sin(0 10m 1k)
+Vin in 0 0 
 
 Cin1 cin1 inv_in 1u
 Cin2 cin2 inv_in 1u
@@ -66,7 +66,7 @@ R4 cin3 in 1k
 R2 inv_in out 10000
 
 * load
-RL out 0 8
+Vl out 0 0 ac 1.0 sin(0 10m 1k)
 
 .op
 .end
@@ -89,51 +89,13 @@ set color6=rgb:4/0/0
 
 ******************************************
 
-* time analysis
-tran 1e-5 1e-2
-*plot v(out)
-*hardcopy vo1.ps v(out)
-
 * frequency analysis
 ac dec 10 10 100MEG
 
-*hardcopy vo1f.ps vdb(out)
+*output impedance in kohm
 
-let gain = v(out)/v(in)
-let gain_max = abs(gain[19])
-print gain_max
-
-let gaindB = vdb(out)-vdb(in)
-
-hardcopy gain.ps gaindB
-
-meas ac gaindB_max MAX gaindB
-let gain3 = gaindB_max - 3
-meas ac f1 WHEN gaindB = gain3 RISE=1
-meas ac f2 WHEN gaindB = gain3 FALL=1
-
-let band_freq = f2 - f1
-let cen_freq = sqrt(f1*f2)
-print cen_freq
-
-*input impedance in kohm
-
-print v(in)
-
-let zin = real(v(in)[20]/(vin#branch[20])/-1000) 
-*mudar 19 se central frequency mudar
-print zin
-
-let cost = 3*1 + 3*1 + 8.661e-6 + 30.00e-6 + 0.1 + 0.1 + 100.0 + 5.305*2 + 1.836*2 + 13.19e3 + 50e-3 + 100e-3 + 18.16 + 0.1*5
-* 3*1 + 3*1 vem das nossas resistências e condensadores
-
-let gain_dev = abs(gain_max - 100)
-
-let cen_freq_dev = abs(1000-cen_freq)
-
-let merit = 1/(cost * gain_dev * cen_freq_dev + 10e-6)
-
-print merit
+let zout = real(v(out)[20]/i(Vl)[20]/(-1000))
+print zout
 
 .endc 
 
