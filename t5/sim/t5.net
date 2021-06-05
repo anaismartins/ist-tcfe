@@ -91,13 +91,13 @@ set color6=rgb:4/0/0
 
 * time analysis
 tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps v(out)
+*plot v(out)
+*hardcopy vo1.ps v(out)
 
 * frequency analysis
 ac dec 10 10 100MEG
 
-hardcopy vo1f.ps vdb(out)
+*hardcopy vo1f.ps vdb(out)
 
 let gain = v(out)/v(in)
 let gaindB = vdb(out)-vdb(in)
@@ -115,7 +115,9 @@ let cen_freq = (f1+f2)/2
 print cen_freq
 
 *input impedance in kohm
-*print v(in)[40]/R1[i]/1000
+
+let zin = v(in)[25]/(R1[i] + R3[i] + R4[i])/1000
+print zin
 
 *need a different setup to measure output impedance
 
