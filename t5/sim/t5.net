@@ -53,11 +53,15 @@ Vcc vcc 0 5.0
 Vee vee 0 -5.0
 Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
+Cin1 cin1 inv_in 1u
+Cin2 cin2 inv_in 1u
+Cin3 cin3 inv_in 1u
+
 X1 0 inv_in vcc vee out uA741
 
-R1 in inv_in 1000
-R3 in inv_in 1000
-R4 in inv_in 1000
+R1 cin1 in 1k
+R3 cin2 in 1k
+R4 cin3 in 1k
 
 R2 inv_in out 10000
 
@@ -102,8 +106,13 @@ hardcopy gain.ps gaindB
 
 meas ac gain_max MAX gain
 meas ac gaindB_max MAX gaindB
-*meas ac f1 WHEN gaindB = gain3 RISE=1 vai ser para medir as frequências do passa banda
-*meas ac f2 WHEN gaindB = gain3 FALL=1
+let gain3 = gaindB_max - 3
+meas ac f1 WHEN gaindB = gain3 RISE=1
+meas ac f2 WHEN gaindB = gain3 FALL=1
+
+let band_freq = f2 - f1
+let cen_freq = (f1+f2)/2
+print cen_freq
 
 *input impedance in kohm
 *print v(in)[40]/R1[i]/1000
