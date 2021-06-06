@@ -8,12 +8,12 @@ Cin1 = 1e-6; %F
 Cin2 = 1e-6; %F
 Cin3 = 1e-6; %F
 
-f = 2.383202e+03; %Hz
+f = 8.437654e+02; %Hz
 omega = 2 * pi * f;
 
 Z1 = R1 + 1/(j * omega * Cin1);
-Z2 = R2 + 1/(j * omega * Cin2);
-Z3 = R3 + 1/(j * omega * Cin3);
+Z2 = R3 + 1/(j * omega * Cin2);
+Z3 = R4 + 1/(j * omega * Cin3);
 
 Ztemp = 1/(1/Z1 + 1/Z2); %paralelo de Z1 com Z2
 Zeq = 1/(1/Ztemp + 1/Z3); %impedância ao nível de inv_in
@@ -43,13 +43,13 @@ for i = 1:0.1:8.1 %ou seja, 10 pontos por década
   f = power(10, i);
   omega = 2 * pi * f;
   Z1 = R1 + 1/(j * omega * Cin1);
-  Z2 = R2 + 1/(j * omega * Cin2);
-  Z3 = R3 + 1/(j * omega * Cin3);
+  Z2 = R3 + 1/(j * omega * Cin2);
+  Z3 = R4 + 1/(j * omega * Cin3);
   
   Ztemp = 1/(1/Z1 + 1/Z2); %paralelo de Z1 com Z2
   Zeq = 1/(1/Ztemp + 1/Z3); %impedância ao nível de inv_in
   
-  gaincomp = R2/Zeq; %slide 2 aula 23
+  gaincomp = -R2/Zeq; %slide 2 aula 23
   gain = abs(gaincomp);
   gaindB(a) = 20 * log10(gain);
   
