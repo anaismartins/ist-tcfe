@@ -53,20 +53,33 @@ Vcc vcc 0 5.0
 Vee vee 0 -5.0
 Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
-Cin1 cin1 inv_in 1u
-Cin2 cin2 inv_in 1u
-Cin3 cin3 inv_in 1u
+*Cin1 cin1 inv_in 1u
+*Cin2 cin2 inv_in 1u
+*Cin3 cin3 inv_in 1u
 
-X1 0 inv_in vcc vee out uA741
+*X1 0 inv_in vcc vee out uA741
 
-R1 cin1 in 1k
-R3 cin2 in 1k
-R4 cin3 in 1k
+*R1 cin1 in 1k
+*R3 cin2 in 1k
+*R4 cin3 in 1k
 
-R2 inv_in out 10000
+*R2 inv_in out 10000
 
 * load
-RL out 0 8
+*RL out 0 8
+
+
+X1 plus minus vcc vee 6 uA741
+
+C1 in plus 220n
+R1 0 plus 1k
+
+R4 0 minus 1k
+R3 6 minus 100k
+R2 out 6 1k
+C2 out 0 220n
+
+
 
 .op
 .end
@@ -100,8 +113,9 @@ ac dec 10 10 100MEG
 hardcopy phase.ps ph(out)
 
 let gain = v(out)/v(in)
-let gain_max = abs(gain[19])
-print gain_max
+*let gain_max = abs(gain[19])
+*print gain_max
+meas ac gain_max MAX gain
 
 let gaindB = vdb(out)-vdb(in)
 hardcopy gain.ps gaindB
