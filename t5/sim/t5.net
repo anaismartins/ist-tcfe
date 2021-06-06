@@ -71,13 +71,13 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
 X1 plus minus vcc vee 6 uA741
 
-C1 in plus 220n
+C1 in plus 1u
 R1 0 plus 1k
 
 R4 0 minus 1k
 R3 6 minus 100k
 R2 out 6 1k
-C2 out 0 220n
+C2 out 0 200n
 
 
 
