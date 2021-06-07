@@ -69,14 +69,14 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 *RL out 0 8
 
 
-X1 plus minus vcc vee 6 uA741
+X1 plus minus vcc vee rout uA741
 
 C1 in plus 1u
 R1 0 plus 1k
 
 R4 0 minus 1k
-R3 6 minus 100k
-R2 out 6 1k
+R3 rout minus 100k
+R2 out rout 1k
 C2 out 0 200n
 
 
@@ -104,21 +104,20 @@ set color6=rgb:4/0/0
 
 * time analysis
 tran 1e-5 1e-2
-*plot v(out)
-*hardcopy vo1.ps v(out)
 
 * frequency analysis
 ac dec 10 10 100MEG
 
 hardcopy phase.ps ph(out)
+echo "phase_FIG"
 
 let gain = v(out)/v(in)
-*let gain_max = abs(gain[19])
-*print gain_max
-meas ac gain_max MAX gain
+let gain_4cost = abs(gain[20])
+print gain_4cost
 
 let gaindB = vdb(out)-vdb(in)
 hardcopy gain.ps gaindB
+echo "gain_FIG"
 
 meas ac gaindB_max MAX gaindB
 let gain3 = gaindB_max - 3
@@ -132,13 +131,24 @@ print cen_freq
 
 *print v(in)
 
-let zin = real(v(in)[20]/(vin#branch[20])/-1000) 
+*mudar o índice 16 se a central frequency mudar
+let zin = v(in)[16]/(vin#branch[16])/-1
+
+echo "zin_TAB"
 print zin
+echo "zin_END"
 
-let cost = 3*1 + 3*1 + 8.661e-6 + 30.00e-6 + 0.1 + 0.1 + 100.0 + 5.305*2 + 1.836*2 + 13.19e3 + 50e-3 + 100e-3 + 18.16 + 0.1*5
-* 3*1 + 3*1 vem das nossas resistências e condensadores, o resto é do op amp
+*merit calculatio 
 
-let gain_dev = abs(gain_max - 100)
+let opampcost = 8.661e-6 + 30.00e-6 + 0.1 + 0.1 + 100.0 + 5.305*2 + 1.836*2 + 13.19e3 + 50e-3 + 100e-3 + 18.16 + 0.1*5
+let cost = opampcost + 1 + 1 + 1 + 100 + 1 + 0.2
+
+echo "cost_TAB"
+print opampcost
+print cost
+echo "cost_END"
+
+let gain_dev = abs(gain_4cost - 100)
 
 let cen_freq_dev = abs(1000-cen_freq)
 

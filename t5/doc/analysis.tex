@@ -1,74 +1,22 @@
-\newpage
-
 \section{Theoretical Analysis}
 \label{sec:analysis}
-
-\subsection{Operating Point}
-
-When it comes to operating point analysis, the capacitors behave as open circuits, for their impedance is infinite, therefore, for the gain stage we can compute the Thévenin's equivalent of the bias circuit, making it easier to analyse. Running simple mesh analysis, and knowing the NPN transistor works in FAR, we can calculate every current and voltage.
-To compute the input and output impedance regarding this stage and its gain, one has to analyse the incremental circuit for medium frequencies, the ones that belong to the passband, using the calculations shown in the class slides. The table below shows all these results.
-
-\begin{center}
-\begin{tabular}{|l|r|}
-  \hline    
-  {\bf Variable} & {\bf Value} \\ \hline
-  \input{../mat/gainteo.tex}
-\end{tabular}
-\end{center}
-
-For the output stage we do the same analysis but with the supermesh and this time the transistor is PNP. We calculate essentially the same variables:
-
-\begin{center}
-\begin{tabular}{|l|r|}
-  \hline    
-  {\bf Variable} & {\bf Value} \\ \hline
-  \input{../mat/outputteo.tex}
-\end{tabular}
-\end{center}
-
-
-Combining both stages, we get the total gain, imput and output impedances:
-
-\begin{center}
-\begin{tabular}{|l|r|}
-  \hline    
-  {\bf Variable} & {\bf Value} \\ \hline
-  \input{../mat/totalteo.tex}
-\end{tabular}
-\end{center}
-
-
-
-
-\newpage
-
-\subsection{Incremental analysis}
-
-This time, we create our incremental circuit that combines both stages as shown in figure \ref{fig:circuit-inc}.
-
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.65\linewidth]{circuit-inc.pdf}
-\caption{Incremental analysis circuit}
-\label{fig:circuit-inc}
-\end{figure}
-
-Performing nodal analysis for frequency $\in [1Hz, 100MHz]$, with 10 points per decade, we get a vector with the several gain values, which we plot in a dB graph.
-
-\begin{equation} 
-\begin{cases}
-    V_1 = V_{in} \\
-    \frac{V_1 - V_2}{R_{in} + Z_{C_i}} - \frac{V_2}{R_1 || R_2} - \frac{V_2 - V_3}{R_{\pi_1}} = 0 \\
-    \frac{V_2 - V_3}{R_{\pi_1}} + g_{m_1} v_{\pi_1} - \frac{V_3}{R_E || Z_{C_B}} - \frac{V_3 - V_4}{r_{o_1}} = 0 \\
-    g_{m_1} v_{\pi_1} + \frac{V_4}{R_{C_1}} + \frac{V_4 - V_5}{R_{\pi_2}} - \frac{V_3 - V_4}{r_{o_1}} = 0 \\
-    \frac{V_4 - V_5}{R_{\pi_2}} + g_{m_2} v_{\pi_2} - \frac{V_5}{R_{out} || (R_L + Z_{C_o})} - \frac{V_5}{r_{o_2}} = 0 \\
-    v_{\pi_1} = V_2 - V_3 \\
-    v_{\pi_2} = V_4 - V_5 \\    
-\end{cases}
-\end{equation}
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{gainteo.eps}
 \caption{Gain in dB}
 \label{fig:grafteo}
 \end{figure}
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.5\linewidth]{phaseteo.eps}
+%\caption{Gain in dB}
+%\label{fig:grafteo}
+\end{figure}
+
+\begin{center}
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value} \\ \hline
+  \input{../mat/Teo1.tex}
+\end{tabular}
+\end{center}

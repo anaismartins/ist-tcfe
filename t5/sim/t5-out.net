@@ -51,21 +51,33 @@
 
 Vcc vcc 0 5.0
 Vee vee 0 -5.0
-Vin in 0 0 
+*turned off vin
 
-Cin1 cin1 inv_in 1u
-Cin2 cin2 inv_in 1u
-Cin3 cin3 inv_in 1u
+*Cin1 cin1 inv_in 1u
+*Cin2 cin2 inv_in 1u
+*Cin3 cin3 inv_in 1u
 
-X1 0 inv_in vcc vee out uA741
+*X1 0 inv_in vcc vee out uA741
 
-R1 cin1 in 1k
-R3 cin2 in 1k
-R4 cin3 in 1k
+*R1 cin1 in 1k
+*R3 cin2 in 1k
+*R4 cin3 in 1k
 
-R2 inv_in out 10000
+*R2 inv_in out 10000
 
 * load
+*RL out 0 8
+
+
+X1 plus minus vcc vee out uA741
+
+C1 0 plus 1u
+R1 0 plus 1k
+
+R4 0 minus 1k
+R3 out minus 100k
+
+*load - dummy source to substitute load
 Vl out 0 0 ac 1.0 sin(0 10m 1k)
 
 .op
@@ -94,8 +106,12 @@ ac dec 10 10 100MEG
 
 *output impedance in kohm
 
-let zout = real(v(out)[20]/i(Vl)[20]/(-1000))
+*mudar 16 se mudar a frequência central
+let zout = v(out)[16]/i(Vl)[16]/(-1)
+
+echo "zout_TAB"
 print zout
+echo "zout_END"
 
 .endc 
 

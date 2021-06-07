@@ -8,7 +8,7 @@ all:
 	make -C mat
 	make -C sim
 	make -C doc
-	cp doc/report-4.pdf ../
+	cp doc/report-5.pdf ../
 
 clean:
 	make -C mat clean
