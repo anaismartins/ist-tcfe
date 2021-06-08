@@ -6,14 +6,20 @@ R4 = 1000; %Ohm
 C1 = 1e-6; %F
 C2 = 220e-9; %F
 
-f = 1000; %Hz
+wL = 1 / (R1 * C1);
+fL = wL / (2 * pi);
+
+wH = 1 / (R2 * C2);
+fH = wH / (2 * pi);
+
+f = sqrt(fL * fH);
 omega = 2 * pi * f;
 
 ZC1 = 1/(j*omega*C1);
 ZC2 = 1/(j*omega*C2);
 
-Zi = abs(1/(1/R1 + 1/ZC1));
-Zo = abs(1/(1/R2 + 1/ZC2));
+Zi = ZC1 + R1;
+Zo = 1/(1/R2 + 1/ZC2);
 
 gaincomp = (R1*C1*j*omega)/(1 + R1*C1*j*omega) * (1 + (R3/R4)) * (1/(1 + R2*C2*j*omega));
 gain = abs(gaincomp);
@@ -24,8 +30,10 @@ file = fopen("Teo1.tex", "w");
 
 fprintf(file, "gain & %.4e\\\\\\hline ", gain);
 fprintf(file, "gaindB & %.4e\\\\\\hline ", gaindB);
-fprintf(file, "Zi & %.4e\\\\\\hline ", Zi);
-fprintf(file, "Zo & %.4e\\\\\\hline ", Zo);
+fprintf(file, "Zire & %.4e\\\\\\hline ", real(Zi));
+fprintf(file, "Ziim & %.4e\\\\\\hline ", imag(Zi));
+fprintf(file, "Zore & %.4e\\\\\\hline ", real(Zo));
+fprintf(file, "Zoim & %.4e\\\\\\hline ", imag(Zo));
 
 fflush(file);
 fclose(file);
@@ -61,6 +69,6 @@ hf2 = figure();
 plot(f, phase);
 legend("Phase");
 xlabel("log(f)[Hz]");
-ylabel("Phase[º]");
+ylabel("Phase[deg]");
 
 print (hf2, "phaseteo.eps", "-depsc");

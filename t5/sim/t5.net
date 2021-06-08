@@ -96,32 +96,32 @@ hardcopy phase.ps ph(out)
 echo "phase_FIG"
 
 let gain = v(out)/v(in)
-let gain_4cost = abs(gain[20])
-print gain_4cost
+let gain4cost = abs(gain[20])
+print gain4cost
 
 let gaindB = vdb(out)-vdb(in)
 hardcopy gain.ps gaindB
 echo "gain_FIG"
 
-meas ac gaindB_max MAX gaindB
+meas ac gaindBmax MAX gaindB
 
 echo "gain_TAB"
-print gaindB_max
+print gaindBmax
 echo "gain_END"
 
-let gain3 = gaindB_max - 3
+let gain3 = gaindBmax - 3
 meas ac f1 WHEN gaindB = gain3 RISE=1
 meas ac f2 WHEN gaindB = gain3 FALL=1
 
 let bandwidth = f2 - f1
 
-let cen_freq = sqrt(f1*f2)
+let cenfreq = sqrt(f1*f2)
 
 echo "frequencies_TAB"
 print f1
 print f2
 print bandwidth
-print cen_freq
+print cenfreq
 echo "frequencies_END"
 
 *input impedance in ohm
@@ -145,11 +145,11 @@ print opampcost
 print cost
 echo "cost_END"
 
-let gain_dev = abs(gain_4cost - 100)
+let gaindev = abs(gain4cost - 100)
 
-let cen_freq_dev = abs(1000-cen_freq)
+let cenfreqdev = abs(1000-cenfreq)
 
-let merit = 1/cost * (gain_dev + cen_freq_dev + 10e-6)
+let merit = 1/cost * (gaindev + cenfreqdev + 10e-6)
 
 echo "merit_TAB"
 print merit
