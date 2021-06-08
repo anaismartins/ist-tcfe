@@ -7,20 +7,22 @@ We started out by doing a simulation analysis of the circuit that was present ab
 
 In Figure \ref{fig:sim-gain}, the result for the gain for various frequencies is presented.
 
+\vspace{-3cm}
+
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../sim/gain.pdf}
 \caption{Output Voltage Gain Simulated}
 \label{fig:sim-gain}
 \end{figure}
 
-It is obvious that we were able to come quite close to the requested gain, but our central frequency is not the desired one. In tables \ref{tab:gain-tab} and \ref{tab:freq-tab}, the relevant results from the the graph in Figure \ref{fig:sim-gain} are presented, which lets us know that the higher cut-off frequency is actually very close to the desired central frequency, which means that our gain is still mostly relevant at 1000Hz.
+It is obvious that we were able to come quite close to the requested gain, but our central frequency is not the desired one. In the tables below the relevant results from the the graph in Figure \ref{fig:sim-gain} are presented, which lets us know that the higher cut-off frequency is actually very close to the desired central frequency, which means that our gain is still mostly relevant at 1000Hz.
 
 \begin{center}
 \begin{tabular}{|l|r|}
   \hline    
   {\bf Variable} & {\bf Value (dB)} \\ \hline
   \input{../sim/gain_tab.tex}
-  \label{tab:gain-tab}
+  %\label{tab:gain-tab}
 \end{tabular}
 \end{center}
 
@@ -29,7 +31,7 @@ It is obvious that we were able to come quite close to the requested gain, but o
   \hline    
   {\bf Variable} & {\bf Value (Hz)} \\ \hline
   \input{../sim/frequencies_tab.tex}
-  \label{tab:freq-tab}
+ % \label{tab:freq-tab}
 \end{tabular}
 \end{center}
 
@@ -51,12 +53,13 @@ The discontinuance at around 10$^5$Hz is due to the fact that \textit{Ngspice}, 
 \end{tabular}
 \end{center}
 
+
 \subsection{Output Impedance Calculation}
 
 For us to be able to calculate the output impedance, we had to create a new circuit, similar to the original one. However, in this new circuit, that is displayed in Figure \ref{fig:circuit-out}, we have turned off the input voltage source and substituted the load for that same source.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{circuit-out.pdf}
+\includegraphics[width=0.7\linewidth]{circuit-out.pdf}
 \caption{The circuit used to calculate the output impedance.}
 \label{fig:circuit-out}
 \end{figure}
