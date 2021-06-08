@@ -51,34 +51,20 @@
 
 Vcc vcc 0 5.0
 Vee vee 0 -5.0
-*turned off vin
+Vin in 0 0 
 
-*Cin1 cin1 inv_in 1u
-*Cin2 cin2 inv_in 1u
-*Cin3 cin3 inv_in 1u
+X1 plus minus vcc vee rout uA741
 
-*X1 0 inv_in vcc vee out uA741
-
-*R1 cin1 in 1k
-*R3 cin2 in 1k
-*R4 cin3 in 1k
-
-*R2 inv_in out 10000
-
-* load
-*RL out 0 8
-
-
-X1 plus minus vcc vee out uA741
-
-C1 0 plus 1u
+C1 in plus 1u
 R1 0 plus 1k
 
 R4 0 minus 1k
-R3 out minus 100k
+R3 rout minus 100k
 
-*load - dummy source to substitute load
-Vl out 0 0 ac 1.0 sin(0 10m 1k)
+R2 out rout 1k
+C2 out 0 200n
+*test source
+Vaux out 0 0 ac 1.0 sin(0 10m 1k)
 
 .op
 .end
@@ -107,7 +93,7 @@ ac dec 10 10 100MEG
 *output impedance in ohm
 
 *16 corresponde ao índice mais próximo da nossa fc
-let zout = v(out)[16]/i(Vl)[16]/(-1)
+let zout = v(out)[16]/i(Vaux)[16]/(-1)
 
 echo "zout_TAB"
 print zout

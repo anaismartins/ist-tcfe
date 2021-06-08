@@ -41,7 +41,9 @@ In Figure \ref{fig:sim-phase}, you are also able to see the phase of the circuit
 \label{fig:sim-phase}
 \end{figure}
 
-The discontinuance at around 10$^5$Hz is due to the fact that \textit{Ngspice}, the \textit{software} that was used for the simulation, automatically makes it so the values showed for the phase angle are between $\pi$ and -$\pi$, which lead to that. ESTAVA AQUI
+The discontinuance at around 10$^5$Hz is due to the fact that \textit{Ngspice}, the \textit{software} that was used for the simulation, automatically makes it so the values showed for the phase angle are between $\pi$ and -$\pi$, which lead to that. 
+
+Another interesting results, which will be useful later on for comparing with the theoretical analysis results, are the input and output impedances. The input impedance is directly taken from dividing the voltage in the input node by the current going through it in the original circuit.
 
 \begin{center}
 \begin{tabular}{|l|r|}
@@ -51,9 +53,7 @@ The discontinuance at around 10$^5$Hz is due to the fact that \textit{Ngspice}, 
 \end{tabular}
 \end{center}
 
-\subsection{Output Impedance Calculation}
-
-For us to be able to calculate the output impedance, we had to create a new circuit, similar to the original one. However, in this new circuit, that is displayed in Figure \ref{fig:circuit-out}, we have turned off the input voltage source and substituted the load for that same source.
+For us to be able to calculate the output impedance, we had to create a new circuit, similar to the original one. However, in this new circuit, that is displayed in Figure \ref{fig:circuit-out}, we have turned off the input voltage source and used it as a test source connected to the output terminals.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.6\linewidth]{circuit-out.pdf}
@@ -61,29 +61,33 @@ For us to be able to calculate the output impedance, we had to create a new circ
 \label{fig:circuit-out}
 \end{figure}
 
+The value obtained for the output impedance is presented in Table \ref{tab:zout}, calculated by measuring the voltage in the output terminal and, once again, dividing it by the current going through it -- the test source is used to measure this current.
+
 \begin{center}
 \begin{tabular}{|l|r|}
   \hline    
   {\bf Variable} & {\bf Value ($\Omega$)} \\ \hline
   \input{../sim/zout_tab.tex}
+  \label{tab:zout}
 \end{tabular}
 \end{center}
+
+Some last final interesting values are the cost of the whole circuit, in Table \ref{tab:cost}, and the merit, in Table \ref{tab:merit}.
 
 \begin{center}
 \begin{tabular}{|l|r|}
   \hline    
   {\bf Variable} & {\bf Value (MU)} \\ \hline
   \input{../sim/cost_tab.tex}
+  \label{tab:cost}
 \end{tabular}
 \end{center}
-
-Relevant results:
-
 
 \begin{center}
 \begin{tabular}{|l|r|}
   \hline    
   {\bf Variable} & {\bf Value} \\ \hline
   \input{../sim/merit_tab.tex}
+  \label{tab:merit}
 \end{tabular}
 \end{center}
