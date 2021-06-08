@@ -3,7 +3,9 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-Results that were asked for:
+We started out by doing a simulation analysis of the circuit that was present above. The OP-AMP used is a subcircuit composed of of 2 capacitors, 5 diodes, a voltage-controled voltage source, a current-controlled current source, 2 voltage-controlled current sources, an independent current source, a current-controled voltage source, 2 transistors, 9 resistors and 6 independent voltage sources, making it an OP-AMP in the model uA741.
+
+In Figure \ref{fig:sim-gain}, the result for the gain for various frequencies is presented.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../sim/gain.pdf}
@@ -11,11 +13,35 @@ Results that were asked for:
 \label{fig:sim-gain}
 \end{figure}
 
+It is obvious that we were able to come quite close to the requested gain, but our central frequency is not the desired one. In tables \ref{tab:gain-tab} and \ref{tab:freq-tab}, the relevant results from the the graph in Figure \ref{fig:sim-gain} are presented, which lets us know that the higher cut-off frequency is actually very close to the desired central frequency, which means that our gain is still mostly relevant at 1000Hz.
+
+\begin{center}
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value (dB)} \\ \hline
+  \input{../sim/gain_tab.tex}
+  \label{tab:gain-tab}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value (Hz)} \\ \hline
+  \input{../sim/frequencies_tab.tex}
+  \label{tab:freq-tab}
+\end{tabular}
+\end{center}
+
+In Figure \ref{fig:sim-phase}, you are also able to see the phase of the circuit throughout the same range of frequencies.
+
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../sim/phase.pdf}
-%\caption{Output Voltage Gain Simulated}
-%\label{fig:sim-gain}
+\caption{Simulated Phase}
+\label{fig:sim-phase}
 \end{figure}
+
+The discontinuance at around 10$^5$Hz is due to the fact that \textit{Ngspice}, the \textit{software} that was used for the simulation, automatically makes it so the values showed for the phase angle are between $\pi$ and -$\pi$, which lead to that. ESTAVA AQUI
 
 \begin{center}
 \begin{tabular}{|l|r|}
@@ -53,21 +79,6 @@ For us to be able to calculate the output impedance, we had to create a new circ
 
 Relevant results:
 
-\begin{center}
-\begin{tabular}{|l|r|}
-  \hline    
-  {\bf Variable} & {\bf Value (dB)} \\ \hline
-  \input{../sim/gain_tab.tex}
-\end{tabular}
-\end{center}
-
-\begin{center}
-\begin{tabular}{|l|r|}
-  \hline    
-  {\bf Variable} & {\bf Value (Hz)} \\ \hline
-  \input{../sim/frequencies_tab.tex}
-\end{tabular}
-\end{center}
 
 \begin{center}
 \begin{tabular}{|l|r|}
