@@ -25,7 +25,6 @@ gaincomp = (R1*C1*j*omega)/(1 + R1*C1*j*omega) * (1 + R3/R4) * (1/(1 + R2*C2*j*o
 gain = abs(gaincomp);
 gaindB = 20 * log10(gain);
 
-
 file = fopen("Teo1.tex", "w");
 
 fprintf(file, "gain & %.4e\\\\\\hline ", gain);

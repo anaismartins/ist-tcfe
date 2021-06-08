@@ -1,6 +1,18 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
+We start off by analyzing the circuit at the central frequency, the geometric average between the lower and upper cut-off frequencies. In this case, the input impedance is given by the series of resistor $R_1$ and capacitor $C_1$ and the output impedance by the parallel of resistor $R_2$ and capacitor $C_2$. The gain is given by the quotient between $v_{out}$ and $v_{in}$, which is calculated taking into account the fact that this OP-AMP is a non-inverting amplifier. We get the results:
+
+\begin{center}
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value} \\ \hline
+  \input{../mat/Teo1.tex}
+\end{tabular}
+\end{center}
+
+We then do the same type of analysis, but with a vector of frequencies, which means we calculate the gain for $f \in [10, 10^8] Hz$. We present its magnitude in dB and its phase in degrees.
+
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{gainteo.eps}
 \caption{Gain in dB}
@@ -12,11 +24,3 @@
 \caption{Phase in degrees}
 \label{fig:phaseteo}
 \end{figure}
-
-\begin{center}
-\begin{tabular}{|l|r|}
-  \hline    
-  {\bf Variable} & {\bf Value} \\ \hline
-  \input{../mat/Teo1.tex}
-\end{tabular}
-\end{center}
