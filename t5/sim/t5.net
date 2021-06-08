@@ -61,7 +61,7 @@ R1 0 plus 1k
 R4 0 minus 1k
 R3 rout minus 100k
 R2 out rout 1k
-C2 out 0 200n
+C2 out 0 220n
 
 
 
