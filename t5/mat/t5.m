@@ -21,7 +21,7 @@ ZC2 = 1/(j*omega*C2);
 Zi = ZC1 + R1;
 Zo = 1/(1/R2 + 1/ZC2);
 
-gaincomp = (R1*C1*j*omega)/(1 + R1*C1*j*omega) * (1 + (R3/R4)) * (1/(1 + R2*C2*j*omega));
+gaincomp = (R1*C1*j*omega)/(1 + R1*C1*j*omega) * (1 + R3/R4) * (1/(1 + R2*C2*j*omega));
 gain = abs(gaincomp);
 gaindB = 20 * log10(gain);
 
