@@ -3,6 +3,7 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
+Results that were asked for:
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.5\linewidth]{../sim/gain.pdf}
@@ -19,15 +20,25 @@
 \begin{center}
 \begin{tabular}{|l|r|}
   \hline    
-  {\bf Variable} & {\bf Value (dB)} \\ \hline
+  {\bf Variable} & {\bf Value ($\Omega$)} \\ \hline
   \input{../sim/zin_tab.tex}
 \end{tabular}
 \end{center}
 
+\subsection{Output Impedance Calculation}
+
+For us to be able to calculate the output impedance, we had to create a new circuit, similar to the original one. However, in this new circuit, that is displayed in Figure \ref{fig:circuit-out}, we have turned off the input voltage source and substituted the load for that same source.
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{circuit-out.pdf}
+\caption{The circuit used to calculate the output impedance.}
+\label{fig:circuit-out}
+\end{figure}
+
 \begin{center}
 \begin{tabular}{|l|r|}
   \hline    
-  {\bf Variable} & {\bf Value} \\ \hline
+  {\bf Variable} & {\bf Value ($\Omega$)} \\ \hline
   \input{../sim/zout_tab.tex}
 \end{tabular}
 \end{center}
@@ -35,15 +46,33 @@
 \begin{center}
 \begin{tabular}{|l|r|}
   \hline    
-  {\bf Variable} & {\bf Value} \\ \hline
-  \input{../sim/zout_tab.tex}
-\end{tabular}
-\end{center}
-
-\begin{center}
-\begin{tabular}{|l|r|}
-  \hline    
-  {\bf Variable} & {\bf Value} \\ \hline
+  {\bf Variable} & {\bf Value (MU)} \\ \hline
   \input{../sim/cost_tab.tex}
+\end{tabular}
+\end{center}
+
+Relevant results:
+
+\begin{center}
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value (dB)} \\ \hline
+  \input{../sim/gain_tab.tex}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value (Hz)} \\ \hline
+  \input{../sim/frequencies_tab.tex}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|r|}
+  \hline    
+  {\bf Variable} & {\bf Value} \\ \hline
+  \input{../sim/merit_tab.tex}
 \end{tabular}
 \end{center}

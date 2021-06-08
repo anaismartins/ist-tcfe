@@ -53,22 +53,6 @@ Vcc vcc 0 5.0
 Vee vee 0 -5.0
 Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
-*Cin1 cin1 inv_in 1u
-*Cin2 cin2 inv_in 1u
-*Cin3 cin3 inv_in 1u
-
-*X1 0 inv_in vcc vee out uA741
-
-*R1 cin1 in 1k
-*R3 cin2 in 1k
-*R4 cin3 in 1k
-
-*R2 inv_in out 10000
-
-* load
-*RL out 0 8
-
-
 X1 plus minus vcc vee rout uA741
 
 C1 in plus 1u
@@ -120,14 +104,27 @@ hardcopy gain.ps gaindB
 echo "gain_FIG"
 
 meas ac gaindB_max MAX gaindB
+
+echo "gain_TAB"
+print gaindB_max
+echo "gain_END"
+
 let gain3 = gaindB_max - 3
 meas ac f1 WHEN gaindB = gain3 RISE=1
 meas ac f2 WHEN gaindB = gain3 FALL=1
 
-let cen_freq = sqrt(f1*f2)
-print cen_freq
+let bandwidth = f2 - f1
 
-*input impedance in kohm
+let cen_freq = sqrt(f1*f2)
+
+echo "frequencies_TAB"
+print f1
+print f2
+print bandwidth
+print cen_freq
+echo "frequencies_END"
+
+*input impedance in ohm
 
 *print v(in)
 
@@ -138,7 +135,7 @@ echo "zin_TAB"
 print zin
 echo "zin_END"
 
-*merit calculatio 
+*merit calculation
 
 let opampcost = 8.661e-6 + 30.00e-6 + 0.1 + 0.1 + 100.0 + 5.305*2 + 1.836*2 + 13.19e3 + 50e-3 + 100e-3 + 18.16 + 0.1*5
 let cost = opampcost + 1 + 1 + 1 + 100 + 1 + 0.2
@@ -153,7 +150,11 @@ let gain_dev = abs(gain_4cost - 100)
 let cen_freq_dev = abs(1000-cen_freq)
 
 let merit = 1/cost * (gain_dev + cen_freq_dev + 10e-6)
+
+echo "merit_TAB"
 print merit
+echo "merit_END"
+
 
 .endc 
 

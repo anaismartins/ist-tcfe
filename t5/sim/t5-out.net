@@ -104,9 +104,9 @@ set color6=rgb:4/0/0
 * frequency analysis
 ac dec 10 10 100MEG
 
-*output impedance in kohm
+*output impedance in ohm
 
-*mudar 16 se mudar a frequência central
+*16 corresponde ao índice mais próximo da nossa fc
 let zout = v(out)[16]/i(Vl)[16]/(-1)
 
 echo "zout_TAB"
